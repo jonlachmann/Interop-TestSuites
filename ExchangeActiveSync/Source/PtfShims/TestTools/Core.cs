@@ -101,13 +101,64 @@ namespace Microsoft.Protocols.TestTools
         }
     }
 
+    internal class PropertyBag : IDictionary<string, string>
+    {
+        private readonly Dictionary<string, string> inner = new(StringComparer.OrdinalIgnoreCase);
+
+        public string? this[string key]
+        {
+            get => this.inner.TryGetValue(key, out var value) ? value : null;
+            set
+            {
+                if (value == null)
+                {
+                    this.inner.Remove(key);
+                }
+                else
+                {
+                    this.inner[key] = value;
+                }
+            }
+        }
+
+        public ICollection<string> Keys => this.inner.Keys;
+
+        public ICollection<string> Values => this.inner.Values;
+
+        public int Count => this.inner.Count;
+
+        public bool IsReadOnly => false;
+
+        public void Add(string key, string value) => this.inner.Add(key, value);
+
+        public void Add(KeyValuePair<string, string> item) => this.inner.Add(item.Key, item.Value);
+
+        public void Clear() => this.inner.Clear();
+
+        public bool Contains(KeyValuePair<string, string> item) => this.inner.Contains(item);
+
+        public bool ContainsKey(string key) => this.inner.ContainsKey(key);
+
+        public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex) => ((IDictionary<string, string>)this.inner).CopyTo(array, arrayIndex);
+
+        public IEnumerator<KeyValuePair<string, string>> GetEnumerator() => this.inner.GetEnumerator();
+
+        public bool Remove(string key) => this.inner.Remove(key);
+
+        public bool Remove(KeyValuePair<string, string> item) => this.inner.Remove(item.Key);
+
+        public bool TryGetValue(string key, out string value) => this.inner.TryGetValue(key, out value!);
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => this.inner.GetEnumerator();
+    }
+
     public class TestSite : ITestSite
     {
         private readonly ConcurrentDictionary<Type, object> adapters = new();
 
         public TestSite()
         {
-            this.Properties = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            this.Properties = new PropertyBag();
             this.TestProperties = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             this.Assert = new BasicAssert();
             this.Assume = new BasicAssume();
@@ -428,6 +479,28 @@ namespace Microsoft.Protocols.TestTools
                 foreach (string file in files.Distinct(StringComparer.OrdinalIgnoreCase))
                 {
                     LoadPtfConfigFile(file);
+                }
+
+                // Ensure CommonConfigurationFileName is present for MergeConfiguration calls.
+                if (this.Properties["CommonConfigurationFileName"] == null && File.Exists(commonConfig))
+                {
+                    this.Properties["CommonConfigurationFileName"] = Path.GetFileName(commonConfig);
+                }
+
+                if (this.Properties["CommonConfigurationFileName"] == null)
+                {
+                    this.Properties["CommonConfigurationFileName"] = "ExchangeCommonConfiguration.deployment.ptfconfig";
+                }
+
+                // Prime DefaultProtocolDocShortName if a single test suite ptfconfig is present.
+                string? suiteConfig = files.FirstOrDefault(f => f.EndsWith("_TestSuite.ptfconfig", StringComparison.OrdinalIgnoreCase));
+                if (suiteConfig != null && this.Properties["DefaultProtocolDocShortName"] == null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(suiteConfig);
+                    if (!string.IsNullOrEmpty(fileName) && fileName.Contains("_"))
+                    {
+                        this.Properties["DefaultProtocolDocShortName"] = fileName.Split('_')[0];
+                    }
                 }
             }
             catch
