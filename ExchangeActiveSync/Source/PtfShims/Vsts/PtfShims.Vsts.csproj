@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Microsoft.Protocols.TestTools.VSTS</AssemblyName>
+    <RootNamespace>Microsoft.Protocols.TestTools</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestTools\PtfShims.TestTools.csproj" />
+  </ItemGroup>
+</Project>

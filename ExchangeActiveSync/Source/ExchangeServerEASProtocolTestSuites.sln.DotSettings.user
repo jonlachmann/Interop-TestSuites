@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2ca0beff_002Da1ea_002D4730_002D821e_002D128ba3ff9b21/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::4C143C79-2F92-4A3A-B0A0-D33B805ACDE8::net8.0::Microsoft.Protocols.TestSuites.MS_ASCMD.S01_Autodiscover.MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,0 +1,12 @@
+<Project>
+  <!-- Ensure test discovery works uniformly (e.g., Rider) even for legacy test suite projects. -->
+  <PropertyGroup Condition="'$(AssemblyName)' != '' and $(AssemblyName.EndsWith('_TestSuite'))">
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(AssemblyName)' != '' and $(AssemblyName.EndsWith('_TestSuite'))">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.3.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.3.1" />
+  </ItemGroup>
+</Project>
