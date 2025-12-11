@@ -1724,8 +1724,10 @@ namespace Microsoft.Protocols.TestSuites.Common
             if (null != bodyByte && bodyByte.Length > 0)
             {
                 httpWebRequest.ContentLength = bodyByte.Length;
-                httpWebRequest.GetRequestStream().Write(bodyByte, 0, bodyByte.Length);
-                httpWebRequest.GetRequestStream().Close();
+                using (Stream requestStream = httpWebRequest.GetRequestStream())
+                {
+                    requestStream.Write(bodyByte, 0, bodyByte.Length);
+                }
             }
             else
             {
