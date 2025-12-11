@@ -164,6 +164,7 @@ namespace Microsoft.Protocols.TestTools
             this.Assume = new BasicAssume();
             this.Log = new BasicLog();
             this.LoadPtfConfigDefaults();
+            this.EnsureSchemaFiles();
         }
 
         public IDictionary<string, string> Properties { get; }
@@ -489,6 +490,35 @@ namespace Microsoft.Protocols.TestTools
         private static string Format(string description, object[] args)
         {
             return args is { Length: > 0 } ? string.Format(description, args) : description;
+        }
+
+        private void EnsureSchemaFiles()
+        {
+            try
+            {
+                string? schemaRoot = GetPtfConfigProbeRoots()
+                    .Select(r => Path.Combine(r, "Common", "ActiveSyncClient", "SchemaValidation"))
+                    .FirstOrDefault(Directory.Exists);
+
+                if (schemaRoot == null)
+                {
+                    return;
+                }
+
+                string targetDir = AppContext.BaseDirectory ?? Directory.GetCurrentDirectory();
+                foreach (string src in Directory.EnumerateFiles(schemaRoot, "*.xsd", SearchOption.AllDirectories))
+                {
+                    string dest = Path.Combine(targetDir, Path.GetFileName(src));
+                    if (!File.Exists(dest))
+                    {
+                        File.Copy(src, dest, overwrite: false);
+                    }
+                }
+            }
+            catch
+            {
+                // Best-effort; schema validation will fail later with a clearer error if copies are unavailable.
+            }
         }
 
         private void LoadPtfConfigDefaults()
