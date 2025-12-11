@@ -20,7 +20,7 @@ using MS_ASWBXML;
 using TestTools;
 
 /// <summary>
-/// Provides all the methods defined in MS-ASCMD. 
+/// Provides all the methods defined in MS-ASCMD.
 /// </summary>
 public partial class ActiveSyncClient
 {
@@ -406,7 +406,7 @@ public partial class ActiveSyncClient
                 {
                     for (var i = 0; i < commandNodes.Count; i++)
                     {
-                        commandsString = commandsString + commandNodes[i].InnerXml;
+                        commandsString += commandNodes[i].InnerXml;
                     }
                 }
             }
@@ -670,7 +670,7 @@ public partial class ActiveSyncClient
 
         while (counter < upperBound)
         {
-            // Wait for the item received. 
+            // Wait for the item received.
             Thread.Sleep(waitTime);
 
             var rawResponse = SendRequest(rawRequest);
@@ -720,7 +720,7 @@ public partial class ActiveSyncClient
 
         while (counter < upperBound)
         {
-            // Wait for the item received. 
+            // Wait for the item received.
             Thread.Sleep(waitTime);
 
             var rawResponse = SendRequest(rawRequest);
@@ -974,10 +974,10 @@ public partial class ActiveSyncClient
             {
                 foreach (var status in chain.ChainStatus)
                 {
-                    // Self-signed certificates have the issuer in the subject field. 
+                    // Self-signed certificates have the issuer in the subject field.
                     if ((certificate.Subject == certificate.Issuer) && (status.Status == X509ChainStatusFlags.UntrustedRoot))
                     {
-                        // Self-signed certificates with an untrusted root are valid. 
+                        // Self-signed certificates with an untrusted root are valid.
                         continue;
                     }
                     else if (status.Status != X509ChainStatusFlags.NoError)
@@ -988,7 +988,7 @@ public partial class ActiveSyncClient
                 }
             }
 
-            // When processing reaches this line, the only errors in the certificate chain are untrusted root errors for self-signed certificates. 
+            // When processing reaches this line, the only errors in the certificate chain are untrusted root errors for self-signed certificates.
             // These certificates are valid.
             errors -= SslPolicyErrors.RemoteCertificateChainErrors;
         }
@@ -1048,7 +1048,7 @@ public partial class ActiveSyncClient
     }
 
     /// <summary>
-    /// Configure the command setting based on the command parameters 
+    /// Configure the command setting based on the command parameters
     /// </summary>
     /// <param name="parameters">The command parameters</param>
     /// <param name="requestDataXML">The request XML string</param>
@@ -1197,7 +1197,7 @@ public partial class ActiveSyncClient
             byte[] arrValue;
             if (cmdParameter.Key == CmdParameterName.Options)
             {
-                arrValue = new byte[] { (byte)((int)cmdParameter.Value & 0xff) };
+                arrValue = [(byte)((int)cmdParameter.Value & 0xff)];
             }
             else
             {
@@ -1755,7 +1755,7 @@ public partial class ActiveSyncClient
         }
 
         lastRawRequestXml = null;
-        var url = string.Format(@"{0}://{1}/{2}", prefixOfURI, autoDiscoverServerName, Common.GetConfigurationPropertyValue("AutodiscoverEndPoint", site));
+        var url = $@"{prefixOfURI}://{autoDiscoverServerName}/{Common.GetConfigurationPropertyValue("AutodiscoverEndPoint", site)}";
         AcceptAllCertificate();
 
         var httpWebRequest = GetHttpWebRequest(data, url);
@@ -1804,9 +1804,9 @@ public partial class ActiveSyncClient
             site.Assume.AreNotEqual<string>("141", ActiveSyncProtocolVersion, "Exchange Server 2007 does not support ActiveSync protocol version 14.1");
         }
 
-        var url = string.Format(@"{0}://{1}/{2}", prefixOfURI, Host, Common.GetConfigurationPropertyValue("ActiveSyncEndPoint", site));
+        var url = $@"{prefixOfURI}://{Host}/{Common.GetConfigurationPropertyValue("ActiveSyncEndPoint", site)}";
 
-        var httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+        var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
         AcceptAllCertificate();
         httpWebRequest.Method = "OPTIONS";
         var cache = new CredentialCache
@@ -1840,7 +1840,7 @@ public partial class ActiveSyncClient
         byte[] rawData;
         if (string.IsNullOrEmpty(body))
         {
-            return new byte[0];
+            return [];
         }
 
         // Encode according to the contentType
@@ -1871,7 +1871,7 @@ public partial class ActiveSyncClient
     private HttpWebRequest GetHttpWebRequest(ActiveSyncRawRequest requestdata, string url)
     {
         // Config request headers and other contents
-        var httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+        var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
         httpWebRequest.Method = requestdata.HttpMethod;
         httpWebRequest.ContentType = requestdata.ContentType;
         var cache = new CredentialCache
@@ -1916,7 +1916,7 @@ public partial class ActiveSyncClient
             }
 
             default:
-                throw new InvalidOperationException(string.Format("Not supported encode header type{0}", queryvalueType.ToString()));
+                throw new InvalidOperationException($"Not supported encode header type{queryvalueType.ToString()}");
         }
 
         return url;
@@ -1929,7 +1929,7 @@ public partial class ActiveSyncClient
     /// <returns>A base64 query format query string</returns>
     private string GetBase64QueryString(ActiveSyncRawRequest requestdata)
     {
-        var url = string.Format(@"{0}://{1}/{2}", prefixOfURI, Host, Common.GetConfigurationPropertyValue("ActiveSyncEndPoint", site));
+        var url = $@"{prefixOfURI}://{Host}/{Common.GetConfigurationPropertyValue("ActiveSyncEndPoint", site)}";
         if ("POST".Equals(requestdata.HttpMethod))
         {
             url += "?" + Base64EncodedQuery(requestdata);

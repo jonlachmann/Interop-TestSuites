@@ -86,20 +86,20 @@ public class S03_SearchCommand : TestSuiteBase
 
         var queryItem = new Request.queryType
         {
-            Items = new object[] { "Tasks", UserInformation.TasksCollectionId, subject },
+            Items = ["Tasks", UserInformation.TasksCollectionId, subject],
 
-            ItemsElementName = new Request.ItemsChoiceType2[]
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType2.Class,
                 Request.ItemsChoiceType2.CollectionId,
                 Request.ItemsChoiceType2.FreeText
-            }
+            ]
         };
 
         var queryType = new Request.queryType
         {
-            Items = new object[] { queryItem },
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And }
+            Items = [queryItem],
+            ItemsElementName = [Request.ItemsChoiceType2.And]
         };
 
         var searchRequest = TestSuiteHelper.CreateSearchRequest(SearchName.Mailbox.ToString(), option, queryType);

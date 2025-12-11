@@ -98,7 +98,7 @@ public partial class MS_ASCALAdapter : ManagedAdapterBase, IMS_ASCALAdapter
     }
 
     /// <summary>
-    /// FolderSync command to synchronize the collection hierarchy 
+    /// FolderSync command to synchronize the collection hierarchy
     /// </summary>
     /// <returns>The FolderSync response</returns>
     public FolderSyncResponse FolderSync()

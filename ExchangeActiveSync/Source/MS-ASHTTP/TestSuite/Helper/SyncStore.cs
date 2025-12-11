@@ -60,7 +60,7 @@ public class SyncStore
     public string CollectionId { get; set; }
 
     /// <summary>
-    /// Gets the add sync response information of the Sync command. 
+    /// Gets the add sync response information of the Sync command.
     /// </summary>
     public Collection<Response.SyncCollectionsCollectionResponsesAdd> AddResponses
     {

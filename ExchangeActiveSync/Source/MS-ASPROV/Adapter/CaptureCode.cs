@@ -284,7 +284,7 @@ MS-EAS-Provisioning-WBXML]");
             // Add the debug information
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASPROV_R377");
 
-            Common.VerifyActualValues("Status(Policy)", new string[] { "1", "2", "3", "4", "5" }, provisionResponse.ResponseData.Policies.Policy.Status.ToString(), Site);
+            Common.VerifyActualValues("Status(Policy)", ["1", "2", "3", "4", "5"], provisionResponse.ResponseData.Policies.Policy.Status.ToString(), Site);
 
             // Verify MS-ASPROV requirement: MS-ASPROV_R377
             // The actual value of Status element is one of the valid values, so this requirement can be captured.
@@ -1224,7 +1224,7 @@ UnapprovedInROMApplicationList (section 2.2.2.55)");
 
             // Add the debug information
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASPROV_R245");
-            Common.VerifyActualValues("MaxCalendarAgeFilter", new string[] { "0", "4", "5", "6", "7" }, provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.MaxCalendarAgeFilter.ToString(), Site);
+            Common.VerifyActualValues("MaxCalendarAgeFilter", ["0", "4", "5", "6", "7"], provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.MaxCalendarAgeFilter.ToString(), Site);
 
             // Verify MS-ASPROV requirement: MS-ASPROV_R245
             // The value of MaxCalendarAgeFilter element is one of the valid values, so this requirement can be captured.
@@ -1320,7 +1320,7 @@ UnapprovedInROMApplicationList (section 2.2.2.55)");
             // Add the debug information
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASPROV_R257");
 
-            Common.VerifyActualValues("MaxEmailAgeFilter", new string[] { "0", "1", "2", "3", "4", "5" }, provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.MaxEmailAgeFilter.ToString(), Site);
+            Common.VerifyActualValues("MaxEmailAgeFilter", ["0", "1", "2", "3", "4", "5"], provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.MaxEmailAgeFilter.ToString(), Site);
 
             // Verify MS-ASPROV requirement: MS-ASPROV_R257
             // The value of MaxEmailAgeFilter element is one of the valid values, so this requirement can be captured.
@@ -1547,7 +1547,7 @@ UnapprovedInROMApplicationList (section 2.2.2.55)");
             // Add the debug information
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASPROV_R338");
 
-            Common.VerifyActualValues("RequireEncryptionSMIMEAlgorithm", new string[] { "0", "1", "2", "3", "4" }, provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.RequireEncryptionSMIMEAlgorithm.ToString(), Site);
+            Common.VerifyActualValues("RequireEncryptionSMIMEAlgorithm", ["0", "1", "2", "3", "4"], provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.RequireEncryptionSMIMEAlgorithm.ToString(), Site);
 
             // Verify MS-ASPROV requirement: MS-ASPROV_R338
             // The actual value is one of the valid values, so this requirement can be captured.
@@ -1604,7 +1604,7 @@ UnapprovedInROMApplicationList (section 2.2.2.55)");
             // Add the debug information
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASPROV_R351");
 
-            Common.VerifyActualValues("RequireSignedSMIMEAlgorithm", new string[] { "0", "1" }, provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.RequireSignedSMIMEAlgorithm.ToString(), Site);
+            Common.VerifyActualValues("RequireSignedSMIMEAlgorithm", ["0", "1"], provisionResponse.ResponseData.Policies.Policy.Data.EASProvisionDoc.RequireSignedSMIMEAlgorithm.ToString(), Site);
 
             // Verify MS-ASPROV requirement: MS-ASPROV_R351
             // The value of RequireSignedSMIMEAlgorithm element is one of valid values, so this requirement can be captured.

@@ -671,7 +671,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
             new Request.SyncCollectionChange { ServerId = item.ServerId });
         var syncStringResponse = EMAILAdapter.InvalidSync(
             invalidSyncRequest,
-            string.Format("<ApplicationData><Sender xmlns=\"Email2\">{0}</Sender></ApplicationData>", User2Information.UserName),
+            $"<ApplicationData><Sender xmlns=\"Email2\">{User2Information.UserName}</Sender></ApplicationData>",
             "</Change>");
         #endregion
 
@@ -796,7 +796,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
             new Request.SyncCollectionChange { ServerId = item.ServerId });
         var syncStringResponse = EMAILAdapter.InvalidSync(
             invalidSyncRequest,
-            string.Format("<ApplicationData><ReceivedAsBcc xmlns=\"Email2\">{0}</ReceivedAsBcc></ApplicationData>", false),
+            $"<ApplicationData><ReceivedAsBcc xmlns=\"Email2\">{false}</ReceivedAsBcc></ApplicationData>",
             "</Change>");
         #endregion
 
@@ -919,7 +919,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
         {
             #region The recipient calls SmartReply method to reply the received email and send the reply to multiple recipients.
             var replyFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
-            var replySubject = string.Format("Re: {0}", emailSubject);
+            var replySubject = $"Re: {emailSubject}";
             var replyContent = Common.GenerateResourceName(Site, "reply: body");
 
             var replyMime = TestSuiteHelper.CreatePlainTextMime(
@@ -1020,7 +1020,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
         #region The recipient calls SmartForward method to forward the received email to the second recipient.
         var forwardFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User3Information.UserName, User3Information.UserDomain);
-        var forwardSubject = string.Format("FW: {0}", emailSubject);
+        var forwardSubject = $"FW: {emailSubject}";
         var forwardContent = Common.GenerateResourceName(Site, "forward: body");
 
         var forwardMime = TestSuiteHelper.CreatePlainTextMime(
@@ -1364,7 +1364,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
 
         // Search email from server
         var searchRequest = TestSuiteHelper.CreateSearchRequest(emailSubject, User2Information.InboxCollectionId);
-        var result = EMAILAdapter.InvalidSearch(searchRequest, string.Format("<To xmlns=\"Email\">{0}</To>", Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)));
+        var result = EMAILAdapter.InvalidSearch(searchRequest, $"<To xmlns=\"Email\">{Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)}</To>");
 
         var doc = new XmlDocument();
         doc.LoadXml(result.ResponseDataXML);
@@ -1379,7 +1379,7 @@ Changes to non-E-Mail class properties (Exchange Server 2007 Sp1 and above follo
         while (counter < retryCount && searchStatus != null && searchStatus.InnerXml.Equals("10"))
         {
             Thread.Sleep(waitTime);
-            result = EMAILAdapter.InvalidSearch(searchRequest, string.Format("<To xmlns=\"Email\">{0}</To>", Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)));
+            result = EMAILAdapter.InvalidSearch(searchRequest, $"<To xmlns=\"Email\">{Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)}</To>");
             doc.LoadXml(result.ResponseDataXML);
             xnm = new XmlNamespaceManager(doc.NameTable);
             xnm.AddNamespace("e", "Search");

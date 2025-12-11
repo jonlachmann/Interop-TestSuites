@@ -53,13 +53,13 @@ public class S03_Search : TestSuiteBase
 
         #region The client logs on User2's account, calls Search command to search the rights-managed e-mail message from server.
         var searchRequest = Common.CreateSearchRequest(subject, UserTwoInformation.InboxCollectionId);
-        searchRequest.RequestData.Items[0].Options.Items = new object[] { string.Empty, string.Empty, true };
-        searchRequest.RequestData.Items[0].Options.ItemsElementName = new Request.ItemsChoiceType6[] 
-        {
+        searchRequest.RequestData.Items[0].Options.Items = [string.Empty, string.Empty, true];
+        searchRequest.RequestData.Items[0].Options.ItemsElementName =
+        [
             Request.ItemsChoiceType6.RebuildResults,
             Request.ItemsChoiceType6.DeepTraversal,
             Request.ItemsChoiceType6.RightsManagementSupport
-        };
+        ];
 
         var result = ASRMAdapter.Search(searchRequest);
 

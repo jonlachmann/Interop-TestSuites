@@ -158,8 +158,8 @@ public partial class ActiveSyncClient
 
         // Initialize Validation Result Recorder
         validationResult = false;
-        xmlValidationWarnings = new Collection<ValidationEventArgs>();
-        xmlValidationErrors = new Collection<ValidationEventArgs>();
+        xmlValidationWarnings = [];
+        xmlValidationErrors = [];
 
         // Prepare settings of XML reader
         var settings = new XmlReaderSettings();
@@ -177,7 +177,7 @@ public partial class ActiveSyncClient
         settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
 
         // Load into the memory stream
-        using (var ms = new MemoryStream(System.Text.ASCIIEncoding.UTF8.GetBytes(lastRawString)))
+        using (var ms = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(lastRawString)))
         {
             // Create XML reader for SOAP client message
             var xmlReader = XmlReader.Create(ms, settings);
@@ -199,16 +199,16 @@ public partial class ActiveSyncClient
             {
                 if (xmlValidationErrors.Count == 1)
                 {
-                    errorInformation = string.Format("There is a schema validation error:\r\n");
+                    errorInformation = "There is a schema validation error:\r\n";
                 }
                 else
                 {
-                    errorInformation = string.Format("There are {0} schema validation errors:\r\n", xmlValidationErrors.Count);
+                    errorInformation = $"There are {xmlValidationErrors.Count} schema validation errors:\r\n";
                 }
 
                 for (var i = 0; i < xmlValidationErrors.Count; i++)
                 {
-                    errorInformation = errorInformation + string.Format("Error: {0}\r\n", xmlValidationErrors[i].Message);
+                    errorInformation += $"Error: {xmlValidationErrors[i].Message}\r\n";
                 }
             }
 
@@ -216,16 +216,16 @@ public partial class ActiveSyncClient
             {
                 if (xmlValidationWarnings.Count == 1)
                 {
-                    warningInformation = string.Format("There is a schema validation warning:\r\n");
+                    warningInformation = "There is a schema validation warning:\r\n";
                 }
                 else
                 {
-                    warningInformation = string.Format("There are {0} schema validation warnings:\r\n", xmlValidationWarnings.Count);
+                    warningInformation = $"There are {xmlValidationWarnings.Count} schema validation warnings:\r\n";
                 }
 
                 for (var i = 0; i < xmlValidationWarnings.Count; i++)
                 {
-                    warningInformation = warningInformation + string.Format("Warning: {0}\r\n", xmlValidationWarnings[i].Message);
+                    warningInformation += $"Warning: {xmlValidationWarnings[i].Message}\r\n";
                 }
             }
 

@@ -269,7 +269,7 @@ public partial class MS_ASTASKAdapter
                             79,
                             @"[In CalendarType] The value of this element[CalendarType] is an unsignedbyte data type, as specified in [MS-ASDTYPE] section 2.8.");
 
-                        string[] expectedCalendarTypeValues = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "14", "15", "20" };
+                        string[] expectedCalendarTypeValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "14", "15", "20"];
 
                         Common.VerifyActualValues("CalendarType", expectedCalendarTypeValues, task.Recurrence.CalendarType.ToString(), Site);
 
@@ -607,7 +607,7 @@ public partial class MS_ASTASKAdapter
                             291,
                             @"[In Type] The value of this element[Type] is an unsignedbyte data type, as specified in [MS-ASDTYPE] section 2.7.");
 
-                        string[] expectedTypeValues = { "0", "1", "2", "3", "5", "6" };
+                        string[] expectedTypeValues = ["0", "1", "2", "3", "5", "6"];
 
                         Common.VerifyActualValues("Type", expectedTypeValues, task.Recurrence.CalendarType.ToString(), Site);
 

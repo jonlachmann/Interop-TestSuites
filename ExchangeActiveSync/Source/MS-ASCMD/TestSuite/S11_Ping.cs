@@ -497,7 +497,7 @@ public class S11_Ping : TestSuiteBase
             Id = folderID
         };
 
-        return Common.CreatePingRequest(new Request.PingFolder[] { pingFolder }, "80");
+        return Common.CreatePingRequest([pingFolder], "80");
     }
 
     /// <summary>

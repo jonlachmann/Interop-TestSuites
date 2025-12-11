@@ -297,16 +297,16 @@ public static class TestSuiteHelper
         icsBuilder.AppendLine("END:VTIMEZONE");
 
         icsBuilder.AppendLine("BEGIN:VEVENT");
-        icsBuilder.AppendLine(string.Format("DTSTART:{0:yyyyMMddTHH0000Z}", DateTime.UtcNow.AddHours(1)));
-        icsBuilder.AppendLine(string.Format("DTSTAMP:{0:yyyyMMddTHHmmssZ}", DateTime.UtcNow));
-        icsBuilder.AppendLine(string.Format("DTEND:{0:yyyyMMddTHH0000Z}", DateTime.UtcNow.AddHours(2)));
-        icsBuilder.AppendLine(string.Format("LOCATION:{0}", "Meeting room one"));
-        icsBuilder.AppendLine(string.Format("UID:{0}", Guid.NewGuid().ToString()));
-        icsBuilder.AppendLine(string.Format("DESCRIPTION:Meeting Request"));
-        icsBuilder.AppendLine(string.Format("X-ALT-DESC;FMTTYPE=text/html:Meeting Request"));
-        icsBuilder.AppendLine(string.Format("SUMMARY:{0}", meetingRequestSubject));
-        icsBuilder.AppendLine(string.Format("ORGANIZER:MAILTO:{0}", fromAddress));
-        icsBuilder.AppendLine(string.Format("ATTENDEE;CN=\"{0}\";RSVP=TRUE:mailto:{1}", toAddress.Split('@')[0], toAddress));
+        icsBuilder.AppendLine($"DTSTART:{DateTime.UtcNow.AddHours(1):yyyyMMddTHH0000Z}");
+        icsBuilder.AppendLine($"DTSTAMP:{DateTime.UtcNow:yyyyMMddTHHmmssZ}");
+        icsBuilder.AppendLine($"DTEND:{DateTime.UtcNow.AddHours(2):yyyyMMddTHH0000Z}");
+        icsBuilder.AppendLine($"LOCATION:{"Meeting room one"}");
+        icsBuilder.AppendLine($"UID:{Guid.NewGuid().ToString()}");
+        icsBuilder.AppendLine("DESCRIPTION:Meeting Request");
+        icsBuilder.AppendLine("X-ALT-DESC;FMTTYPE=text/html:Meeting Request");
+        icsBuilder.AppendLine($"SUMMARY:{meetingRequestSubject}");
+        icsBuilder.AppendLine($"ORGANIZER:MAILTO:{fromAddress}");
+        icsBuilder.AppendLine($"ATTENDEE;CN=\"{toAddress.Split('@')[0]}\";RSVP=TRUE:mailto:{toAddress}");
             
         if (!string.IsNullOrEmpty(occurrences))
         {

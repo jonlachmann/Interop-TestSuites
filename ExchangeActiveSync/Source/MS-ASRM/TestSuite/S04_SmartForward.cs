@@ -64,7 +64,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method without ReplaceMime in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -183,7 +183,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with ReplaceMime in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -269,7 +269,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with TemplateID set to "00000000-0000-0000-0000-000000000000" in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -362,7 +362,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -440,7 +440,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with an invalid TemplateID in request to forward the received email to User3, and checks the response of SmartForward command.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -513,7 +513,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -576,7 +576,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method without a TemplateID in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -646,7 +646,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with the TemplateID in request to forward the received email to User3, and checks the response of SmartForward command.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -703,7 +703,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with the TemplateID in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),
@@ -766,7 +766,7 @@ public class S04_SmartForward : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartForward method with the new TemplateID in request to forward the received email to User3.
-        var forwardSubject = string.Format("FW: {0}", subject);
+        var forwardSubject = $"FW: {subject}";
         var forwardMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserThreeInformation.UserName, UserThreeInformation.UserDomain),

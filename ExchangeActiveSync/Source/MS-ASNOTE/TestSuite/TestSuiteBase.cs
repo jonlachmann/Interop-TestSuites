@@ -94,7 +94,7 @@ public class TestSuiteBase : TestClassBase
 
         Site.Assume.AreNotEqual<string>("12.1", Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site), "The Notes class is not supported when the MS-ASProtocolVersion header is set to 12.1. MS-ASProtocolVersion header value is determined using Common PTFConfig property named ActiveSyncProtocolVersion.");
 
-        ExistingNoteSubjects = new Collection<string>();
+        ExistingNoteSubjects = [];
 
         // Set the information of user.
         UserInformation = new UserInformation
@@ -131,7 +131,7 @@ public class TestSuiteBase : TestClassBase
         var noteBody = new Request.Body { Type = 1, Data = "Content of the body." };
         addElements.Add(Request.ItemsChoiceType8.Body, noteBody);
 
-        var categories = new Request.Categories4 { Category = new string[] { "blue category" } };
+        var categories = new Request.Categories4 { Category = ["blue category"] };
         addElements.Add(Request.ItemsChoiceType8.Categories2, categories);
 
         addElements.Add(Request.ItemsChoiceType8.MessageClass, "IPM.StickyNote");

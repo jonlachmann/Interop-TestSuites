@@ -62,7 +62,7 @@ public class MultipartMetadata
         partsCount = metadata[0];
 
         var temp = new List<PartMetaData>();
-        for (var i = 1; i < partsCount * 2; i = i + 2)
+        for (var i = 1; i < partsCount * 2; i += 2)
         {
             temp.Add(new PartMetaData() { Start = metadata[i], Count = metadata[i + 1] });
         }

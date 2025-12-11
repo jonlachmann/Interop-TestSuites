@@ -20,7 +20,7 @@ public partial class MS_ASCONAdapter
         // If the schema validation is successful, then following requirements can be captured.
         Site.Assert.IsTrue(activeSyncClient.ValidationResult, "Schema validation should be successful.");
             
-        var testIsSupported = bool.Parse(Common.GetConfigurationPropertyValue(string.Format("{0}_Supported", Site.DefaultProtocolDocShortName), Site));
+        var testIsSupported = bool.Parse(Common.GetConfigurationPropertyValue($"{Site.DefaultProtocolDocShortName}_Supported", Site));
         if (testIsSupported)
         {
             // Add the debug information

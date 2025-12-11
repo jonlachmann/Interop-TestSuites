@@ -404,7 +404,7 @@ MQ==
             SrcMsgId = srcMsgId
         };
 
-        return Common.CreateMoveItemsRequest(new Request.MoveItemsMove[] { moveItemsMove });
+        return Common.CreateMoveItemsRequest([moveItemsMove]);
     }
 
     /// <summary>
@@ -421,10 +421,10 @@ MQ==
             SyncKey = syncKey,
             GetChanges = true,
             CollectionId = collectionId,
-            Commands = new object[] { new Request.SyncCollectionDelete { ServerId = serverId } }
+            Commands = [new Request.SyncCollectionDelete { ServerId = serverId }]
         };
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        return Common.CreateSyncRequest([collection]);
     }
 
     /// <summary>
@@ -447,9 +447,9 @@ MQ==
 
         var deleteData = new Request.SyncCollectionDelete { ServerId = serverId };
 
-        syncCollection.Commands = new object[] { deleteData };
+        syncCollection.Commands = [deleteData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -477,7 +477,7 @@ MQ==
             itemsElementNames.Add(Request.ItemsChoiceType10.ConversationMode);
             items.Add(ConversationMode.Value);
         }
-         
+
         var collection = new Request.GetItemEstimateCollection
         {
             ItemsElementName = itemsElementNames.ToArray(),
@@ -490,7 +490,7 @@ MQ==
             //items.Add(options);
             collection.Options = options;
         }
-        return Common.CreateGetItemEstimateRequest(new Request.GetItemEstimateCollection[] { collection });
+        return Common.CreateGetItemEstimateRequest([collection]);
     }
 
     /// <summary>
@@ -639,7 +639,7 @@ MQ==
 
         // Get the application data of the email, to which the attachments belong.
         var addData = GetAddApplicationData(syncResponse, Response.ItemsChoiceType8.Subject1, subject);
-        Site.Assert.IsNotNull(addData, string.Format("The email with subject '{0}' should exist.", subject));
+        Site.Assert.IsNotNull(addData, $"The email with subject '{subject}' should exist.");
 
         for (var i = 0; i < addData.ItemsElementName.Length; i++)
         {
@@ -690,13 +690,13 @@ MQ==
         {
             var option = new Request.Options
             {
-                Items = new object[] { (byte)filterType },
-                ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType }
+                Items = [(byte)filterType],
+                ItemsElementName = [Request.ItemsChoiceType1.FilterType]
             };
-            collection.Options = new Request.Options[] { option };
+            collection.Options = [option];
         }
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        return Common.CreateSyncRequest([collection]);
     }
 
     /// <summary>
@@ -713,10 +713,10 @@ MQ==
             SyncKey = syncKey,
             GetChanges = true,
             CollectionId = collectionId,
-            Commands = new object[] { syncCollectionAdd }
+            Commands = [syncCollectionAdd]
         };
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        return Common.CreateSyncRequest([collection]);
     }
 
     /// <summary>
@@ -796,7 +796,7 @@ MQ==
             request.InstanceId = instanceID;
         }
 
-        return Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { request });
+        return Common.CreateMeetingResponseRequest([request]);
     }
 
     /// <summary>
@@ -1099,7 +1099,7 @@ MQ==
             counter++;
         }
 
-        Site.Assert.IsTrue(!string.IsNullOrEmpty(serverId), string.Format("The email with subject '{0}' should be found.", subject));
+        Site.Assert.IsTrue(!string.IsNullOrEmpty(serverId), $"The email with subject '{subject}' should be found.");
 
         return syncResponse;
     }
@@ -1179,14 +1179,16 @@ MQ==
 
         if (string.IsNullOrEmpty(jobTitle))
         {
-            appData.ApplicationData.ItemsElementName = new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName, Request.ItemsChoiceType8.MiddleName, Request.ItemsChoiceType8.LastName };
-            appData.ApplicationData.Items = new object[] { fileAs, firstName, middleName, lastName };
+            appData.ApplicationData.ItemsElementName = [Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName, Request.ItemsChoiceType8.MiddleName, Request.ItemsChoiceType8.LastName
+            ];
+            appData.ApplicationData.Items = [fileAs, firstName, middleName, lastName];
         }
         else
         {
             jobTitle = Common.GenerateResourceName(Site, jobTitle);
-            appData.ApplicationData.ItemsElementName = new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName, Request.ItemsChoiceType8.MiddleName, Request.ItemsChoiceType8.LastName, Request.ItemsChoiceType8.JobTitle };
-            appData.ApplicationData.Items = new object[] { fileAs, firstName, middleName, lastName, jobTitle };
+            appData.ApplicationData.ItemsElementName = [Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName, Request.ItemsChoiceType8.MiddleName, Request.ItemsChoiceType8.LastName, Request.ItemsChoiceType8.JobTitle
+            ];
+            appData.ApplicationData.Items = [fileAs, firstName, middleName, lastName, jobTitle];
         }
 
         if ("12.1" != Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site))
@@ -1554,9 +1556,9 @@ MQ==
         syncRequest.RequestData.Collections[0].SyncKey = syncKey;
         var options = new Request.Options();
         var bodyPreference = new Request.BodyPreference { Type = 1 };
-        options.Items = new object[] { bodyPreference };
-        options.ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.BodyPreference };
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { options };
+        options.Items = [bodyPreference];
+        options.ItemsElementName = [Request.ItemsChoiceType1.BodyPreference];
+        syncRequest.RequestData.Collections[0].Options = [options];
         syncRequest.RequestData.Collections[0].GetChanges = true;
         syncRequest.RequestData.Collections[0].GetChangesSpecified = true;
         var syncResponse = Sync(syncRequest, isResyncNeeded);
@@ -1697,7 +1699,7 @@ MQ==
     /// <param name="subject">Meeting subject.</param>
     /// <param name="attendeeEmailAddress">Meeting attendee email address.</param>
     /// <param name="createdCalendar">The calendar object</param>
-    /// <returns>One sample calendar object.</returns> 
+    /// <returns>One sample calendar object.</returns>
     protected Calendar CreateCalendar(string subject, string attendeeEmailAddress, Calendar createdCalendar)
     {
         var elementsToValueMap = SetMeetingProperties(subject, attendeeEmailAddress, Site);
@@ -1842,7 +1844,7 @@ MQ==
                         DeletesAsMovesSpecified = true
                     };
 
-                    var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+                    var syncRequest = Common.CreateSyncRequest([syncCollection]);
                     var deleteResult = Sync(syncRequest);
                     var deleteResultStatus = GetStatusCode(deleteResult.ResponseDataXML);
 
@@ -1895,7 +1897,7 @@ MQ==
         oofMessageWithNothing.AppliesToExternalKnown = string.Empty;
         oofMessageWithNothing.AppliesToExternalUnknown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { oofMessageWithNothing };
+        settingsOofSet.OofMessage = [oofMessageWithNothing];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 

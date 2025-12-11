@@ -388,7 +388,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToExternalUser = CreateOofMessage(bodyType, enabled, replyMessage);
         setEnableToExternalUser.AppliesToExternalKnown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToExternalUser };
+        settingsOofSet.OofMessage = [setEnableToExternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -492,7 +492,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToUnknownExternalUser = CreateOofMessage(bodyType, enabled, replyMessage);
         setEnableToUnknownExternalUser.AppliesToExternalUnknown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToUnknownExternalUser };
+        settingsOofSet.OofMessage = [setEnableToUnknownExternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -595,7 +595,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToInternalUser = CreateOofMessage(bodyType, enabled, replyMessage);
         setEnableToInternalUser.AppliesToInternal = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToInternalUser };
+        settingsOofSet.OofMessage = [setEnableToInternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -716,7 +716,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToInternalUser = CreateOofMessage(bodyType, enabled, replyMessage);
         setEnableToInternalUser.AppliesToInternal = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToInternalUser };
+        settingsOofSet.OofMessage = [setEnableToInternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -776,7 +776,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToInternalUser = CreateOofMessage(null, "0", null);
         setEnableToInternalUser.AppliesToInternal = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToInternalUser };
+        settingsOofSet.OofMessage = [setEnableToInternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -865,7 +865,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToExternalUnknownlUser = CreateOofMessage(externalUnknownBodyType, externalUnknownEnabled, externalUnknownReplyMessage);
         setEnableToExternalUnknownlUser.AppliesToExternalUnknown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToInternalUser, setEnableToExternalKnownlUser, setEnableToExternalUnknownlUser };
+        settingsOofSet.OofMessage = [setEnableToInternalUser, setEnableToExternalKnownlUser, setEnableToExternalUnknownlUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -951,7 +951,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToExternalUser = CreateOofMessage(bodyType, enabled, replyMessage);
         setEnableToExternalUser.AppliesToExternalKnown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToExternalUser };
+        settingsOofSet.OofMessage = [setEnableToExternalUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 
@@ -1017,7 +1017,7 @@ public class S16_Settings : TestSuiteBase
         var setEnableToExternalUnknownlUser = CreateOofMessage(externalUnknownBodyType, externalUnknownEnabled, externalUnknownReplyMessage);
         setEnableToExternalUnknownlUser.AppliesToExternalUnknown = string.Empty;
 
-        settingsOofSet.OofMessage = new Request.OofMessage[] { setEnableToExternalKnownlUser, setEnableToExternalUnknownlUser };
+        settingsOofSet.OofMessage = [setEnableToExternalKnownlUser, setEnableToExternalUnknownlUser];
         settingsRequest.RequestData.Oof.Item = settingsOofSet;
         #endregion
 

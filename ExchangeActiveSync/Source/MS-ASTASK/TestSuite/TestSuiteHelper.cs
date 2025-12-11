@@ -37,11 +37,11 @@ internal static class TestSuiteHelper
             PreviewSpecified = false
         };
 
-        option.Items = new object[] { preference };
-        option.ItemsElementName = new Request.ItemsChoiceType1[]
-        {
-            Request.ItemsChoiceType1.BodyPreference,
-        };
+        option.Items = [preference];
+        option.ItemsElementName =
+        [
+            Request.ItemsChoiceType1.BodyPreference
+        ];
 
         syncCollection.Options = new Request.Options[1];
         syncCollection.Options[0] = option;
@@ -53,7 +53,7 @@ internal static class TestSuiteHelper
             syncCollection.Commands = data.ToArray();
         }
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -161,7 +161,7 @@ internal static class TestSuiteHelper
             Query = queryType
         };
 
-        return Common.CreateSearchRequest(new Request.SearchStore[] { searchStore });
+        return Common.CreateSearchRequest([searchStore]);
     }
 
     /// <summary>

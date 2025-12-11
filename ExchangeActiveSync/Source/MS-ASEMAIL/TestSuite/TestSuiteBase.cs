@@ -68,9 +68,9 @@ public class TestSuiteBase : TestClassBase
 
         var deleteData = new Request.SyncCollectionDelete { ServerId = serverId };
 
-        syncCollection.Commands = new object[] { deleteData };
+        syncCollection.Commands = [deleteData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
     #endregion
 
@@ -383,15 +383,15 @@ public class TestSuiteBase : TestClassBase
             itemsElementName.Add(Request.ItemsChoiceType8.ResponseRequested);
         }
         #region TIME/Subject/Location/UID
-        items.Add(string.Format("{0:yyyyMMddTHHmmss}Z", null == startTime ? DateTime.UtcNow.AddDays(5) : startTime.Value));
+        items.Add($"{(null == startTime ? DateTime.UtcNow.AddDays(5) : startTime.Value):yyyyMMddTHHmmss}Z");
         itemsElementName.Add(Request.ItemsChoiceType8.StartTime);
 
-        items.Add(string.Format("{0:yyyyMMddTHHmmss}Z", null == endTime ? DateTime.UtcNow.AddDays(5).AddMinutes(30) : endTime.Value));
+        items.Add($"{(null == endTime ? DateTime.UtcNow.AddDays(5).AddMinutes(30) : endTime.Value):yyyyMMddTHHmmss}Z");
         itemsElementName.Add(Request.ItemsChoiceType8.EndTime);
 
         if (!Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site).Equals("16.0")&&!Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site).Equals("16.1"))
         {
-            items.Add(string.Format("{0:yyyyMMddTHHmmss}Z", null == timestamp ? DateTime.UtcNow.AddDays(5) : timestamp.Value));
+            items.Add($"{(null == timestamp ? DateTime.UtcNow.AddDays(5) : timestamp.Value):yyyyMMddTHHmmss}Z");
             itemsElementName.Add(Request.ItemsChoiceType8.DtStamp);
         }
 
@@ -435,7 +435,7 @@ public class TestSuiteBase : TestClassBase
         // 0x0 = Response unknown
 
         // 0x1 = Required
-        items.Add(new Request.Attendees() { Attendee = new Request.AttendeesAttendee[] { attendee } });
+        items.Add(new Request.Attendees() { Attendee = [attendee] });
         itemsElementName.Add(Request.ItemsChoiceType8.Attendees);
 
         if (!Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site).Equals("16.0")&& !Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site).Equals("16.1"))
@@ -801,7 +801,7 @@ public class TestSuiteBase : TestClassBase
                             syncCollection.DeletesAsMoves = false;
                             syncCollection.DeletesAsMovesSpecified = true;
 
-                            var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+                            var syncRequest = Common.CreateSyncRequest([syncCollection]);
                             var deleteResult = EMAILAdapter.Sync(syncRequest);
                             syncKey = deleteResult.SyncKey;
                             Site.Assert.AreEqual<byte>(

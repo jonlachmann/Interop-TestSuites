@@ -124,8 +124,8 @@ public class S02_ItemOperations : TestSuiteBase
         // Just including FileAs element in Schema
         var schema = new Request.Schema
         {
-            Items = new object[] { string.Empty },
-            ItemsElementName = new Request.ItemsChoiceType4[] { Request.ItemsChoiceType4.FileAs }
+            Items = [string.Empty],
+            ItemsElementName = [Request.ItemsChoiceType4.FileAs]
         };
 
         GetItemOperationsResult(User1Information.ContactsCollectionId, newAddedItem.ServerId, null, schema);

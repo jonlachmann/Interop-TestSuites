@@ -50,7 +50,7 @@ MIME-Version: 1.0
             Supported = supportedElements
         };
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -86,9 +86,9 @@ MIME-Version: 1.0
     internal static SyncRequest CreateSyncChangeRequest(string syncKey, string collectionId, Request.SyncCollectionChange changeData)
     {
         var syncCollection = CreateSyncCollection(syncKey, collectionId);
-        syncCollection.Commands = new object[] { changeData };
+        syncCollection.Commands = [changeData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -123,9 +123,9 @@ MIME-Version: 1.0
 
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
+        syncCollection.Options = [syncOptions];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -161,36 +161,36 @@ MIME-Version: 1.0
         {
             RequestData =
             {
-                Items = new Request.SearchStore[]
-                {
+                Items =
+                [
                     new Request.SearchStore()
                     {
                         Name = SearchName.Mailbox.ToString(),
                         Query = new Request.queryType()
                         {
-                            Items = new object[]
-                            {
+                            Items =
+                            [
                                 new Request.queryType()
                                 {
-                                    Items = new object[]
-                                    {
+                                    Items =
+                                    [
                                         collectionId,
                                         query
-                                    },
-                                    ItemsElementName = new Request.ItemsChoiceType2[]
-                                    {
+                                    ],
+                                    ItemsElementName =
+                                    [
                                         Request.ItemsChoiceType2.CollectionId,
                                         Request.ItemsChoiceType2.FreeText
-                                    }
+                                    ]
                                 }
-                            },
-                            ItemsElementName = new Request.ItemsChoiceType2[]
-                            {
+                            ],
+                            ItemsElementName =
+                            [
                                 Request.ItemsChoiceType2.And
-                            }
+                            ]
                         }
                     }
-                }
+                ]
             }
         };
 
@@ -276,7 +276,7 @@ MIME-Version: 1.0
             };
         }
 
-        request.RequestData.Items = new object[] { fetch };
+        request.RequestData.Items = [fetch];
 
         return request;
     }

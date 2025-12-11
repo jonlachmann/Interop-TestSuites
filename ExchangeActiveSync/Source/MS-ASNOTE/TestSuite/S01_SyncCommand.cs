@@ -351,7 +351,7 @@ public class S01_SyncCommand : TestSuiteBase
             SyncKey = "0",
             Supported = new Request.Supported()
         };
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        var syncRequest = Common.CreateSyncRequest([syncCollection]);
         var syncResult = NOTEAdapter.Sync(syncRequest, false);
 
         // Add the debug information

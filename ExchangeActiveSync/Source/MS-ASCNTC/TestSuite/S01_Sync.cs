@@ -88,7 +88,7 @@ public class S01_Sync : TestSuiteBase
         var supportedElements = new Request.Supported
         {
             Items = new string[] { string.Empty },
-            ItemsElementName = new Request.ItemsChoiceType[] { Request.ItemsChoiceType.AssistantName }
+            ItemsElementName = [Request.ItemsChoiceType.AssistantName]
         };
 
         // Get the new added contact
@@ -100,8 +100,8 @@ public class S01_Sync : TestSuiteBase
         {
             ApplicationData = new Request.SyncCollectionChangeApplicationData
             {
-                Items = new object[] { "EditedAssistantName" },
-                ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.AssistantName }
+                Items = ["EditedAssistantName"],
+                ItemsElementName = [Request.ItemsChoiceType7.AssistantName]
             },
             ServerId = newAddedItem.ServerId
         };
@@ -726,7 +726,7 @@ public class S01_Sync : TestSuiteBase
         var supportedElements = new Request.Supported
         {
             Items = new string[] { string.Empty },
-            ItemsElementName = new Request.ItemsChoiceType[] { Request.ItemsChoiceType.JobTitle }
+            ItemsElementName = [Request.ItemsChoiceType.JobTitle]
         };
 
         // Set the BodyPreference element in Sync command request
@@ -741,8 +741,8 @@ public class S01_Sync : TestSuiteBase
         {
             ApplicationData = new Request.SyncCollectionChangeApplicationData
             {
-                Items = new object[] { "EditedJobTitle" },
-                ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.JobTitle }
+                Items = ["EditedJobTitle"],
+                ItemsElementName = [Request.ItemsChoiceType7.JobTitle]
             },
             ServerId = newAddedItem.ServerId
         };

@@ -46,10 +46,10 @@ internal static class TestSuiteHelper
     /// <returns>Returns the corresponding sample plain text mime</returns>
     internal static string CreatePlainTextMime(string from, string to, string cc, string bcc, string subject, string body, string sender = null, string replyTo = null)
     {
-        cc = string.IsNullOrEmpty(cc) ? string.Empty : string.Format("Cc: {0}\r\n", cc);
-        bcc = string.IsNullOrEmpty(bcc) ? string.Empty : string.Format("Bcc: {0}\r\n", bcc);
-        sender = string.IsNullOrEmpty(sender) ? string.Empty : string.Format("Sender: {0}\r\n", sender);
-        replyTo = string.IsNullOrEmpty(replyTo) ? string.Empty : string.Format("Reply-To: {0}\r\n", replyTo);
+        cc = string.IsNullOrEmpty(cc) ? string.Empty : $"Cc: {cc}\r\n";
+        bcc = string.IsNullOrEmpty(bcc) ? string.Empty : $"Bcc: {bcc}\r\n";
+        sender = string.IsNullOrEmpty(sender) ? string.Empty : $"Sender: {sender}\r\n";
+        replyTo = string.IsNullOrEmpty(replyTo) ? string.Empty : $"Reply-To: {replyTo}\r\n";
 
         var plainTextMime =
             @"From: {0}
@@ -357,35 +357,35 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty, string.Empty },
+                Items = [string.Empty, string.Empty],
 
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.RebuildResults,
                     Request.ItemsChoiceType6.DeepTraversal
-                }
+                ]
             }
         };
 
         // Build up query condition by using the keyword and folder CollectionID
         var queryItem = new Request.queryType
         {
-            Items = new object[] { folderCollectionId, keyword },
+            Items = [folderCollectionId, keyword],
 
-            ItemsElementName = new Request.ItemsChoiceType2[] 
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType2.CollectionId,
                 Request.ItemsChoiceType2.FreeText
-            }
+            ]
         };
 
         searchStore.Query = new Request.queryType
         {
-            Items = new object[] { queryItem },
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And }
+            Items = [queryItem],
+            ItemsElementName = [Request.ItemsChoiceType2.And]
         };
 
-        return Common.CreateSearchRequest(new Request.SearchStore[] { searchStore });
+        return Common.CreateSearchRequest([searchStore]);
     }
 
     /// <summary>
@@ -425,8 +425,8 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
                 {
                     Query = new Request.queryType2
                     {
-                        ItemsElementName = new Request.ItemsChoiceType11[] { Request.ItemsChoiceType11.Class, Request.ItemsChoiceType11.CollectionId, Request.ItemsChoiceType11.FreeText },
-                        Items = new string[] { "Email", folderCollectionId, keyword}
+                        ItemsElementName = [Request.ItemsChoiceType11.Class, Request.ItemsChoiceType11.CollectionId, Request.ItemsChoiceType11.FreeText],
+                        Items = ["Email", folderCollectionId, keyword]
                     },
                     Options = new Request.FindExecuteSearchMailBoxSearchCriterionOptions
                     {
@@ -527,7 +527,7 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
             Options = fetchOptions
         };
 
-        return Common.CreateItemOperationsRequest(new object[] { fetchElement });
+        return Common.CreateItemOperationsRequest([fetchElement]);
     }
 
     /// <summary>
@@ -597,9 +597,9 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
 
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
+        syncCollection.Options = [syncOptions];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -634,9 +634,9 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
     internal static SyncRequest CreateSyncChangeRequest(string syncKey, string collectionId, Request.SyncCollectionChange changeData)
     {
         var syncCollection = CreateSyncCollection(syncKey, collectionId);
-        syncCollection.Commands = new object[] { changeData };
+        syncCollection.Commands = [changeData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -671,9 +671,9 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
     internal static SyncRequest CreateSyncAddRequest(string syncKey, string collectionId, Request.SyncCollectionAdd addData)
     {
         var syncCollection = CreateSyncCollection(syncKey, collectionId);
-        syncCollection.Commands = new object[] { addData };
+        syncCollection.Commands = [addData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>

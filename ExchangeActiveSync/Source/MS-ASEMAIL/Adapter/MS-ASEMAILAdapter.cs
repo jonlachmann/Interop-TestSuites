@@ -187,7 +187,7 @@ public partial class MS_ASEMAILAdapter : ManagedAdapterBase, IMS_ASEMAILAdapter
     }
 
     /// <summary>
-    /// Synchronizes the collection hierarchy. 
+    /// Synchronizes the collection hierarchy.
     /// </summary>
     /// <param name="folderSyncRequest">A FolderSyncRequest object that contains the request information.</param>
     /// <returns>The FolderSync response which is returned from the server.</returns>

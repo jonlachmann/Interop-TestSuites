@@ -67,11 +67,11 @@ public class S02_ItemOperations : TestSuiteBase
             ServerId = item.ServerId,
             Options = new Request.ItemOperationsFetchOptions
             {
-                Items = new object[] { true },
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.RightsManagementSupport }
+                Items = [true],
+                ItemsElementName = [Request.ItemsChoiceType5.RightsManagementSupport]
             }
         };
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
         var itemOperationsStore = ASRMAdapter.ItemOperations(itemOperationsRequest);
         Site.Assert.AreEqual<int>(1, itemOperationsStore.Items.Count, "There should be only 1 item fetched in ItemOperations command response.");
         var itemOperations = itemOperationsStore.Items[0];
@@ -83,7 +83,7 @@ public class S02_ItemOperations : TestSuiteBase
 
         #region The client logs on User2's account, calls ItemOperations command which contains the Fetch element with RemoveRightsManagementProtection element.
         fetch.RemoveRightsManagementProtection = string.Empty;
-        itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
         itemOperationsStore = ASRMAdapter.ItemOperations(itemOperationsRequest);
         Site.Assert.AreEqual<int>(1, itemOperationsStore.Items.Count, "There should be only 1 item fetched in ItemOperations command response.");
         itemOperations = itemOperationsStore.Items[0];

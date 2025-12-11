@@ -254,7 +254,7 @@ public class S03_ItemOperations : TestSuiteBase
             Options = new ItemOperationsMoveOptions { MoveAlways = "MoveAlwaysContent" }
         };
 
-        var itemOperationRequest = Common.CreateItemOperationsRequest(new object[] { move });
+        var itemOperationRequest = Common.CreateItemOperationsRequest([move]);
         var itemOperationResponse = CONAdapter.ItemOperations(itemOperationRequest);
         Site.Assert.AreEqual("1", itemOperationResponse.ResponseData.Status, "The ItemOperations operation should be success.");
         Site.Assert.AreEqual(1, itemOperationResponse.ResponseData.Response.Move.Length, "The server should return a Move element in ItemOperationsResponse.");

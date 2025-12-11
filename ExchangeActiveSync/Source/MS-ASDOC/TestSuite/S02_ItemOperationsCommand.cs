@@ -47,7 +47,7 @@ public class S02_ItemOperationsCommand : TestSuiteBase
         var fetchElement = FetchElementBuilder(Common.GetConfigurationPropertyValue("SharedVisibleDocument", Site));
 
         // Create an ItemOperation command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetchElement });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetchElement]);
 
         // Send request and get response.
         var itemOperationResponse = ASDOCAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -123,7 +123,7 @@ public class S02_ItemOperationsCommand : TestSuiteBase
         var fetchZeroDoc = FetchElementBuilder(Common.GetConfigurationPropertyValue("SharedVisibleDocument", Site) + Guid.NewGuid().ToString());
 
         // Create an ItemOperation command request that zero document class value will be returned.
-        var itemOperationsGetZeroDocRequest = Common.CreateItemOperationsRequest(new object[] { fetchZeroDoc });
+        var itemOperationsGetZeroDocRequest = Common.CreateItemOperationsRequest([fetchZeroDoc]);
 
         // Send request and get response.
         var itemOperationGetZeroDocResponse = ASDOCAdapter.ItemOperations(itemOperationsGetZeroDocRequest, DeliveryMethodForFetch.Inline);
@@ -184,7 +184,7 @@ public class S02_ItemOperationsCommand : TestSuiteBase
         var fetch = FetchElementBuilder(Common.GetConfigurationPropertyValue("SharedVisibleDocument", Site));
 
         // Create an ItemOperation command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
 
         // Send request and get response.
         var itemOperationResponse = ASDOCAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.MultiPart);

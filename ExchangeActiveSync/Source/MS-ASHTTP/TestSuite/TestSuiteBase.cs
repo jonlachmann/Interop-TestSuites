@@ -476,23 +476,22 @@ public class TestSuiteBase : TestClassBase
             Name = SearchName.Mailbox.ToString(),
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)searchStores[0].Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)searchStores[0].Query.Items[0]).Items = new object[] { collectionId, freeText };
+        ((Request.queryType)searchStores[0].Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)searchStores[0].Query.Items[0]).Items = [collectionId, freeText];
 
         searchStores[0].Options = new Request.Options1
         {
-            Items = new object[] { string.Empty, "0-9", string.Empty },
+            Items = [string.Empty, "0-9", string.Empty],
             ItemsElementName =
-                new Request.ItemsChoiceType6[]
-                {
-                    Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.Range,
+            [
+                Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.Range,
                     Request.ItemsChoiceType6.DeepTraversal
-                }
+            ]
         };
 
         var searchRequest = Common.CreateSearchRequest(searchStores);
@@ -593,7 +592,7 @@ public class TestSuiteBase : TestClassBase
             ServerId = itemServerId
         };
 
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
         Dictionary<CmdParameterName, object> commandParameter = null;
         if (acceptMultiPart)
         {
@@ -1168,7 +1167,7 @@ public class TestSuiteBase : TestClassBase
         }
         catch (XmlException exception)
         {
-            Site.Log.Add(LogEntryKind.Debug, string.Format("The string value is not xml and exception {0} is got.", exception.Message));
+            Site.Log.Add(LogEntryKind.Debug, $"The string value is not xml and exception {exception.Message} is got.");
             return false;
         }
 

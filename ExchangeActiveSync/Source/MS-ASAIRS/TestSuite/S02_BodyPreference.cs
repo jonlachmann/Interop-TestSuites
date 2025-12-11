@@ -871,15 +871,15 @@ public class S02_BodyPreference : TestSuiteBase
         #endregion
 
         #region Set BodyPreference element
-        bodyPreference = new Request.BodyPreference[]
-        {
+        bodyPreference =
+        [
             new Request.BodyPreference()
             {
                 Type =1,
                 Preview = 18,
                 PreviewSpecified = true
             }
-        };
+        ];
         #endregion
 
         #region Verify Sync command related elements
@@ -935,15 +935,15 @@ public class S02_BodyPreference : TestSuiteBase
             ApplicationData =
                 new Request.SyncCollectionChangeApplicationData
                 {
-                    Items = new object[] { !syncItem.Email.Read },
-                    ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Read }
+                    Items = [!syncItem.Email.Read],
+                    ItemsElementName = [Request.ItemsChoiceType7.Read]
                 }
         };
 
         var syncCollection = TestSuiteHelper.CreateSyncCollection(SyncKey, User2Information.InboxCollectionId);
-        syncCollection.Commands = new object[] { changeData };
+        syncCollection.Commands = [changeData];
 
-        var request = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        var request = Common.CreateSyncRequest([syncCollection]);
 
         // Call Sync command to update the item
         var syncStore = ASAIRSAdapter.Sync(request);
@@ -1001,15 +1001,15 @@ public class S02_BodyPreference : TestSuiteBase
                 ApplicationData =
                     new Request.SyncCollectionChangeApplicationData
                     {
-                        Items = new object[] { !updatedItemOperationItem.Email.Read },
-                        ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Read }
+                        Items = [!updatedItemOperationItem.Email.Read],
+                        ItemsElementName = [Request.ItemsChoiceType7.Read]
                     }
             };
 
             syncCollection = TestSuiteHelper.CreateSyncCollection(SyncKey, User2Information.InboxCollectionId);
-            syncCollection.Commands = new object[] { changeData };
+            syncCollection.Commands = [changeData];
 
-            request = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+            request = Common.CreateSyncRequest([syncCollection]);
 
             // Call Sync command to update the item
             syncStore = ASAIRSAdapter.Sync(request);

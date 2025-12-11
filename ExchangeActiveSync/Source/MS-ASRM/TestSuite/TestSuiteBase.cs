@@ -401,7 +401,7 @@ public class TestSuiteBase : TestClassBase
                 var syncCollection = TestSuiteHelper.CreateSyncCollection(result.SyncKey, itemToDelete.CollectionId);
                 syncCollection.Commands = deletes;
 
-                syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+                syncRequest = Common.CreateSyncRequest([syncCollection]);
                 var deleteResult = ASRMAdapter.Sync(syncRequest);
                 Site.Assert.AreEqual<byte>(
                     1,

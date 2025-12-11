@@ -286,7 +286,7 @@ public class TestSuiteBase : TestClassBase
             SyncKey = "0"
         };
 
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        var syncRequest = Common.CreateSyncRequest([syncCollection]);
         var syncResult = PROVAdapter.Sync(syncRequest);
 
         Site.Assert.IsNotNull(
@@ -364,16 +364,16 @@ public class TestSuiteBase : TestClassBase
         items.Add(bodyPreference);
         itemsElementName.Add(Request.ItemsChoiceType1.BodyPreference);
 
-        syncCollection.Options = new Request.Options[]
-        {
+        syncCollection.Options =
+        [
             new Request.Options()
             {
                 ItemsElementName = itemsElementName.ToArray(),
                 Items = items.ToArray()
             }
-        };
+        ];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -404,7 +404,7 @@ public class TestSuiteBase : TestClassBase
             syncCollection.DeletesAsMoves = false;
             syncCollection.DeletesAsMovesSpecified = true;
 
-            syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+            syncRequest = Common.CreateSyncRequest([syncCollection]);
             var deleteResult = PROVAdapter.Sync(syncRequest);
 
             Site.Assert.AreEqual<byte>(

@@ -517,7 +517,7 @@ public class S23_Find : TestSuiteBase
             Name = SearchName.DocumentLibrary.ToString(),
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.EqualTo },
+                ItemsElementName = [Request.ItemsChoiceType2.EqualTo],
                 Items = new Request.queryTypeEqualTo[]
                 {
                     new Request.queryTypeEqualTo
@@ -530,12 +530,12 @@ public class S23_Find : TestSuiteBase
             Options = new Request.Options1
             {
                 ItemsElementName =
-                    new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.UserName, Request.ItemsChoiceType6.Password },
-                Items = new object[] { userName, userPassword }
+                    [Request.ItemsChoiceType6.UserName, Request.ItemsChoiceType6.Password],
+                Items = [userName, userPassword]
             }
         };
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         return searchRequest;
     }
 
@@ -737,7 +737,8 @@ public class S23_Find : TestSuiteBase
     {
         // Create search Option element
         var searchOption = new Request.Options1();
-        searchOption.ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.MIMESupport, Request.ItemsChoiceType6.BodyPreference };
+        searchOption.ItemsElementName = [Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.MIMESupport, Request.ItemsChoiceType6.BodyPreference
+        ];
 
         // Set bodyPrference element value
         var bodyPreference = new Request.BodyPreference();
@@ -746,14 +747,14 @@ public class S23_Find : TestSuiteBase
         bodyPreference.TruncationSizeSpecified = true;
 
         // Set search Option element value
-        searchOption.Items = new object[] { string.Empty, string.Empty, mimeSupportValue, bodyPreference };
+        searchOption.Items = [string.Empty, string.Empty, mimeSupportValue, bodyPreference];
 
         // Create search Query element
         var searchQuery = new Request.queryType();
-        searchQuery.ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And };
+        searchQuery.ItemsElementName = [Request.ItemsChoiceType2.And];
         searchQuery.Items = new Request.queryType[] { new Request.queryType() };
-        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)searchQuery.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, keyWord };
+        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)searchQuery.Items[0]).Items = ["Email", User1Information.InboxCollectionId, keyWord];
 
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -796,7 +797,7 @@ public class S23_Find : TestSuiteBase
         // Create search request with range, maxSize, maxPictures options.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Picture }
+            ItemsElementName = [Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Picture]
         };
 
         if (maxPictures > 0 && maxSize > 0)
@@ -808,14 +809,14 @@ public class S23_Find : TestSuiteBase
                 MaxSize = maxSize,
                 MaxSizeSpecified = true
             };
-            searchOption.Items = new object[] { requestRange, picture };
+            searchOption.Items = [requestRange, picture];
         }
         else
         {
-            searchOption.Items = new object[] { requestRange };
+            searchOption.Items = [requestRange];
         }
 
-        var searchQuery = new Request.queryType { Text = new string[] { keyWord } };
+        var searchQuery = new Request.queryType { Text = [keyWord] };
 
         // Set Name element, option element, query element in default search request.
         var searchRequest = CreateDefaultSearchRequest();
@@ -837,20 +838,20 @@ public class S23_Find : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal }
+                Items = [string.Empty],
+                ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, "FreeText" };
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)store.Query.Items[0]).Items = ["Email", User1Information.InboxCollectionId, "FreeText"];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         return searchRequest;
     }
 
@@ -869,8 +870,8 @@ public class S23_Find : TestSuiteBase
                 {
                     Query = new Request.queryType2
                     {
-                        ItemsElementName = new Request.ItemsChoiceType11[] {Request.ItemsChoiceType11.Class, Request.ItemsChoiceType11.CollectionId, Request.ItemsChoiceType11.FreeText},
-                        Items = new string[] { "Email",User1Information.InboxCollectionId, Common.GetConfigurationPropertyValue("User1Name", Site) }
+                        ItemsElementName = [Request.ItemsChoiceType11.Class, Request.ItemsChoiceType11.CollectionId, Request.ItemsChoiceType11.FreeText],
+                        Items = ["Email",User1Information.InboxCollectionId, Common.GetConfigurationPropertyValue("User1Name", Site)]
                     },
                     Options=new Request.FindExecuteSearchMailBoxSearchCriterionOptions
                     {

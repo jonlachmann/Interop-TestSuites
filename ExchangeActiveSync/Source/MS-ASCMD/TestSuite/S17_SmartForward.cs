@@ -61,7 +61,7 @@ public class S17_SmartForward : TestSuiteBase
         #endregion
 
         #region Call SmartForward command to forward messages without retrieving the full, original message from the server.
-        var forwardSubject = string.Format("FW:{0}", emailSubject);
+        var forwardSubject = $"FW:{emailSubject}";
         var smartForwardRequest = CreateDefaultForwardRequest(originalServerID, forwardSubject, User2Information.InboxCollectionId);
         var smartForwardResponse = CMDAdapter.SmartForward(smartForwardRequest);
         #endregion
@@ -210,7 +210,7 @@ public class S17_SmartForward : TestSuiteBase
         #region User1 calls smartForward command to forward mail to user2
         var forwardFromUser = Common.GetMailAddress(User1Information.UserName, User1Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
-        var forwardSubject = string.Format("FW:{0}", meetingRequestSubject);
+        var forwardSubject = $"FW:{meetingRequestSubject}";
         var forwardContent = Common.GenerateResourceName(Site, "forward:Appointment body");
         var smartForwardRequest = CreateSmartForwardRequest(User1Information.CalendarCollectionId, calendarItemId, forwardFromUser, forwardToUser, string.Empty, string.Empty, forwardSubject, forwardContent);
         var smartForwardResponse = CMDAdapter.SmartForward(smartForwardRequest);
@@ -259,7 +259,7 @@ public class S17_SmartForward : TestSuiteBase
         #region User2 calls SmartForward command to forward the calendar item to user3 with invalid InstanceId value in SmartForward request
         var forwardFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User3Information.UserName, User3Information.UserDomain);
-        var forwardSubject = string.Format("FW:{0}", meetingRequestSubject);
+        var forwardSubject = $"FW:{meetingRequestSubject}";
         var forwardContent = Common.GenerateResourceName(Site, "forward:Meeting Instance body");
         var smartForwardRequest = CreateSmartForwardRequest(User2Information.CalendarCollectionId, calendarItemID, forwardFromUser, forwardToUser, string.Empty, string.Empty, forwardSubject, forwardContent);
 
@@ -329,7 +329,7 @@ public class S17_SmartForward : TestSuiteBase
         #region User2 calls SmartForward command to forward the calendar item to user3 with correct InstanceId value in SmartForward request
         var forwardFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User3Information.UserName, User3Information.UserDomain);
-        var forwardSubject = string.Format("FW:{0}", meetingRequestSubject);
+        var forwardSubject = $"FW:{meetingRequestSubject}";
         var forwardContent = Common.GenerateResourceName(Site, "forward:Meeting Instance body");
         var smartForwardRequest = CreateSmartForwardRequest(User2Information.CalendarCollectionId, calendarItemID, forwardFromUser, forwardToUser, string.Empty, string.Empty, forwardSubject, forwardContent);
 
@@ -410,7 +410,7 @@ public class S17_SmartForward : TestSuiteBase
         #region User2 calls SmartForward command to forward the calendar item to user3 without InstanceId element in SmartForward request
         var forwardFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User3Information.UserName, User3Information.UserDomain);
-        var forwardSubject = string.Format("FW:{0}", meetingRequestSubject);
+        var forwardSubject = $"FW:{meetingRequestSubject}";
         var forwardContent = Common.GenerateResourceName(Site, "forward:Meeting Instance body");
         var smartForwardRequest = CreateSmartForwardRequest(User2Information.CalendarCollectionId, calendarItemID, forwardFromUser, forwardToUser, string.Empty, string.Empty, forwardSubject, forwardContent);
 
@@ -476,7 +476,7 @@ public class S17_SmartForward : TestSuiteBase
         #endregion
 
         #region Call SmartForward command to forward messages with ReplaceMime.
-        var forwardSubject = string.Format("FW:{0}", emailSubject);
+        var forwardSubject = $"FW:{emailSubject}";
         var smartForwardRequest = CreateDefaultForwardRequest(originalServerID, forwardSubject, User2Information.InboxCollectionId);
         smartForwardRequest.RequestData.ReplaceMime = string.Empty;
         var smartForwardResponse = CMDAdapter.SmartForward(smartForwardRequest);

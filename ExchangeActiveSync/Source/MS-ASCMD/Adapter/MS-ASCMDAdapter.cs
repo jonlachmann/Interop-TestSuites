@@ -119,7 +119,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
     }
 
     /// <summary>
-    /// Synchronizes the collection hierarchy 
+    /// Synchronizes the collection hierarchy
     /// </summary>
     /// <param name="request">A FolderSyncRequest object that contains the request information.</param>
     /// <returns>FolderSync command response</returns>
@@ -137,7 +137,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
     }
 
     /// <summary>
-    /// Creates a new folder as a child folder of the specified parent folder. 
+    /// Creates a new folder as a child folder of the specified parent folder.
     /// </summary>
     /// <param name="request">A FolderCreateRequest object that contains the request information.</param>
     /// <returns>FolderCreate command response</returns>
@@ -279,7 +279,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             response = activeSyncClient.Find(request);
             counter++;
         }
-            
+
         Site.Log.Add(LogEntryKind.Debug, "Loop {0} times to get the search item", counter);
         VerifyTransportRequirements();
         VerifyWBXMLCapture(CommandName.Find, response);

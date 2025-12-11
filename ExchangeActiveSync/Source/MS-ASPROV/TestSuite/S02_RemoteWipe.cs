@@ -43,7 +43,7 @@ public class S02_RemoteWipe : TestSuiteBase
         SwitchUser(User1Information, true);
 
         // Apply the unique DeviceType.
-        DeviceType = string.Format("{0}{1}", "ASPROV", DateTime.Now.ToString("mmssfff"));
+        DeviceType = $"{"ASPROV"}{DateTime.Now.ToString("mmssfff")}";
         PROVAdapter.ApplyDeviceType(DeviceType);
         CurrentUserInformation.UserName = User1Information.UserName;
         CurrentUserInformation.UserDomain = User1Information.UserDomain;
@@ -195,7 +195,7 @@ public class S02_RemoteWipe : TestSuiteBase
         SwitchUser(User1Information, true);
 
         // Apply the unique DeviceType.
-        DeviceType = string.Format("{0}{1}", "ASPROV", DateTime.Now.ToString("mmssfff"));
+        DeviceType = $"{"ASPROV"}{DateTime.Now.ToString("mmssfff")}";
         PROVAdapter.ApplyDeviceType(DeviceType);
         CurrentUserInformation.UserName = User1Information.UserName;
         CurrentUserInformation.UserDomain = User1Information.UserDomain;

@@ -47,14 +47,14 @@ internal static class TestSuiteHelper
         {
             RequestData =
             {
-                Collections = new Request.SyncCollection[]
-                {
+                Collections =
+                [
                     new Request.SyncCollection()
                     {
                         SyncKey = syncKey,
                         CollectionId = collectionId
                     }
-                }
+                ]
             }
         };
 
@@ -90,14 +90,14 @@ internal static class TestSuiteHelper
 
         if (items.Count > 0)
         {
-            request.RequestData.Collections[0].Options = new Request.Options[]
-            {
+            request.RequestData.Collections[0].Options =
+            [
                 new Request.Options()
                 {
                     ItemsElementName = itemsElementName.ToArray(),
                     Items = items.ToArray()
                 }
-            };
+            ];
         }
 
         return request;
@@ -164,7 +164,7 @@ internal static class TestSuiteHelper
             };
         }
 
-        request.RequestData.Items = new object[] { fetch };
+        request.RequestData.Items = [fetch];
 
         return request;
     }
@@ -184,38 +184,38 @@ internal static class TestSuiteHelper
         {
             RequestData =
             {
-                Items = new Request.SearchStore[]
-                {
+                Items =
+                [
                     new Request.SearchStore()
                     {
                         Name = SearchName.Mailbox.ToString(),
                         Query = new Request.queryType()
                         {
-                            Items = new object[]
-                            {
+                            Items =
+                            [
                                 new Request.queryType()
                                 {
-                                    Items = new object[]
-                                    {
+                                    Items =
+                                    [
                                         collectionId,
                                         query,
                                         conversationId
-                                    },
-                                    ItemsElementName = new Request.ItemsChoiceType2[]
-                                    {
+                                    ],
+                                    ItemsElementName =
+                                    [
                                         Request.ItemsChoiceType2.CollectionId,
                                         Request.ItemsChoiceType2.FreeText,
                                         Request.ItemsChoiceType2.ConversationId
-                                    }
+                                    ]
                                 }
-                            },
-                            ItemsElementName = new Request.ItemsChoiceType2[]
-                            {
+                            ],
+                            ItemsElementName =
+                            [
                                 Request.ItemsChoiceType2.And
-                            }
+                            ]
                         }
                     }
-                }
+                ]
             }
         };
 
@@ -353,9 +353,9 @@ internal static class TestSuiteHelper
 
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
+        syncCollection.Options = [syncOptions];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     #endregion

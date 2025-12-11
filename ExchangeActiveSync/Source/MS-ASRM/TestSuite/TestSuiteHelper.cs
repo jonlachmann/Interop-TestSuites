@@ -51,8 +51,8 @@ internal static class TestSuiteHelper
 
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        syncCollection.Options = [syncOptions];
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>

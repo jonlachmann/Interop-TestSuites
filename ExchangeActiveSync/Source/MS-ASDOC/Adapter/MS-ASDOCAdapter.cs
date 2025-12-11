@@ -6,7 +6,7 @@ using Common;
 using TestTools;
 
 /// <summary>
-/// Adapter class of MS-ASDOC. 
+/// Adapter class of MS-ASDOC.
 /// </summary>
 public partial class MS_ASDOCAdapter : ManagedAdapterBase, IMS_ASDOCAdapter
 {

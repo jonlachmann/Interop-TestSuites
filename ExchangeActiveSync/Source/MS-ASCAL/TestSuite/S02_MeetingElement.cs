@@ -63,14 +63,12 @@ public class S02_MeetingElement : TestSuiteBase
             {
                 Request.ItemsChoiceType8.Attendees,
                 TestSuiteHelper.CreateAttendeesRequired(
-                    new string[]
-                    {
+                    [
                         Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)
-                    },
-                    new string[]
-                    {
+                    ],
+                    [
                         User2Information.UserName
-                    })
+                    ])
             }
         };
 
@@ -322,7 +320,7 @@ public class S02_MeetingElement : TestSuiteBase
             }
         };
 
-        var attendees = TestSuiteHelper.CreateAttendeesRequired(new string[] { Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain) }, new string[] { User2Information.UserName });
+        var attendees = TestSuiteHelper.CreateAttendeesRequired([Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)], [User2Information.UserName]);
         attendees.Attendee[0].AttendeeType = 2;
         attendees.Attendee[0].AttendeeTypeSpecified = true;
         calendarItem.Add(Request.ItemsChoiceType8.Attendees, attendees);
@@ -493,7 +491,7 @@ public class S02_MeetingElement : TestSuiteBase
             }
         };
 
-        var attendees = TestSuiteHelper.CreateAttendeesRequired(new string[] { Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain) }, new string[] { User2Information.UserName });
+        var attendees = TestSuiteHelper.CreateAttendeesRequired([Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)], [User2Information.UserName]);
 
         calendarItem.Add(Request.ItemsChoiceType8.Attendees, attendees);
 
@@ -663,7 +661,7 @@ public class S02_MeetingElement : TestSuiteBase
             }
         };
 
-        var attendees = TestSuiteHelper.CreateAttendeesRequired(new string[] { Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain) }, new string[] { User2Information.UserName });
+        var attendees = TestSuiteHelper.CreateAttendeesRequired([Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)], [User2Information.UserName]);
 
         attendees.Attendee[0].AttendeeType = 3;
         attendees.Attendee[0].AttendeeTypeSpecified = true;
@@ -825,14 +823,12 @@ public class S02_MeetingElement : TestSuiteBase
             {
                 Request.ItemsChoiceType8.Attendees,
                 TestSuiteHelper.CreateAttendeesRequired(
-                    new string[]
-                    {
+                    [
                         Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)
-                    },
-                    new string[]
-                    {
+                    ],
+                    [
                         User2Information.UserName
-                    })
+                    ])
             }
         };
 
@@ -1004,14 +1000,15 @@ public class S02_MeetingElement : TestSuiteBase
         calendarItem.Add(Request.ItemsChoiceType8.BusyStatus, (byte)1);
 
         // Set Calendar Attendees element with required sub-element
-        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired(new string[] { Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain) }, new string[] { User2Information.UserName }));
+        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired([Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain)
+        ], [User2Information.UserName]));
 
         // Set Calendar Recurrence element including Occurrence sub-element
         var recurrenceType = byte.Parse("0");
         calendarItem.Add(Request.ItemsChoiceType8.Recurrence, CreateCalendarRecurrence(recurrenceType, 6, 1));
 
         // Set Calendar Exceptions element
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         // Set ExceptionStartTime element in exception
@@ -1019,7 +1016,8 @@ public class S02_MeetingElement : TestSuiteBase
 
         exception1.StartTime = startTimeInException.ToString("yyyyMMddTHHmmssZ");
         exception1.EndTime = endTimeInException.ToString("yyyyMMddTHHmmssZ");
-        exception1.Attendees = TestSuiteHelper.CreateAttendeesRequired(new string[] { Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain), "tester@test.com" }, new string[] { User2Information.UserName, "test" }).Attendee;
+        exception1.Attendees = TestSuiteHelper.CreateAttendeesRequired([Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain), "tester@test.com"],
+            [User2Information.UserName, "test"]).Attendee;
 
         exception1.Subject = "Calendar Exception";
         exception1.Body = TestSuiteHelper.CreateCalendarBody(2, Content + "InException");

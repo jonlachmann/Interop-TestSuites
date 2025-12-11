@@ -620,7 +620,7 @@ public class TestSuiteBase : TestClassBase
 
         syncChangeRequest.RequestData.Collections[0] = new Request.SyncCollection
         {
-            Commands = new object[] { syncChange },
+            Commands = [syncChange],
             SyncKey = syncKey,
             CollectionId = collectionId
         };
@@ -792,7 +792,7 @@ public class TestSuiteBase : TestClassBase
         }
 
         // Create a MeetingResponse request
-        var meetingResponseRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingResponseRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var meetingResponseResponse = CALAdapter.MeetingResponse(meetingResponseRequest);
 
         if (meetingResponseResponse.ResponseData.Result[0].Status == "1")

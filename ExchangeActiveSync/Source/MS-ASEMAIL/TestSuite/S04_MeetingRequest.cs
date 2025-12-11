@@ -872,7 +872,7 @@ public class S04_MeetingRequest : TestSuiteBase
             };
 
             // Create a meeting response request
-            var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+            var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
             var response = EMAILAdapter.MeetingResponse(meetingRequest);
 
             // Add the debug information
@@ -1214,7 +1214,7 @@ public class S04_MeetingRequest : TestSuiteBase
         };
 
         // Create a meeting response request
-        var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var response = EMAILAdapter.MeetingResponse(meetingRequest);
 
         Site.Assert.AreEqual<int>(
@@ -1787,7 +1787,7 @@ public class S04_MeetingRequest : TestSuiteBase
         };
 
         // Create a meeting response request
-        var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var response = EMAILAdapter.MeetingResponse(meetingRequest);
 
         Site.Assert.AreEqual<int>(
@@ -1802,8 +1802,8 @@ public class S04_MeetingRequest : TestSuiteBase
         #region Call Sync command to cancel one occurrence of the meeting request
         SwitchUser(User1Information, false);
         var changeCalednarData = new Request.SyncCollectionChangeApplicationData();
-        changeCalednarData.ItemsElementName = new Request.ItemsChoiceType7[] 
-        { 
+        changeCalednarData.ItemsElementName =
+        [
             Request.ItemsChoiceType7.Location1,
             Request.ItemsChoiceType7.Recurrence,
             Request.ItemsChoiceType7.Exceptions,
@@ -1811,14 +1811,14 @@ public class S04_MeetingRequest : TestSuiteBase
             Request.ItemsChoiceType7.Attendees,
             Request.ItemsChoiceType7.MeetingStatus,
             Request.ItemsChoiceType7.Subject
-        };
+        ];
 
         var exception = new Request.ExceptionsException();
         var additionalDays = 8 - startTime.DayOfWeek.GetHashCode();
         exception.ExceptionStartTime = startTime.AddDays(additionalDays + 7).ToString("yyyyMMddTHHmmssZ");
-        var exceptions = new Request.Exceptions() { Exception = new Request.ExceptionsException[] { exception } };
+        var exceptions = new Request.Exceptions() { Exception = [exception] };
 
-        changeCalednarData.Items = new object[] { location, recurrence, exceptions, UID, attendees, (byte)1, recurrenceCalendarSubject };
+        changeCalednarData.Items = [location, recurrence, exceptions, UID, attendees, (byte)1, recurrenceCalendarSubject];
 
         var appDataChange = new Request.SyncCollectionChange
         {
@@ -1945,7 +1945,7 @@ public class S04_MeetingRequest : TestSuiteBase
         };
 
         // Create a meeting response request
-        var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var response = EMAILAdapter.MeetingResponse(meetingRequest);
 
         Site.Assert.AreEqual<int>(

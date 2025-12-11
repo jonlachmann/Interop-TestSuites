@@ -151,10 +151,10 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
     /// <returns>Returns the corresponding sample plain text mime</returns>
     public static string CreatePlainTextMime(string from, string to, string cc, string bcc, string subject, string body, string sender = null, string replyTo = null)
     {
-        cc = string.IsNullOrEmpty(cc) ? string.Empty : string.Format("Cc: {0}\r\n", cc);
-        bcc = string.IsNullOrEmpty(bcc) ? string.Empty : string.Format("Bcc: {0}\r\n", bcc);
-        sender = string.IsNullOrEmpty(sender) ? string.Empty : string.Format("Sender: {0}\r\n", sender);
-        replyTo = string.IsNullOrEmpty(replyTo) ? string.Empty : string.Format("Reply-To: {0}\r\n", replyTo);
+        cc = string.IsNullOrEmpty(cc) ? string.Empty : $"Cc: {cc}\r\n";
+        bcc = string.IsNullOrEmpty(bcc) ? string.Empty : $"Bcc: {bcc}\r\n";
+        sender = string.IsNullOrEmpty(sender) ? string.Empty : $"Sender: {sender}\r\n";
+        replyTo = string.IsNullOrEmpty(replyTo) ? string.Empty : $"Reply-To: {replyTo}\r\n";
 
         var plainTextMime =
             @"From: {0}
@@ -201,9 +201,7 @@ MIME-Version: 1.0
         {
             site.Log.Add(
                 LogEntryKind.Warning,
-                string.Format(
-                    "The common ptfconfig file '{0}' was not loaded since the 'CommonConfigurationFileName' property or its value is not available at the local ptfconfig file.", 
-                    globalConfigFileName));
+                $"The common ptfconfig file '{globalConfigFileName}' was not loaded since the 'CommonConfigurationFileName' property or its value is not available at the local ptfconfig file.");
         }
         else
         {
@@ -217,7 +215,7 @@ MIME-Version: 1.0
     /// <param name="site">An instance of interface ITestSite which provides logging, assertions, and adapters for test code onto its execution context.</param>
     public static void MergeSHOULDMAYConfig(ITestSite site)
     {
-        var shouldMayConfigFileName = string.Format("{0}_{1}_SHOULDMAY.deployment.ptfconfig", site.DefaultProtocolDocShortName, GetSutVersion(site).ToString());
+        var shouldMayConfigFileName = $"{site.DefaultProtocolDocShortName}_{GetSutVersion(site).ToString()}_SHOULDMAY.deployment.ptfconfig";
 
         MergeConfigurationFile(shouldMayConfigFileName, site);
 
@@ -233,7 +231,7 @@ MIME-Version: 1.0
     {
         if (!File.Exists(configFileName))
         {
-            throw new FileNotFoundException(string.Format("The ptfconfig file '{0}' could not be found.", configFileName));
+            throw new FileNotFoundException($"The ptfconfig file '{configFileName}' could not be found.");
         }
 
         XmlNodeList properties = null;
@@ -267,7 +265,7 @@ MIME-Version: 1.0
 
             if (property.Attributes == null || property.Attributes["name"] == null || string.IsNullOrEmpty(property.Attributes["name"].Value))
             {
-                throw new PtfConfigLoadException(string.Format("A property defined in the ptfconfig file '{0}' has a missing or a empty 'name' attribute.", configFileName));
+                throw new PtfConfigLoadException($"A property defined in the ptfconfig file '{configFileName}' has a missing or a empty 'name' attribute.");
             }
             else
             {
@@ -276,7 +274,7 @@ MIME-Version: 1.0
 
             if (property.Attributes == null || property.Attributes["value"] == null)
             {
-                throw new PtfConfigLoadException(string.Format("Property '{0}' defined in the ptfconfig file '{1}' has a missing 'value' attribute.", propertyName, configFileName));
+                throw new PtfConfigLoadException($"Property '{propertyName}' defined in the ptfconfig file '{configFileName}' has a missing 'value' attribute.");
             }
             else
             {
@@ -290,7 +288,8 @@ MIME-Version: 1.0
             else
             {
                 // Since the test suite specific ptfconfig file should take precedence over the global ptfconfig file, when the same property exists in both, the global ptfconfig property is ignored.
-                site.Log.Add(LogEntryKind.Warning, string.Format("Same property '{0}' exists in both the local ptfconfig file and the global ptfconfig file '{1}'. Test suite is using the one from the local ptfconfig file.", propertyName, configFileName));
+                site.Log.Add(LogEntryKind.Warning,
+                    $"Same property '{propertyName}' exists in both the local ptfconfig file and the global ptfconfig file '{configFileName}'. Test suite is using the one from the local ptfconfig file.");
 
                 continue;
             }
@@ -305,7 +304,7 @@ MIME-Version: 1.0
     /// <returns>True if the specified requirement is enabled to run, otherwise false.</returns>
     public static bool IsRequirementEnabled(int requirementId, ITestSite site)
     {
-        var requirementPropertyName = string.Format("R{0}Enabled", requirementId);
+        var requirementPropertyName = $"R{requirementId}Enabled";
         var requirementPropertyValue = GetConfigurationPropertyValue(requirementPropertyName, site);
 
         if (string.Compare("true", requirementPropertyValue, StringComparison.CurrentCultureIgnoreCase) != 0 && string.Compare("false", requirementPropertyValue, StringComparison.CurrentCultureIgnoreCase) != 0)
@@ -326,7 +325,7 @@ MIME-Version: 1.0
     public static string GenerateResourceName(ITestSite site, string resourceName, uint index)
     {
         var newPrefixOfResourceName = GeneratePrefixOfResourceName(site);
-        return string.Format(@"{0}_{1}{2}_{3}", newPrefixOfResourceName, resourceName, index, FormatCurrentDateTime());
+        return $@"{newPrefixOfResourceName}_{resourceName}{index}_{FormatCurrentDateTime()}";
     }
 
     /// <summary>
@@ -338,7 +337,7 @@ MIME-Version: 1.0
     public static string GenerateResourceName(ITestSite site, string resourceName)
     {
         var newPrefixOfResourceName = GeneratePrefixOfResourceName(site);
-        return string.Format(@"{0}_{1}_{2}", newPrefixOfResourceName, resourceName, FormatCurrentDateTime());
+        return $@"{newPrefixOfResourceName}_{resourceName}_{FormatCurrentDateTime()}";
     }
 
     /// <summary>
@@ -358,7 +357,7 @@ MIME-Version: 1.0
             var currentProtocolShortName = string.Empty;
             if (site.DefaultProtocolDocShortName.IndexOf("-", StringComparison.CurrentCultureIgnoreCase) >= 0)
             {
-                foreach (var partName in site.DefaultProtocolDocShortName.Split(new char[1] { '-' }))
+                foreach (var partName in site.DefaultProtocolDocShortName.Split(['-']))
                 {
                     currentProtocolShortName += partName;
                 }
@@ -375,9 +374,9 @@ MIME-Version: 1.0
                 currentTestCaseName = currentTestCaseName.Substring(startPos);
             }
 
-            var currentTestScenarioNumber = currentTestCaseName.Split(new char[1] { '_' })[1];
-            var currentTestCaseNumber = currentTestCaseName.Split(new char[1] { '_' })[2];
-            newPrefixOfResourceName = string.Format(@"{0}_{1}_{2}", currentProtocolShortName, currentTestScenarioNumber, currentTestCaseNumber);
+            var currentTestScenarioNumber = currentTestCaseName.Split(['_'])[1];
+            var currentTestCaseNumber = currentTestCaseName.Split(['_'])[2];
+            newPrefixOfResourceName = $@"{currentProtocolShortName}_{currentTestScenarioNumber}_{currentTestCaseNumber}";
         }
 
         return newPrefixOfResourceName;
@@ -493,7 +492,7 @@ MIME-Version: 1.0
             SyncKey = "0"
         };
 
-        return CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -864,35 +863,35 @@ MIME-Version: 1.0
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty, string.Empty },
+                Items = [string.Empty, string.Empty],
 
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.RebuildResults,
                     Request.ItemsChoiceType6.DeepTraversal
-                }
+                ]
             }
         };
 
         // Build up query condition by using the keyword and folder CollectionID
         var queryItem = new Request.queryType
         {
-            Items = new object[] { folderCollectionId, keyword },
+            Items = [folderCollectionId, keyword],
 
-            ItemsElementName = new Request.ItemsChoiceType2[] 
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType2.CollectionId,
                 Request.ItemsChoiceType2.FreeText
-            }
+            ]
         };
 
         searchStore.Query = new Request.queryType
         {
-            Items = new object[] { queryItem },
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And }
+            Items = [queryItem],
+            ItemsElementName = [Request.ItemsChoiceType2.And]
         };
 
-        return CreateSearchRequest(new Request.SearchStore[] { searchStore });
+        return CreateSearchRequest([searchStore]);
     }
 
     /// <summary>
@@ -1069,7 +1068,7 @@ MIME-Version: 1.0
     /// <returns>The mailbox of the user.</returns>
     public static string GetMailAddress(string userName, string domain)
     {
-        return string.Format(@"{0}@{1}", userName, domain);
+        return $@"{userName}@{domain}";
     }
 
     /// <summary>

@@ -92,7 +92,7 @@ public class S21_CommonStatusCode : TestSuiteBase
             Picture = new Request.ResolveRecipientsOptionsPicture { MaxPictures = 3 }
         };
 
-        requestResolveRecipients.Items = new object[] { requestResolveRecipientsOption, displayName };
+        requestResolveRecipients.Items = [requestResolveRecipientsOption, displayName];
         resolveRecipientsRequest.RequestData = requestResolveRecipients;
 
         var resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
@@ -164,7 +164,7 @@ public class S21_CommonStatusCode : TestSuiteBase
             SrcMsgId = serverId
         };
 
-        var moveItemsRequest = Common.CreateMoveItemsRequest(new Request.MoveItemsMove[] { moveItemsMove });
+        var moveItemsRequest = Common.CreateMoveItemsRequest([moveItemsMove]);
         var moveItemsResponse = CMDAdapter.MoveItems(moveItemsRequest);
         #endregion
 
@@ -193,22 +193,22 @@ public class S21_CommonStatusCode : TestSuiteBase
         // Set an unsupported Type element value in the BodyPartPreference node 
         var option = new Request.Options
         {
-            Items = new object[]
-            {
+            Items =
+            [
                 new Request.BodyPartPreference()
                 {
                     // As specified in [MS-ASAIRS] section 2.2.2.22.3, only a value of 2 (HTML) SHOULD be used in the Type element of a BodyPartPreference element.
                     // Then '3' is an unsupported Type element value.
                     Type = 3
                 }
-            },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.BodyPartPreference }
+            ],
+            ItemsElementName = [Request.ItemsChoiceType1.BodyPartPreference]
         };
 
         var syncRequest = CreateEmptySyncRequest(User1Information.InboxCollectionId);
         Sync(syncRequest);
 
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { option };
+        syncRequest.RequestData.Collections[0].Options = [option];
         syncRequest.RequestData.Collections[0].SyncKey = LastSyncKey;
         var syncResponse = Sync(syncRequest);
 
@@ -485,7 +485,7 @@ public class S21_CommonStatusCode : TestSuiteBase
         #endregion
 
         #region Call SmartForward command to forward messages without retrieving the full, original message from the server.
-        var forwardSubject = string.Format("FW:{0}", emailSubject);
+        var forwardSubject = $"FW:{emailSubject}";
         var forwardFromUser = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
         var forwardToUser = Common.GetMailAddress(User3Information.UserName, User3Information.UserDomain);
         var forwardContent = Common.GenerateResourceName(Site, "forward:body");

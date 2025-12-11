@@ -185,7 +185,7 @@ public partial class MS_ASCONAdapter : ManagedAdapterBase, IMS_ASCONAdapter
     }
 
     /// <summary>
-    /// Synchronizes the collection hierarchy 
+    /// Synchronizes the collection hierarchy
     /// </summary>
     /// <param name="folderSyncRequest">A FolderSyncRequest object that contains the request information.</param>
     /// <returns>FolderSync command response.</returns>

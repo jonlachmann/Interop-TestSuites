@@ -58,7 +58,7 @@ public class SyncStore
     public string CollectionId { get; set; }
 
     /// <summary>
-    /// Gets the add sync response information for this sync. 
+    /// Gets the add sync response information for this sync.
     /// </summary>
     public Collection<Response.SyncCollectionsCollectionResponsesAdd> AddResponses
     {
@@ -66,7 +66,7 @@ public class SyncStore
     }
 
     /// <summary>
-    /// Gets the change sync response information for this sync. 
+    /// Gets the change sync response information for this sync.
     /// </summary>
     public Collection<Response.SyncCollectionsCollectionResponsesChange> ChangeResponses
     {

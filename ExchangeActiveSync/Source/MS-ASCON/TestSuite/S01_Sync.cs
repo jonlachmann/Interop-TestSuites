@@ -178,7 +178,7 @@ public class S01_Sync : TestSuiteBase
         }
 
         // Set the flag status of the most recent email to 2.
-        var syncStore = SyncChange(LatestSyncKey, new Collection<string>() { mostRecentEmailServerId }, User1Information.InboxCollectionId, null, "2");
+        var syncStore = SyncChange(LatestSyncKey, [mostRecentEmailServerId], User1Information.InboxCollectionId, null, "2");
 
         // Add the debug information
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCON_R209");

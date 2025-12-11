@@ -468,7 +468,7 @@ MIME-Version: 1.0
             move.Options = new Request.ItemOperationsMoveOptions { MoveAlways = string.Empty };
         }
 
-        var itemOperationRequest = Common.CreateItemOperationsRequest(new object[] { move });
+        var itemOperationRequest = Common.CreateItemOperationsRequest([move]);
         var itemOperationResponse = CONAdapter.ItemOperations(itemOperationRequest);
 
         Site.Assert.AreEqual("1", itemOperationResponse.ResponseData.Status, "The ItemOperations operation should be success.");
@@ -491,18 +491,18 @@ MIME-Version: 1.0
             ClientId = Guid.NewGuid().ToString(),
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
-                Items = new object[] { subject },
-                ItemsElementName = new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.Subject2 }
+                Items = [subject],
+                ItemsElementName = [Request.ItemsChoiceType8.Subject2]
             }
         };
 
         var collection = new Request.SyncCollection
         {
-            Commands = new object[] { add },
+            Commands = [add],
             CollectionId = collectionId,
             SyncKey = syncKey
         };
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        var syncRequest = Common.CreateSyncRequest([collection]);
 
         // Call Sync command to add the item.
         var syncStore = CONAdapter.Sync(syncRequest);
@@ -578,7 +578,7 @@ MIME-Version: 1.0
             Commands = changes.ToArray()
         };
 
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        var syncRequest = Common.CreateSyncRequest([collection]);
         var syncStore = CONAdapter.Sync(syncRequest);
 
         // Verify Sync command response.
@@ -617,7 +617,7 @@ MIME-Version: 1.0
             SyncKey = syncKey
         };
 
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        var syncRequest = Common.CreateSyncRequest([collection]);
 
         var syncStore = CONAdapter.Sync(syncRequest);
 
@@ -730,7 +730,7 @@ MIME-Version: 1.0
             Items = items.ToArray()
         };
 
-        var getItemEstimateRequest = Common.CreateGetItemEstimateRequest(new Request.GetItemEstimateCollection[] { collection });
+        var getItemEstimateRequest = Common.CreateGetItemEstimateRequest([collection]);
 
         var getItemEstimateResponse = CONAdapter.GetItemEstimate(getItemEstimateRequest);
 
@@ -1008,7 +1008,7 @@ MIME-Version: 1.0
                     SyncKey = syncResult.SyncKey
                 };
 
-                var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+                var syncRequest = Common.CreateSyncRequest([syncCollection]);
                 var deleteResult = CONAdapter.Sync(syncRequest);
 
                 Site.Assert.AreEqual<byte>(

@@ -2008,7 +2008,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                             2694,
                             @"[In Status(Autodiscover)] Element Status in Autodiscover command response (section 2.2.2.1), the number allowed is 0...1 (optional).");
 
-                        Common.VerifyActualValues("Status(Autodiscover)", AdapterHelper.ValidStatus(new string[] { "1", "2" }), ((Response)autodiscoverResponse.ResponseData.Item).Action.Error.Status, Site);
+                        Common.VerifyActualValues("Status(Autodiscover)", AdapterHelper.ValidStatus(["1", "2"]), ((Response)autodiscoverResponse.ResponseData.Item).Action.Error.Status, Site);
 
                         // Add the debug information.
                         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R3998");
@@ -2382,7 +2382,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             4005,
             @"[In Status(FolderCreate)] The Status element is a required child element of the FolderCreate element in FolderCreate command responses that indicates the success or failure of a FolderCreate command request (section 2.2.2.2).");
 
-        Common.VerifyActualValues("Status(FolderCreate)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "5", "6", "9", "10", "11", "12" }), folderCreateResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(FolderCreate)", AdapterHelper.ValidStatus(["1", "2", "3", "5", "6", "9", "10", "11", "12"]), folderCreateResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4008");
@@ -2532,7 +2532,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             2702,
             @"[In Status(FolderDelete)] Element Status in FolderDelete command response, the number allowed is 1…1 (required).");
 
-        Common.VerifyActualValues("Status(FolderDelete)", AdapterHelper.ValidStatus(new string[] { "1", "3", "4", "6", "9", "10", "11" }), folderDeleteResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(FolderDelete)", AdapterHelper.ValidStatus(["1", "3", "4", "6", "9", "10", "11"]), folderDeleteResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4042");
@@ -2682,7 +2682,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             2706,
             @"[In Status(FolderSync)] Element Status in FolderSync command response, the number allowed is 1…1 (required).");
 
-        Common.VerifyActualValues("Status(FolderSync)", AdapterHelper.ValidStatus(new string[] { "1", "6", "9", "10", "11", "12" }), folderSyncResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(FolderSync)", AdapterHelper.ValidStatus(["1", "6", "9", "10", "11", "12"]), folderSyncResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4071");
@@ -3128,7 +3128,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                         2869,
                         @"[In Type(FolderSync)] Element Type in FolderSync command response (section 2.2.2.4), the data type is integer ([MS-ASDTYPE] section 2.6).");
 
-                    Common.VerifyActualValues("Type(FolderSync)", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }, folderSyncChangesUpdate.Type, Site);
+                    Common.VerifyActualValues("Type(FolderSync)", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"], folderSyncChangesUpdate.Type, Site);
 
                     // Add the debug information.
                     Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4666");
@@ -3394,7 +3394,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                         2873,
                         @"[In Type(FolderSync)] Element Type in FolderSync command response, the data type is integer.");
 
-                    Common.VerifyActualValues("Type(FolderSync)", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }, folderSyncChangesAdd.Type, Site);
+                    Common.VerifyActualValues("Type(FolderSync)", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"], folderSyncChangesAdd.Type, Site);
 
                     // Add the debug information.
                     Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4666");
@@ -3534,7 +3534,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             2710,
             @"[In Status(FolderUpdate)] Element Status in FolderUpdate command response, the number allowed is 1…1 (required).");
 
-        Common.VerifyActualValues("Status(FolderUpdate)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "9", "10", "11" }), folderUpdateResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(FolderUpdate)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "9", "10", "11"]), folderUpdateResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4097");
@@ -3642,7 +3642,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                 2714,
                 @"[In Status(GetItemEstimate)] Element Status in GetItemEstimate command response, the number allowed is 0…1 (optional).");
 
-            Common.VerifyActualValues("Status(GetItemEstimate)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4" }), getItemEstimateResponse.ResponseData.Status.ToString(), Site);
+            Common.VerifyActualValues("Status(GetItemEstimate)", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), getItemEstimateResponse.ResponseData.Status.ToString(), Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4131");
@@ -3751,7 +3751,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
                 if (!string.IsNullOrEmpty(getItemEstimateResponse.ResponseData.Status))
                 {
-                    Common.VerifyActualValues("Status(GetItemEstimate)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4" }), getItemEstimateResponse.ResponseData.Status.ToString(), Site);
+                    Common.VerifyActualValues("Status(GetItemEstimate)", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), getItemEstimateResponse.ResponseData.Status.ToString(), Site);
 
                     // Add the debug information.
                     Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4131");
@@ -3926,7 +3926,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
         Site.Assert.IsNotNull(itemOperationsResponse.ResponseData, "The ItemOperations element should not be null.");
 
         #region Capture code for MultiPartResponse
-        if (itemOperationsResponse.Headers["Content-Type"].Split(new char[] { ';' })[0].Equals("application/vnd.ms-sync.multipart"))
+        if (itemOperationsResponse.Headers["Content-Type"].Split([';'])[0].Equals("application/vnd.ms-sync.multipart"))
         {
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R5506");
@@ -4052,7 +4052,8 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             2717,
             @"[In Status(ItemOperations)] Element Status in ItemOperations command response, the data type is integer ([MS-ASDTYPE] section 2.6).");
 
-        Common.VerifyActualValues("Status(ItemOperations)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "14", "15", "16", "17", "18", "155", "156" }), itemOperationsResponse.ResponseData.Status, Site);
+        Common.VerifyActualValues("Status(ItemOperations)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "14", "15", "16", "17", "18", "155", "156"
+        ]), itemOperationsResponse.ResponseData.Status, Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4151");
@@ -4548,7 +4549,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                             1170,
                             @"[In Class(ItemOperations)] Element Class(ItemOperations) in ItemOperations command response (section 2.2.2.9) fetch operation, the number allowed is 0...1 (optional).");
 
-                        Common.VerifyActualValues("Class(ItemOperations)", new string[] { "Email", "Contacts", "Calendar", "Tasks", "SMS", "Notes" }, fetch.Class, Site);
+                        Common.VerifyActualValues("Class(ItemOperations)", ["Email", "Contacts", "Calendar", "Tasks", "SMS", "Notes"], fetch.Class, Site);
 
                         // Add the debug information.
                         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R913");
@@ -5156,7 +5157,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                 2734,
                 @"[In Status(MeetingResponse)] Element Status in MeetingResponse command response (section 2.2.2.10), the number allowed is 1…1 (required).");
 
-            Common.VerifyActualValues("Status(MeetingResponse)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4" }), result.Status.ToString(), Site);
+            Common.VerifyActualValues("Status(MeetingResponse)", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), result.Status.ToString(), Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4177");
@@ -5403,7 +5404,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                 2737,
                 @"[In Status(MoveItems)] Element Status in MoveItems command response, the data type is unsignedByte ([MS-ASDTYPE] section 2.8).");
 
-            Common.VerifyActualValues("Status(MoveItems)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "7" }), response.Status.ToString(), Site);
+            Common.VerifyActualValues("Status(MoveItems)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "7"]), response.Status.ToString(), Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4203");
@@ -5518,7 +5519,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
             2741,
             @"[In Status(Ping)] Element Status in Ping command response, the data type is unsignedByte ([MS-ASDTYPE] section 2.8).");
 
-        Common.VerifyActualValues("Status(Ping)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "7", "8" }), pingResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(Ping)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "7", "8"]), pingResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4231");
@@ -5744,7 +5745,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
         #region Capture code for Status
         VerifyStatusElementForResolveRecipients(int.Parse(resolveRecipientsResponse.ResponseData.Status));
 
-        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(new string[] { "1", "5", "6" }), resolveRecipientsResponse.ResponseData.Status.ToString(), Site);
+        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(["1", "5", "6"]), resolveRecipientsResponse.ResponseData.Status.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4267");
@@ -5809,7 +5810,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
                 4273,
                 @"[In Status(ResolveRecipients)] As a child element of the Response element, the Status element provides the status of the ResolveRecipients command response Response element.");
 
-            Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4" }), resolveRecipientsResponse.ResponseData.Response[0].Status, Site);
+            Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), resolveRecipientsResponse.ResponseData.Response[0].Status, Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4274");
@@ -6103,7 +6104,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
                         VerifyStatusElementForResolveRecipients(availabilityStatus);
 
-                        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(new string[] { "1", "160", "161", "162", "163" }), recipient.Availability.Status, Site);
+                        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(["1", "160", "161", "162", "163"]), recipient.Availability.Status, Site);
 
                         // Add the debug information.
                         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4290");
@@ -6232,7 +6233,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
                             VerifyStatusElementForResolveRecipients(pictureStatus);
 
-                            Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(new string[] { "1", "173", "174", "175" }), picture.Status, Site);
+                            Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(["1", "173", "174", "175"]), picture.Status, Site);
 
                             // Add the debug information.
                             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4309");
@@ -6326,7 +6327,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
                         VerifyStatusElementForResolveRecipients(certificatesStatus);
 
-                        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(new string[] { "1", "7", "8" }), certificatesStatus.ToString(), Site);
+                        Common.VerifyActualValues("Status(ResolveRecipients)", AdapterHelper.ValidStatus(["1", "7", "8"]), certificatesStatus.ToString(), Site);
 
                         // Add the debug information.
                         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4301");
@@ -6547,7 +6548,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
         VerifyStatusElementForSearch();
 
-        Common.VerifyActualValues("Status(Search)", AdapterHelper.ValidStatus(new string[] { "1", "3" }), searchResponse.ResponseData.Status, Site);
+        Common.VerifyActualValues("Status(Search)", AdapterHelper.ValidStatus(["1", "3"]), searchResponse.ResponseData.Status, Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4321");
@@ -6693,7 +6694,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
 
             VerifyStatusElementForSearch();
 
-            Common.VerifyActualValues("Status", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "10", "11", "12", "13", "14" }), searchResponse.ResponseData.Response.Store.Status, Site);
+            Common.VerifyActualValues("Status", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "7", "8", "10", "11", "12", "13", "14"]), searchResponse.ResponseData.Response.Store.Status, Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4325");
@@ -7581,7 +7582,7 @@ public partial class MS_ASCMDAdapter : ManagedAdapterBase, IMS_ASCMDAdapter
         int status;
         Site.Assert.IsTrue(int.TryParse(findResponse.ResponseData.Status, out status), "The Status element should be an integer.");
         VerifyIntegerDataType();
-        Common.VerifyActualValues("Status(Find)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4" }), findResponse.ResponseData.Status, Site);
+        Common.VerifyActualValues("Status(Find)", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), findResponse.ResponseData.Status, Site);
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R72172506");
 
@@ -7686,7 +7687,7 @@ Total (section 2.2.3.184.1).");
 
             VerifyStatusElementForFind();
 
-            Common.VerifyActualValues("Status", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4"}), findResponse.ResponseData.Response.Status, Site);
+            Common.VerifyActualValues("Status", AdapterHelper.ValidStatus(["1", "2", "3", "4"]), findResponse.ResponseData.Response.Status, Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R72172506");
@@ -8905,7 +8906,7 @@ Total (section 2.2.3.184.1).");
 
             VerifyStatusElementForSettings();
 
-            Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(new string[] { "1", "2", "5", "6" }), settingsResponse.ResponseData.RightsManagementInformation.Status, Site);
+            Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(["1", "2", "5", "6"]), settingsResponse.ResponseData.RightsManagementInformation.Status, Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4391");
@@ -9609,7 +9610,7 @@ OofMessage (section 2.2.3.117)");
 
             VerifyStatusElementForSettings();
 
-            Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(new string[] { "1", "2", "5", "7" }), settingsResponse.ResponseData.DevicePassword.Status, Site);
+            Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(["1", "2", "5", "7"]), settingsResponse.ResponseData.DevicePassword.Status, Site);
 
             // Add the debug information.
             Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4395");
@@ -9830,7 +9831,7 @@ OofMessage (section 2.2.3.117)");
 
         VerifyStatusElementForSettings();
 
-        Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "7" }), settingsResponse.ResponseData.Status, Site);
+        Common.VerifyActualValues("Status(Settings)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "7"]), settingsResponse.ResponseData.Status, Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4386");
@@ -10338,7 +10339,7 @@ OofMessage (section 2.2.3.117)");
                             {
                                 hasStatus = true;
 
-                                Common.VerifyActualValues("Status(Sync)", AdapterHelper.ValidStatus(new string[] { "1", "3", "4", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16" }), collection.Items[j].ToString(), Site);
+                                Common.VerifyActualValues("Status(Sync)", AdapterHelper.ValidStatus(["1", "3", "4", "5", "6", "7", "8", "9", "12", "13", "14", "15", "16"]), collection.Items[j].ToString(), Site);
 
                                 // Add the debug information.
                                 Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R4420");
@@ -10970,7 +10971,7 @@ OofMessage (section 2.2.3.117)");
 
         VerifyContainerDataType();
 
-        Common.VerifyActualValues("Status(ValidateCert)", AdapterHelper.ValidStatus(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17" }), validateCertStatusValue.ToString(), Site);
+        Common.VerifyActualValues("Status(ValidateCert)", AdapterHelper.ValidStatus(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]), validateCertStatusValue.ToString(), Site);
 
         // Add the debug information.
         Site.Log.Add(LogEntryKind.Debug, "Verify MS-ASCMD_R5389");

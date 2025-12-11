@@ -52,14 +52,14 @@ public class MS_ASWBXML
     /// </summary>
     private int defaultCodePage = -1;
 
-    /// <summary> 
-    /// The DataCollection in encoding process 
-    /// </summary> 
+    /// <summary>
+    /// The DataCollection in encoding process
+    /// </summary>
     private Dictionary<string, int> encodeDataCollection = new Dictionary<string, int>();
 
-    /// <summary> 
-    /// The DataCollection in decoding process 
-    /// </summary> 
+    /// <summary>
+    /// The DataCollection in decoding process
+    /// </summary>
     private Dictionary<string, int> decodeDataCollection = new Dictionary<string, int>();
 
     /// <summary>
@@ -1165,7 +1165,7 @@ public class MS_ASWBXML
             }
         }
 
-        throw new InvalidDataException(string.Format("Unknown Xmlns: {0}.", namespaceUri));
+        throw new InvalidDataException($"Unknown Xmlns: {namespaceUri}.");
     }
 
     /// <summary>

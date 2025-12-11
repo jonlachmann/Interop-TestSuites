@@ -61,7 +61,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method without ReplaceMime in request to reply the received email to User1.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -157,7 +157,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account and calls SmartReply method with ReplaceMime in request to reply the received email to User1.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -223,7 +223,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with TemplateID set to "00000000-0000-0000-0000-000000000000" in request to reply the received email to User1.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -309,7 +309,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account and calls SmartReply method with TemplateID set to "00000000-0000-0000-0000-000000000000" in request to reply the received email to User1 and cc User3.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -400,7 +400,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1 and cc User3, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -470,7 +470,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -530,7 +530,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account and calls SmartReply method with TemplateID in request to reply the received email to another account:User3.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -599,7 +599,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account and calls SmartReply method with TemplateID in request to reply the received email to another account:User3.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -676,7 +676,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -746,7 +746,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1 and cc User3, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -816,7 +816,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -883,7 +883,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with an invalid TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
 
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
@@ -955,7 +955,7 @@ public class S05_SmartReply : TestSuiteBase
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method to reply the received email to User1.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1016,7 +1016,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1073,7 +1073,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1136,7 +1136,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1196,7 +1196,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the same TemplateID and ReplaceMime element in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1271,7 +1271,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID and ReplaceMime element in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1332,7 +1332,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the same TemplateID and ReplaceMime element in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1397,7 +1397,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID and ReplaceMime element in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1462,7 +1462,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID and ReplaceMime element in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1526,7 +1526,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the same TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1599,7 +1599,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1667,7 +1667,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with the same TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1736,7 +1736,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),
@@ -1801,7 +1801,7 @@ If the original message being replied to has no rights management restrictions, 
         #endregion
 
         #region The client logs on User2's account, calls SmartReply method with a new TemplateID in request to reply the received email to User1, and checks the response of SmartReply command.
-        var replySubject = string.Format("Re: {0}", subject);
+        var replySubject = $"Re: {subject}";
         var replyMime = Common.CreatePlainTextMime(
             Common.GetMailAddress(UserTwoInformation.UserName, UserTwoInformation.UserDomain),
             Common.GetMailAddress(UserOneInformation.UserName, UserOneInformation.UserDomain),

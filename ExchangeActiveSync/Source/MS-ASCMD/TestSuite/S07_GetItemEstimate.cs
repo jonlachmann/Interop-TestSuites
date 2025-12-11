@@ -58,11 +58,11 @@ public class S07_GetItemEstimate : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User2Information.InboxCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User2Information.InboxCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
         Site.Assert.IsNotNull(getItemEstimateResponse.ResponseData.Response, "The Response element in the GetItemEstimate command response should not be null.");
         #endregion
@@ -117,11 +117,11 @@ public class S07_GetItemEstimate : TestSuiteBase
         Sync(CreateEmptySyncRequest(User1Information.InboxCollectionId));
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
         #endregion
 
@@ -394,19 +394,17 @@ public class S07_GetItemEstimate : TestSuiteBase
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
                 ItemsElementName =
-                    new Request.ItemsChoiceType8[]
-                    {
-                        Request.ItemsChoiceType8.Subject, 
+                [
+                    Request.ItemsChoiceType8.Subject, 
                         Request.ItemsChoiceType8.StartTime, 
-                        Request.ItemsChoiceType8.EndTime                 
-                    },
+                        Request.ItemsChoiceType8.EndTime
+                ],
                 Items =
-                    new object[]
-                    {
-                        calendarSubject, 
+                [
+                    calendarSubject, 
                         startTime.ToString("yyyyMMddTHHmmssZ"),
                         endTime.ToString("yyyyMMddTHHmmssZ")
-                    }
+                ]
             },
             Class = "Calendar"
         };
@@ -504,18 +502,18 @@ public class S07_GetItemEstimate : TestSuiteBase
             ClientId = ClientId,
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
-                ItemsElementName = new Request.ItemsChoiceType8[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType8.Subject,
                     Request.ItemsChoiceType8.StartTime,
-                    Request.ItemsChoiceType8.EndTime,
-                },
-                Items = new object[]
-                {
+                    Request.ItemsChoiceType8.EndTime
+                ],
+                Items =
+                [
                     calendarSubject,
                     startTime.ToString("yyyyMMddTHHmmssZ"),
-                    endTime.ToString("yyyyMMddTHHmmssZ"),
-                }
+                    endTime.ToString("yyyyMMddTHHmmssZ")
+                ]
             },
             Class = "Calendar"
         };
@@ -559,9 +557,9 @@ public class S07_GetItemEstimate : TestSuiteBase
             ClientId = ClientId,
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
-                ItemsElementName = new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Recurrence },
-                Items = new object[]
-                {
+                ItemsElementName = [Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Recurrence],
+                Items =
+                [
                     recurrenceCalendarSubject,
                     new Request.Recurrence
                     {
@@ -570,8 +568,8 @@ public class S07_GetItemEstimate : TestSuiteBase
                         DayOfWeek = 2,
                         DayOfWeekSpecified = true,
                         IsLeapMonthSpecified = false
-                    },
-                }
+                    }
+                ]
             },
             Class = "Calendar"
         };
@@ -866,11 +864,11 @@ public class S07_GetItemEstimate : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { "2", "3" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.MaxItems, Request.ItemsChoiceType1.MaxItems }
+            Items = ["2", "3"],
+            ItemsElementName = [Request.ItemsChoiceType1.MaxItems, Request.ItemsChoiceType1.MaxItems]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.RecipientInformationCacheCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.RecipientInformationCacheCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
 
         if (Common.IsRequirementEnabled(3272, Site))
@@ -903,63 +901,66 @@ public class S07_GetItemEstimate : TestSuiteBase
         {
             RequestData = new Request.GetItemEstimate
             {
-                Collections = new Request.GetItemEstimateCollection[]
-                { 
+                Collections =
+                [
                     new Request.GetItemEstimateCollection
                     {
-                        ItemsElementName=new Request.ItemsChoiceType10[]
-                        {
+                        ItemsElementName=
+                        [
                             Request.ItemsChoiceType10.SyncKey,
-                            Request.ItemsChoiceType10.CollectionId,
-                                
-                        },
-                        Items = new object[]{
+                            Request.ItemsChoiceType10.CollectionId
+
+                        ],
+                        Items =
+                        [
                             LastSyncKey,
-                            User1Information.ContactsCollectionId,
-                             
-                               
-                        },
-                        Options = new Request.Options[]{
+                            User1Information.ContactsCollectionId
+
+
+                        ],
+                        Options =
+                        [
                             new Request.Options()
                             {
-                                Items =new object[]
-                                {
+                                Items =
+                                [
                                     "Contacts"
-                                },
-                                ItemsElementName =new Request.ItemsChoiceType1[]
-                                {
+                                ],
+                                ItemsElementName =
+                                [
                                     Request.ItemsChoiceType1.Class
-                                }
+                                ]
                             }
-                        }
+                        ]
                     },
                     new Request.GetItemEstimateCollection
                     {
-                        ItemsElementName = new Request.ItemsChoiceType10[]{
+                        ItemsElementName =
+                        [
                             Request.ItemsChoiceType10.SyncKey,
-                            Request.ItemsChoiceType10.CollectionId,                              
-                        },
-                        Items = new object[]
-                        {
+                            Request.ItemsChoiceType10.CollectionId
+                        ],
+                        Items =
+                        [
                             LastSyncKey,
-                            Common.GenerateResourceName(Site, "InvalidCollectionId"),    
-                        },
-                        Options = new Request.Options[]
-                        {
+                            Common.GenerateResourceName(Site, "InvalidCollectionId")
+                        ],
+                        Options =
+                        [
                             new Request.Options
                             {
-                                Items = new object[]
-                                {
+                                Items =
+                                [
                                     "Email"
-                                },
-                                ItemsElementName = new Request.ItemsChoiceType1[]
-                                {
+                                ],
+                                ItemsElementName =
+                                [
                                     Request.ItemsChoiceType1.Class
-                                }
+                                ]
                             }
-                        }
+                        ]
                     }
-                }
+                ]
             }
         };
 
@@ -1010,11 +1011,11 @@ public class S07_GetItemEstimate : TestSuiteBase
         #region Call method GetItemEstimate without priming the synchronization state.
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest("0", User1Information.InboxCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest("0", User1Information.InboxCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
         Site.Assert.IsNotNull(getItemEstimateResponse.ResponseData.Response, "The response of GetItemEstimate command should not be null.");
 
@@ -1057,11 +1058,11 @@ public class S07_GetItemEstimate : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(invalidSyncKey, User1Information.InboxCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(invalidSyncKey, User1Information.InboxCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
 
         // Add the debug information
@@ -1095,11 +1096,11 @@ public class S07_GetItemEstimate : TestSuiteBase
         #region Call method GetItemEstimate with a SyncKey that does not match the expected value.
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(unmatchedSyncKey, User1Information.InboxCollectionId, new Request.Options[] { option });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(unmatchedSyncKey, User1Information.InboxCollectionId, [option]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
 
         // Add the debug information
@@ -1164,17 +1165,17 @@ public class S07_GetItemEstimate : TestSuiteBase
         #region Call GetItemEstimate to get the number of both Email and SMS messages.
         var option1 = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var option2 = new Request.Options
         {
-            Items = new object[] { "SMS" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["SMS"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, new Request.Options[] { option1, option2 });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, [option1, option2]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
         Site.Assert.IsNotNull(getItemEstimateResponse.ResponseData.Response, "The response of GetItemEstimate command should not be null.");
 
@@ -1210,8 +1211,8 @@ public class S07_GetItemEstimate : TestSuiteBase
         #region Create 1001 objects of GetItemEstimateCollection type for GetItemEstimate command.
         var option = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var collections = new List<Request.GetItemEstimateCollection>();
@@ -1219,19 +1220,19 @@ public class S07_GetItemEstimate : TestSuiteBase
         {
             var collection = new Request.GetItemEstimateCollection
             {
-                ItemsElementName = new Request.ItemsChoiceType10[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType10.SyncKey,
-                    Request.ItemsChoiceType10.CollectionId,                       
-                        
-                },
-                Items = new object[]
-                {
+                    Request.ItemsChoiceType10.CollectionId
+
+                ],
+                Items =
+                [
                     LastSyncKey,
-                    User2Information.InboxCollectionId,                     
-                       
-                },
-                Options = new Request.Options[] { option } 
+                    User2Information.InboxCollectionId
+
+                ],
+                Options = [option]
             };
 
             collections.Add(collection);
@@ -1266,17 +1267,17 @@ public class S07_GetItemEstimate : TestSuiteBase
         #region Call GetItemEstimate to get the number of both Email and SMS messages.
         var option1 = new Request.Options
         {
-            Items = new object[] { "Tasks" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Tasks"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var option2 = new Request.Options
         {
-            Items = new object[] { "Contacts" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Contacts"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, new Request.Options[] { option1, option2 });
+        var getItemEstimateRequest = CreateGetItemEstimateRequest(LastSyncKey, User1Information.InboxCollectionId, [option1, option2]);
         var getItemEstimateResponse = CMDAdapter.GetItemEstimate(getItemEstimateRequest);
             
         // Add the debug information
@@ -1302,11 +1303,11 @@ public class S07_GetItemEstimate : TestSuiteBase
     {
         var option = new Request.Options
         {
-            Items = new object[] { filterType },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType }
+            Items = [filterType],
+            ItemsElementName = [Request.ItemsChoiceType1.FilterType]
         };
 
-        return CMDAdapter.GetItemEstimate(CreateGetItemEstimateRequest(LastSyncKey, collectionId, new Request.Options[] { option }));
+        return CMDAdapter.GetItemEstimate(CreateGetItemEstimateRequest(LastSyncKey, collectionId, [option]));
     }
     #endregion
 }

@@ -64,8 +64,8 @@ public class TestSuiteBase : TestClassBase
         {
             // Give the query values
             var subQuery = new queryTypeEqualTo { LinkId = string.Empty, Value = linkId };
-            store.Query.ItemsElementName = new ItemsChoiceType2[] { ItemsChoiceType2.EqualTo };
-            store.Query.Items = new object[] { subQuery };
+            store.Query.ItemsElementName = [ItemsChoiceType2.EqualTo];
+            store.Query.Items = [subQuery];
         }
 
         store.Options = new Options1 { ItemsElementName = new ItemsChoiceType6[2] };
@@ -76,7 +76,7 @@ public class TestSuiteBase : TestClassBase
         store.Options.Items[1] = Common.GetConfigurationPropertyValue("UserPassword", Site);
 
         // Create a search command request.
-        var searchRequest = Common.CreateSearchRequest(new SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
 
         // Get search command response.
         var searchResponse = ASDOCAdapter.Search(searchRequest);

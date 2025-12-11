@@ -104,7 +104,7 @@ public partial class MS_ASHTTPAdapter : ManagedAdapterBase, IMS_ASHTTPAdapter
                 else
                 {
                     activeSyncClient.GetType().GetProperty(requestPrefixField.Key.ToString()).SetValue(
-                        activeSyncClient, 
+                        activeSyncClient,
                         Convert.ChangeType(requestPrefixField.Value, activeSyncClient.GetType().GetProperty(requestPrefixField.Key.ToString()).PropertyType),
                         null);
                 }

@@ -77,21 +77,21 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal }
+                Items = [string.Empty],
+                ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And, Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And, Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType(), new Request.queryType() }
             }
         };
 
         // Create search request with multiple And elements.
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, "FreeText" };
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)store.Query.Items[0]).Items = ["Email", User1Information.InboxCollectionId, "FreeText"];
 
-        var invalidSearchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var invalidSearchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call method SendStringRequest to send a plain text request.
@@ -296,8 +296,8 @@ public class S14_Search : TestSuiteBase
         #region Create a search request with multiple DeepTraversal elements.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.DeepTraversal },
-            Items = new object[] { string.Empty, string.Empty }
+            ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.DeepTraversal],
+            Items = [string.Empty, string.Empty]
         };
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -329,15 +329,15 @@ public class S14_Search : TestSuiteBase
         #region Create a search request with multiple airsync:MIMESupport elements
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[]
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType6.DeepTraversal,
                 Request.ItemsChoiceType6.MIMESupport,
                 Request.ItemsChoiceType6.MIMESupport
-            }
+            ]
         };
         byte mimeSupportValue = 2;
-        searchOption.Items = new object[] { string.Empty, mimeSupportValue, mimeSupportValue };
+        searchOption.Items = [string.Empty, mimeSupportValue, mimeSupportValue];
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
         #endregion
@@ -368,8 +368,8 @@ public class S14_Search : TestSuiteBase
         #region Create a search request with multiple Range elements.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Range },
-            Items = new object[] { string.Empty, "0-9", "0-9" }
+            ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Range],
+            Items = [string.Empty, "0-9", "0-9"]
         };
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -401,12 +401,12 @@ public class S14_Search : TestSuiteBase
         #region Create a search request with multiple RebuildResults elements.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[]
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType6.RebuildResults, 
                 Request.ItemsChoiceType6.RebuildResults
-            },
-            Items = new object[] { string.Empty, string.Empty }
+            ],
+            Items = [string.Empty, string.Empty]
         };
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -441,21 +441,21 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal }
+                Items = [string.Empty],
+                ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, "FreeText" };
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)store.Query.Items[0]).Items = ["Email", User1Information.InboxCollectionId, "FreeText"];
 
         // Create search request with two store elements
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store, store });
+        var searchRequest = Common.CreateSearchRequest([store, store]);
         #endregion
 
         #region Call Search command
@@ -551,11 +551,11 @@ public class S14_Search : TestSuiteBase
         var searchKeyword = Common.GenerateResourceName(Site, "search");
         var searchQuery = new Request.queryType
         {
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+            ItemsElementName = [Request.ItemsChoiceType2.And],
             Items = new Request.queryType[] { new Request.queryType() }
         };
-        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)searchQuery.Items[0]).Items = new object[] { "Email", User2Information.InboxCollectionId, searchKeyword };
+        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)searchQuery.Items[0]).Items = ["Email", User2Information.InboxCollectionId, searchKeyword];
 
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Query = searchQuery;
@@ -618,21 +618,21 @@ public class S14_Search : TestSuiteBase
         #region Create a search request for searching mail.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[]
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.RebuildResults,
                 Request.ItemsChoiceType6.Range
-            },
-            Items = new object[] { string.Empty, string.Empty, "0-2" }
+            ],
+            Items = [string.Empty, string.Empty, "0-2"]
         };
 
         var searchQuery = new Request.queryType
         {
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+            ItemsElementName = [Request.ItemsChoiceType2.And],
             Items = new Request.queryType[] { new Request.queryType() }
         };
-        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)searchQuery.Items[0]).Items = new object[] { "Email", User2Information.InboxCollectionId, keyWord };
+        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)searchQuery.Items[0]).Items = ["Email", User2Information.InboxCollectionId, keyWord];
 
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -995,22 +995,22 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.DeepTraversal,
                     Request.ItemsChoiceType6.RebuildResults
-                },
-                Items = new object[] { string.Empty, string.Empty }
+                ],
+                Items = [string.Empty, string.Empty]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
@@ -1021,13 +1021,14 @@ public class S14_Search : TestSuiteBase
             Request.ItemsChoiceType2.Class,
             Request.ItemsChoiceType2.Class,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, "Tasks", "Email", "Calendar", "Contacts", "Notes", "SMS", searchPrefix };
+        ((Request.queryType)store.Query.Items[0]).Items = [User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, "Tasks", "Email", "Calendar", "Contacts", "Notes", "SMS", searchPrefix
+        ];
         #endregion
 
         #region Call search command
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         var searchResponse = CMDAdapter.Search(searchRequest);
         Site.Assert.AreEqual("1", searchResponse.ResponseData.Response.Store.Status, "If server successfully completed command, server should return status 1");
         if (searchResponse.ResponseData.Response.Store.Status != "1" || searchResponse.ResponseData.Response.Store.Result.Length != 3)
@@ -1085,22 +1086,22 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.DeepTraversal,
                     Request.ItemsChoiceType6.RebuildResults
-                },
-                Items = new object[] { string.Empty, string.Empty }
+                ],
+                Items = [string.Empty, string.Empty]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
@@ -1109,11 +1110,12 @@ public class S14_Search : TestSuiteBase
             Request.ItemsChoiceType2.Class,
             Request.ItemsChoiceType2.Class,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, "Tasks", "Email", "Calendar", "Contacts", searchPrefix };
+        ((Request.queryType)store.Query.Items[0]).Items = [User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, "Tasks", "Email", "Calendar", "Contacts", searchPrefix
+        ];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call search command
@@ -1145,31 +1147,32 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty, string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                Items = [string.Empty, string.Empty],
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.DeepTraversal,
                     Request.ItemsChoiceType6.RebuildResults
-                }
+                ]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, searchPrefix };
+        ((Request.queryType)store.Query.Items[0]).Items = [User2Information.InboxCollectionId, User2Information.CalendarCollectionId, User2Information.ContactsCollectionId, searchPrefix
+        ];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call search command
@@ -1475,20 +1478,20 @@ public class S14_Search : TestSuiteBase
         var optionWithDeepTraversalAndRebuild = new Request.Options1();
 
         // Create search request query.
-        query.ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And };
+        query.ItemsElementName = [Request.ItemsChoiceType2.And];
         query.Items = new Request.queryType[] { new Request.queryType() };
 
-        ((Request.queryType)query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, searchPrefix };
+        ((Request.queryType)query.Items[0]).Items = [User2Information.InboxCollectionId, searchPrefix];
 
         // Create Search option with DeepTraversal and Rebuild.
-        optionWithDeepTraversalAndRebuild.Items = new object[] { string.Empty, string.Empty };
-        optionWithDeepTraversalAndRebuild.ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.RebuildResults };
+        optionWithDeepTraversalAndRebuild.Items = [string.Empty, string.Empty];
+        optionWithDeepTraversalAndRebuild.ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.RebuildResults];
 
         var store = new Request.SearchStore
         {
@@ -1496,7 +1499,7 @@ public class S14_Search : TestSuiteBase
             Query = query,
             Options = optionWithDeepTraversalAndRebuild
         };
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
 
         #endregion
 
@@ -1585,25 +1588,25 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.RebuildResults }
+                Items = [string.Empty],
+                ItemsElementName = [Request.ItemsChoiceType6.RebuildResults]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, searchPrefix };
+        ((Request.queryType)store.Query.Items[0]).Items = [User2Information.InboxCollectionId, searchPrefix];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call search command without DeepTraversal element
@@ -1863,27 +1866,27 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { "0-0", string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                Items = ["0-0", string.Empty],
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.RebuildResults
-                }
+                ]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User1Information.InboxCollectionId };
+        ((Request.queryType)store.Query.Items[0]).Items = [User1Information.InboxCollectionId];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Create invalid search request with conversationId element outside of And element
@@ -1966,29 +1969,29 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { "0-0", string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[]
-                {
+                Items = ["0-0", string.Empty],
+                ItemsElementName =
+                [
                     Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.RebuildResults
-                }
+                ]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.CollectionId,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
         // Search with low case search key word.
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { User2Information.InboxCollectionId, upperCaseSearchKeyword.ToLower(System.Globalization.CultureInfo.InvariantCulture) };
+        ((Request.queryType)store.Query.Items[0]).Items = [User2Information.InboxCollectionId, upperCaseSearchKeyword.ToLower(System.Globalization.CultureInfo.InvariantCulture)];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call search command
@@ -2033,21 +2036,21 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[]
-        {
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName =
+        [
             Request.ItemsChoiceType2.ConversationId,
             Request.ItemsChoiceType2.ConversationId,
             Request.ItemsChoiceType2.FreeText
-        };
+        ];
 
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { conversationId, conversationId, "KeyWord" };
+        ((Request.queryType)store.Query.Items[0]).Items = [conversationId, conversationId, "KeyWord"];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Call Search command
@@ -2081,14 +2084,14 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Or },
+                ItemsElementName = [Request.ItemsChoiceType2.Or],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { "Email", "KeyWord" };
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)store.Query.Items[0]).Items = ["Email", "KeyWord"];
+        var searchRequest = Common.CreateSearchRequest([store]);
         #endregion
 
         #region Calls search command
@@ -2306,7 +2309,7 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.DocumentLibrary.ToString(),
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.EqualTo },
+                ItemsElementName = [Request.ItemsChoiceType2.EqualTo],
                 Items = new Request.queryTypeEqualTo[]
                 {
                     new Request.queryTypeEqualTo
@@ -2319,12 +2322,12 @@ public class S14_Search : TestSuiteBase
             Options = new Request.Options1
             {
                 ItemsElementName =
-                    new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.UserName, Request.ItemsChoiceType6.Password },
-                Items = new object[] { userName, userPassword }
+                    [Request.ItemsChoiceType6.UserName, Request.ItemsChoiceType6.Password],
+                Items = [userName, userPassword]
             }
         };
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         return searchRequest;
     }
 
@@ -2503,7 +2506,8 @@ public class S14_Search : TestSuiteBase
     {
         // Create search Option element
         var searchOption = new Request.Options1();
-        searchOption.ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.MIMESupport, Request.ItemsChoiceType6.BodyPreference };
+        searchOption.ItemsElementName = [Request.ItemsChoiceType6.RebuildResults, Request.ItemsChoiceType6.DeepTraversal, Request.ItemsChoiceType6.MIMESupport, Request.ItemsChoiceType6.BodyPreference
+        ];
 
         // Set bodyPrference element value
         var bodyPreference = new Request.BodyPreference();
@@ -2512,14 +2516,14 @@ public class S14_Search : TestSuiteBase
         bodyPreference.TruncationSizeSpecified = true;
 
         // Set search Option element value
-        searchOption.Items = new object[] { string.Empty, string.Empty, mimeSupportValue, bodyPreference };
+        searchOption.Items = [string.Empty, string.Empty, mimeSupportValue, bodyPreference];
 
         // Create search Query element
         var searchQuery = new Request.queryType();
-        searchQuery.ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And };
+        searchQuery.ItemsElementName = [Request.ItemsChoiceType2.And];
         searchQuery.Items = new Request.queryType[] { new Request.queryType() };
-        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)searchQuery.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, keyWord };
+        ((Request.queryType)searchQuery.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)searchQuery.Items[0]).Items = ["Email", User1Information.InboxCollectionId, keyWord];
 
         var searchRequest = CreateDefaultSearchRequest();
         searchRequest.RequestData.Items[0].Options = searchOption;
@@ -2562,7 +2566,7 @@ public class S14_Search : TestSuiteBase
         // Create search request with range, maxSize, maxPictures options.
         var searchOption = new Request.Options1
         {
-            ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Picture }
+            ItemsElementName = [Request.ItemsChoiceType6.Range, Request.ItemsChoiceType6.Picture]
         };
 
         if (maxPictures > 0 && maxSize > 0)
@@ -2574,14 +2578,14 @@ public class S14_Search : TestSuiteBase
                 MaxSize = maxSize,
                 MaxSizeSpecified = true
             };
-            searchOption.Items = new object[] { requestRange, picture };
+            searchOption.Items = [requestRange, picture];
         }
         else
         {
-            searchOption.Items = new object[] { requestRange };
+            searchOption.Items = [requestRange];
         }
 
-        var searchQuery = new Request.queryType { Text = new string[] { keyWord } };
+        var searchQuery = new Request.queryType { Text = [keyWord] };
 
         // Set Name element, option element, query element in default search request.
         var searchRequest = CreateDefaultSearchRequest();
@@ -2603,20 +2607,20 @@ public class S14_Search : TestSuiteBase
             Name = SearchName.Mailbox.ToString(),
             Options = new Request.Options1
             {
-                Items = new object[] { string.Empty },
-                ItemsElementName = new Request.ItemsChoiceType6[] { Request.ItemsChoiceType6.DeepTraversal }
+                Items = [string.Empty],
+                ItemsElementName = [Request.ItemsChoiceType6.DeepTraversal]
             },
             Query = new Request.queryType
             {
-                ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And },
+                ItemsElementName = [Request.ItemsChoiceType2.And],
                 Items = new Request.queryType[] { new Request.queryType() }
             }
         };
 
-        ((Request.queryType)store.Query.Items[0]).ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText };
-        ((Request.queryType)store.Query.Items[0]).Items = new object[] { "Email", User1Information.InboxCollectionId, "FreeText" };
+        ((Request.queryType)store.Query.Items[0]).ItemsElementName = [Request.ItemsChoiceType2.Class, Request.ItemsChoiceType2.CollectionId, Request.ItemsChoiceType2.FreeText];
+        ((Request.queryType)store.Query.Items[0]).Items = ["Email", User1Information.InboxCollectionId, "FreeText"];
 
-        var searchRequest = Common.CreateSearchRequest(new Request.SearchStore[] { store });
+        var searchRequest = Common.CreateSearchRequest([store]);
         return searchRequest;
     }
     #endregion

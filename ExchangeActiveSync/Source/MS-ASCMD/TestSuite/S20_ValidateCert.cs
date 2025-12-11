@@ -64,15 +64,15 @@ public class S20_ValidateCert : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference, (byte)8 },
-            ItemsElementName = new Request.ItemsChoiceType1[]
-            {
+            Items = [(byte)2, bodyPreference, (byte)8],
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType1.MIMESupport,
                 Request.ItemsChoiceType1.BodyPreference, Request.ItemsChoiceType1.MIMETruncation
-            }
+            ]
         };
 
-        var syncResponse = CheckEmail(User9Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        var syncResponse = CheckEmail(User9Information.InboxCollectionId, emailSubject, [option]);
         Response.Body mailBody = null;
         var applicationData = GetAddApplicationData(syncResponse, Response.ItemsChoiceType8.Subject1, emailSubject);
         for (var i = 0; i < applicationData.ItemsElementName.Length; i++)

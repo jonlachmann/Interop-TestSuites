@@ -54,7 +54,7 @@ public partial class MS_ASNOTEAdapter : ManagedAdapterBase, IMS_ASNOTEAdapter
     }
 
     /// <summary>
-    /// Synchronizes the collection hierarchy 
+    /// Synchronizes the collection hierarchy
     /// </summary>
     /// <param name="folderSyncRequest">FolderSync command request.</param>
     /// <returns>The FolderSync response which is returned from the server</returns>

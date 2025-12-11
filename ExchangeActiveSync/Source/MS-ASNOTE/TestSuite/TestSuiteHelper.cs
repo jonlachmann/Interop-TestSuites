@@ -91,7 +91,7 @@ internal static class TestSuiteHelper
             SyncKey = "0"
         };
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -199,9 +199,9 @@ internal static class TestSuiteHelper
 
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
+        syncCollection.Options = [syncOptions];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -231,11 +231,11 @@ internal static class TestSuiteHelper
             PreviewSpecified = true
         };
 
-        option.Items = new object[] { preference };
-        option.ItemsElementName = new Request.ItemsChoiceType1[]
-        {
-            Request.ItemsChoiceType1.BodyPreference,
-        };
+        option.Items = [preference];
+        option.ItemsElementName =
+        [
+            Request.ItemsChoiceType1.BodyPreference
+        ];
 
         syncCollection.Options = new Request.Options[1];
         syncCollection.Options[0] = option;
@@ -243,7 +243,7 @@ internal static class TestSuiteHelper
         syncCollection.WindowSize = "512";
         syncCollection.Commands = data.ToArray();
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>

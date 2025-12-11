@@ -53,7 +53,7 @@ public class S13_ResolveRecipients : TestSuiteBase
             RequestData = new Request.ResolveRecipients
             {
                 Items =
-                    new object[] { requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site) }
+                    [requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site)]
             }
         };
 
@@ -72,7 +72,7 @@ public class S13_ResolveRecipients : TestSuiteBase
 
         #region Call ResolveRecipients command and set the CertificateRetrieval value to 2 that specifies server should return the full certificate for each resolved recipient.
         requestResolveRecipientsOption.CertificateRetrieval = "2";
-        resolveRecipientsRequest.RequestData.Items = new object[] { requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site) };
+        resolveRecipientsRequest.RequestData.Items = [requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site)];
         resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
 
         // Add the debug information
@@ -118,7 +118,7 @@ public class S13_ResolveRecipients : TestSuiteBase
 
         #region Call ResolveRecipients command and set the CertificateRetrieval value to 3 that specifies server should return the mini certificate for each resolved recipient.
         requestResolveRecipientsOption.CertificateRetrieval = "3";
-        resolveRecipientsRequest.RequestData.Items = new object[] { requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site) };
+        resolveRecipientsRequest.RequestData.Items = [requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User3Name", Site)];
         resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
         Site.Assert.AreEqual<string>("1", resolveRecipientsResponse.ResponseData.Status, "The server should return a status code 1 in the ResolveRecipients command response to indicate success.");
 
@@ -168,8 +168,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -179,7 +179,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -219,8 +219,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -230,7 +230,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -261,8 +261,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -272,7 +272,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -303,8 +303,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -314,7 +314,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -347,14 +347,14 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         CertificateRetrieval = "2"
                     },
                     toElementWith256Chars
-                }
+                ]
             }
         };
 
@@ -368,14 +368,14 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         CertificateRetrieval = "2"
                     },
                     toElementWith257Chars
-                }
+                ]
             }
         };
 
@@ -407,8 +407,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Picture = new Request.ResolveRecipientsOptionsPicture
@@ -417,7 +417,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User3Name", Site)
-                }
+                ]
             }
         };
 
@@ -446,7 +446,7 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[] { displayName }
+                Items = [displayName]
             }
         };
         var resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
@@ -501,8 +501,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -512,7 +512,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("AmbiguousSearchName", Site)
-                }
+                ]
             }
         };
 
@@ -558,8 +558,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -569,7 +569,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("GroupDisplayName", Site)
-                }
+                ]
             }
         };
 
@@ -625,8 +625,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -636,7 +636,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("LargeGroupDisplayName", Site)
-                }
+                ]
             }
         };
 
@@ -675,7 +675,7 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[] { recipientName }
+                Items = [recipientName]
             }
         };
         var resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
@@ -716,8 +716,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -727,7 +727,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetMailAddress(Common.GetConfigurationPropertyValue("User1Name", Site), Common.GetConfigurationPropertyValue("Domain", Site))
-                }
+                ]
             }
         };
 
@@ -784,14 +784,14 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         CertificateRetrieval = "2"
                     },
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -833,8 +833,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -844,7 +844,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User2Name", Site)
-                }
+                ]
             }
         };
 
@@ -949,14 +949,14 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Picture = new Request.ResolveRecipientsOptionsPicture()
                     },
                     Common.GetConfigurationPropertyValue("User3Name", Site)
-                }
+                ]
             }
         };
 
@@ -998,11 +998,11 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     requestResolveRecipientsOption,
                     Common.GetConfigurationPropertyValue("User1Name", Site)
-                }
+                ]
             }
         };
 
@@ -1062,8 +1062,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Picture = new Request.ResolveRecipientsOptionsPicture
@@ -1073,7 +1073,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User2Name", Site)
-                }
+                ]
             }
         };
 
@@ -1110,7 +1110,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                 MaxPictures = 0
             }
         };
-        requestResolveRecipients.Items = new object[] { requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User2Name", Site) };
+        requestResolveRecipients.Items = [requestResolveRecipientsOption, Common.GetConfigurationPropertyValue("User2Name", Site)];
         resolveRecipientsRequest.RequestData = requestResolveRecipients;
         var resolveRecipientsResponse = CMDAdapter.ResolveRecipients(resolveRecipientsRequest);
 
@@ -1218,8 +1218,8 @@ public class S13_ResolveRecipients : TestSuiteBase
         {
             RequestData = new Request.ResolveRecipients
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ResolveRecipientsOptions
                     {
                         Availability = new Request.ResolveRecipientsOptionsAvailability
@@ -1229,7 +1229,7 @@ public class S13_ResolveRecipients : TestSuiteBase
                         }
                     },
                     Common.GetConfigurationPropertyValue("User3Name", Site)
-                }
+                ]
             }
         };
 

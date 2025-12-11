@@ -107,9 +107,9 @@ internal static class TestSuiteHelper
 
         var deleteData = new Request.SyncCollectionDelete { ServerId = serverId };
 
-        syncCollection.Commands = new object[] { deleteData };
+        syncCollection.Commands = [deleteData];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -174,9 +174,9 @@ internal static class TestSuiteHelper
             });
         syncOptions.Items = syncOptionItems.ToArray();
         syncOptions.ItemsElementName = syncOptionItemsName.ToArray();
-        syncCollection.Options = new Request.Options[] { syncOptions };
+        syncCollection.Options = [syncOptions];
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        return Common.CreateSyncRequest([syncCollection]);
     }
 
     /// <summary>
@@ -243,22 +243,22 @@ internal static class TestSuiteHelper
         // Build up query condition by using the keyword and folder CollectionID
         var queryItem = new Request.queryType
         {
-            Items = new object[] { collectionId, keyword },
+            Items = [collectionId, keyword],
 
-            ItemsElementName = new Request.ItemsChoiceType2[]
-            {
+            ItemsElementName =
+            [
                 Request.ItemsChoiceType2.CollectionId,
                 Request.ItemsChoiceType2.FreeText
-            }
+            ]
         };
 
         searchStore.Query = new Request.queryType
         {
-            Items = new object[] { queryItem },
-            ItemsElementName = new Request.ItemsChoiceType2[] { Request.ItemsChoiceType2.And }
+            Items = [queryItem],
+            ItemsElementName = [Request.ItemsChoiceType2.And]
         };
 
-        return Common.CreateSearchRequest(new Request.SearchStore[] { searchStore });
+        return Common.CreateSearchRequest([searchStore]);
     }
 
     /// <summary>
@@ -371,7 +371,7 @@ internal static class TestSuiteHelper
             Options = new Request.ItemOperationsEmptyFolderContentsOptions { DeleteSubFolders = string.Empty }
         };
 
-        return Common.CreateItemOperationsRequest(new object[] { emptyFolderContents });
+        return Common.CreateItemOperationsRequest([emptyFolderContents]);
     }
 
     /// <summary>
@@ -689,9 +689,9 @@ Content-Type: text/calendar; charset=""us-ascii""; method=REQUEST
             ItemsElementName = itemsElementName.ToArray()
         };
 
-        syncCollection.Options = new Request.Options[] { option };
+        syncCollection.Options = [option];
 
-        var request = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+        var request = Common.CreateSyncRequest([syncCollection]);
 
         return request;
     }

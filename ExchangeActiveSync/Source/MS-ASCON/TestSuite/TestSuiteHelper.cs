@@ -47,21 +47,21 @@ internal static class TestSuiteHelper
             synCollections[0].Options = new Request.Options[1];
             synCollections[0].Options[0] = new Request.Options
             {
-                ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType },
-                Items = new object[] { (byte)1 }
+                ItemsElementName = [Request.ItemsChoiceType1.FilterType],
+                Items = [(byte)1]
             };
         }
 
         if (items.Count > 0)
         {
-            synCollections[0].Options = new Request.Options[]
-            {
+            synCollections[0].Options =
+            [
                 new Request.Options()
                 {
                     ItemsElementName = itemsElementName.ToArray(),
                     Items = items.ToArray()
                 }
-            };
+            ];
         }
 
         return Common.CreateSyncRequest(synCollections);
@@ -109,7 +109,7 @@ internal static class TestSuiteHelper
             };
         }
 
-        request.RequestData.Items = new object[] { fetch };
+        request.RequestData.Items = [fetch];
 
         return request;
     }
@@ -127,36 +127,36 @@ internal static class TestSuiteHelper
         {
             RequestData =
             {
-                Items = new Request.SearchStore[]
-                {
+                Items =
+                [
                     new Request.SearchStore()
                     {
                         Name = SearchName.Mailbox.ToString(),
                         Query = new Request.queryType()
                         {
-                            Items = new object[]
-                            {
+                            Items =
+                            [
                                 new Request.queryType()
                                 {
-                                    Items = new object[]
-                                    {
+                                    Items =
+                                    [
                                         "Email",
                                         conversationId
-                                    },
-                                    ItemsElementName = new Request.ItemsChoiceType2[]
-                                    {
+                                    ],
+                                    ItemsElementName =
+                                    [
                                         Request.ItemsChoiceType2.Class,
                                         Request.ItemsChoiceType2.ConversationId
-                                    }
+                                    ]
                                 }
-                            },
-                            ItemsElementName = new Request.ItemsChoiceType2[]
-                            {
+                            ],
+                            ItemsElementName =
+                            [
                                 Request.ItemsChoiceType2.And
-                            }
+                            ]
                         }
                     }
-                }
+                ]
             }
         };
 

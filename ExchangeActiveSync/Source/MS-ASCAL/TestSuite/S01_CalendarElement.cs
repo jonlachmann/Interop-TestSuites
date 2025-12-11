@@ -755,18 +755,18 @@ public class S01_CalendarElement : TestSuiteBase
         calendarItem.Add(Request.ItemsChoiceType8.EndTime, EndTime.ToString("yyyyMMddTHHmmssZ"));
 
         // Set Categories element specifies a category that is assigned to the calendar item
-        calendarItem.Add(Request.ItemsChoiceType8.Categories, TestSuiteHelper.CreateCalendarCategories(new string[] { Category }));
+        calendarItem.Add(Request.ItemsChoiceType8.Categories, TestSuiteHelper.CreateCalendarCategories([Category]));
 
         // Set Categories element specifies a category that is assigned to the exception item
         calendarItem.Add(Request.ItemsChoiceType8.Recurrence, CreateCalendarRecurrence(0, 6, 1));
 
         var categoryNameInException = Category + "InException";
 
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         var exceptionWithCategoriesLessThan300 = TestSuiteHelper.CreateExceptionRequired(StartTime.AddDays(2).ToString("yyyyMMddTHHmmssZ"));
-        exceptionWithCategoriesLessThan300.Categories = TestSuiteHelper.CreateCalendarCategories(new string[] { categoryNameInException }).Category;
+        exceptionWithCategoriesLessThan300.Categories = TestSuiteHelper.CreateCalendarCategories([categoryNameInException]).Category;
 
         exceptionList.Add(exceptionWithCategoriesLessThan300);
         exceptions.Exception = exceptionList.ToArray();
@@ -876,8 +876,8 @@ public class S01_CalendarElement : TestSuiteBase
         // Set Categories element specifies a category that is assigned to the exception item
         calendarItem.Add(Request.ItemsChoiceType8.Recurrence, CreateCalendarRecurrence(0, 6, 1));
 
-        exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
-        exceptionList = new List<Request.ExceptionsException>();
+        exceptions = new Request.Exceptions { Exception = [] };
+        exceptionList = [];
 
         var exceptionWithCategoriesMoreThan300 = TestSuiteHelper.CreateExceptionRequired(StartTime.AddDays(2).ToString("yyyyMMddTHHmmssZ"));
         exceptionWithCategoriesMoreThan300.Categories = TestSuiteHelper.CreateCalendarCategories(categoryList.ToArray()).Category;
@@ -1818,7 +1818,7 @@ public class S01_CalendarElement : TestSuiteBase
 
         // Set Calendar Attendee element with wrong-formatted email address
         var wrongFormatEmailAddress = "wrongFormatEmail";
-        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired(new string[] { wrongFormatEmailAddress }, new string[] { User2Information.UserName }));
+        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired([wrongFormatEmailAddress], [User2Information.UserName]));
         var subjectWithWrongEmailAddress = Common.GenerateResourceName(Site, "subjectWithWrongEmailAddress");
         calendarItem.Add(Request.ItemsChoiceType8.Subject, subjectWithWrongEmailAddress);
 
@@ -2848,7 +2848,7 @@ public class S01_CalendarElement : TestSuiteBase
         var recurrence = CreateCalendarRecurrence(recurrenceType, 6, 1);
 
         // Set Calendar Exceptions element
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         // Set ExceptionStartTime element in exception
@@ -2873,7 +2873,7 @@ public class S01_CalendarElement : TestSuiteBase
 
         // Set elements which can be ghosted
         var emailAddress = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
-        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired(new string[] { emailAddress }, new string[] { User2Information.UserName }));
+        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired([emailAddress], [User2Information.UserName]));
         calendarItem.Add(Request.ItemsChoiceType8.MeetingStatus, (byte)1);
         if (!IsActiveSyncProtocolVersion121)
         {
@@ -2914,7 +2914,7 @@ public class S01_CalendarElement : TestSuiteBase
                     Request.ItemsChoiceType.DtStamp, string.Empty
                 },
                 {
-                    Request.ItemsChoiceType.Categories, TestSuiteHelper.CreateCalendarCategories(new string[] { "Categories" })
+                    Request.ItemsChoiceType.Categories, TestSuiteHelper.CreateCalendarCategories(["Categories"])
                 },
                 {
                     Request.ItemsChoiceType.Sensitivity, (byte)1
@@ -3307,7 +3307,7 @@ public class S01_CalendarElement : TestSuiteBase
         calendarItem.Add(Request.ItemsChoiceType8.Recurrence, recurrence);
 
         // Set Calendar Exceptions element
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         // Set ExceptionStartTime element in exception
@@ -3349,7 +3349,7 @@ public class S01_CalendarElement : TestSuiteBase
                 Request.ItemsChoiceType.DtStamp, string.Empty
             },
             {
-                Request.ItemsChoiceType.Categories, TestSuiteHelper.CreateCalendarCategories(new string[] { "Categories" })
+                Request.ItemsChoiceType.Categories, TestSuiteHelper.CreateCalendarCategories(["Categories"])
             },
             {
                 Request.ItemsChoiceType.Sensitivity, (byte)1
@@ -3530,7 +3530,7 @@ public class S01_CalendarElement : TestSuiteBase
         var recurrence = CreateCalendarRecurrence(recurrenceType, 6, 1);
 
         // Set Calendar Exceptions element
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         // Set ExceptionStartTime element in exception
@@ -3546,7 +3546,7 @@ public class S01_CalendarElement : TestSuiteBase
         calendarItem.Add(Request.ItemsChoiceType8.Location1, Location);
 
         var emailAddress = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
-        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired(new string[] { emailAddress }, new string[] { User2Information.UserName }));
+        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired([emailAddress], [User2Information.UserName]));
         calendarItem.Add(Request.ItemsChoiceType8.MeetingStatus, (byte)1);
         if (!IsActiveSyncProtocolVersion121)
         {
@@ -3596,7 +3596,7 @@ public class S01_CalendarElement : TestSuiteBase
 
         syncChangeRequest.RequestData.Collections[0] = new Request.SyncCollection
         {
-            Commands = new object[] { syncChange },
+            Commands = [syncChange],
             SyncKey = syncResponse2.SyncKey,
             CollectionId = User1Information.CalendarCollectionId
         };
@@ -3702,7 +3702,7 @@ public class S01_CalendarElement : TestSuiteBase
         var recurrence = CreateCalendarRecurrence(recurrenceType, 6, 1);
 
         // Set Calendar Exceptions element
-        var exceptions = new Request.Exceptions { Exception = new Request.ExceptionsException[] { } };
+        var exceptions = new Request.Exceptions { Exception = [] };
         var exceptionList = new List<Request.ExceptionsException>();
 
         // Set ExceptionStartTime element in exception
@@ -3718,7 +3718,7 @@ public class S01_CalendarElement : TestSuiteBase
         calendarItem.Add(Request.ItemsChoiceType8.Location1, Location);
 
         var emailAddress = Common.GetMailAddress(User2Information.UserName, User2Information.UserDomain);
-        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired(new string[] { emailAddress }, new string[] { User2Information.UserName }));
+        calendarItem.Add(Request.ItemsChoiceType8.Attendees, TestSuiteHelper.CreateAttendeesRequired([emailAddress], [User2Information.UserName]));
         calendarItem.Add(Request.ItemsChoiceType8.MeetingStatus, (byte)1);
         if (!IsActiveSyncProtocolVersion121)
         {

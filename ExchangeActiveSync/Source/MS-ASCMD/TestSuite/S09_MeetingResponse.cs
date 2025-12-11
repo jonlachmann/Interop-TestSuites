@@ -1308,8 +1308,8 @@ public class S09_MeetingResponse : TestSuiteBase
         {
             RequestData = new Request.ItemOperations()
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = collectionId,
@@ -1318,7 +1318,7 @@ public class S09_MeetingResponse : TestSuiteBase
                             DeleteSubFolders = string.Empty
                         }
                     }
-                }
+                ]
             }
         };
 

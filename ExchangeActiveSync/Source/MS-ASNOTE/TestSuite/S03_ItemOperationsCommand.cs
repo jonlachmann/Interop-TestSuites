@@ -136,7 +136,7 @@ public class S03_ItemOperationsCommand : TestSuiteBase
         var schema = new Request.Schema
         {
             ItemsElementName = new Request.ItemsChoiceType4[1],
-            Items = new object[] { new Request.Body() }
+            Items = [new Request.Body()]
         };
         schema.ItemsElementName[0] = Request.ItemsChoiceType4.Body;
 

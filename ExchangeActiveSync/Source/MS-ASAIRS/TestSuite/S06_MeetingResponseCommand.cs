@@ -100,7 +100,7 @@ public class S06_MeetingResponseCommand : TestSuiteBase
         };
 
         // Create a meeting response request
-        var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var response = ASAIRSAdapter.MeetingResponse(meetingRequest);
 
         Site.CaptureRequirementIfAreEqual<int>(
@@ -208,7 +208,7 @@ public class S06_MeetingResponseCommand : TestSuiteBase
         };
 
         // Create a meeting response request
-        var meetingRequest = Common.CreateMeetingResponseRequest(new Request.MeetingResponseRequest[] { meetingResponseRequestItem });
+        var meetingRequest = Common.CreateMeetingResponseRequest([meetingResponseRequestItem]);
         var response = ASAIRSAdapter.MeetingResponse(meetingRequest);
 
         // Because the Type element is 2 and client call the MeetingResponse command successful.

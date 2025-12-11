@@ -66,7 +66,7 @@ public class S18_SmartReply : TestSuiteBase
         #endregion
 
         #region Call SmartReply command to reply to messages without instanceID in request
-        var smartReplySubject = string.Format("REPLY: {0}", meetingRequestSubject);
+        var smartReplySubject = $"REPLY: {meetingRequestSubject}";
         var smartReplyRequest = CreateDefaultReplyRequest(smartReplySubject, calendarItemID);
 
         // Add elements to smartReplyRequest
@@ -146,7 +146,7 @@ public class S18_SmartReply : TestSuiteBase
         #endregion
 
         #region Call SmartReply command to reply to messages without retrieving the full, original message from the server
-        var smartReplySubject = string.Format("REPLY: {0}", emailSubject);
+        var smartReplySubject = $"REPLY: {emailSubject}";
         var smartReplyRequest = CreateDefaultReplyRequest(smartReplySubject, originalServerId);
 
         var smartReplyResponse = CMDAdapter.SmartReply(smartReplyRequest);
@@ -214,7 +214,7 @@ public class S18_SmartReply : TestSuiteBase
         #region User2 creates SmartReply request with invalid InstanceId value, then calls SmartReply command.
         // Set instanceID with format that is not the same as required "2010-03-20T22:40:00.000Z".
         var instanceID = DateTime.Now.ToString();
-        var smartReplySubject = string.Format("REPLY: {0}", meetingRequestSubject);
+        var smartReplySubject = $"REPLY: {meetingRequestSubject}";
         var smartReplyRequest = CreateDefaultReplyRequest(smartReplySubject, calendarItemID);
 
         // Add instanceId element to smartReplyRequest.

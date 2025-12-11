@@ -141,7 +141,7 @@ public class TestSuiteBase : TestClassBase
             UserInformation.TasksCollectionId = Common.GetDefaultFolderServerId(folderSyncResponse, FolderType.Tasks, Site);
         }
 
-        ItemsNeedToDelete = new Collection<string>();
+        ItemsNeedToDelete = [];
     }
 
     /// <summary>
@@ -311,7 +311,7 @@ public class TestSuiteBase : TestClassBase
         };
         syncRequest.RequestData.Collections[0] = new Request.SyncCollection
         {
-            Commands = new object[] { change },
+            Commands = [change],
             SyncKey = syncKey,
             CollectionId = UserInformation.TasksCollectionId
         };

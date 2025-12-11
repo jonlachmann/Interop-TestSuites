@@ -194,13 +194,13 @@ public class TestSuiteBase : TestClassBase
             && !Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site).Equals("14.0"))
         {
             // Set the BodyPartPreference element to retrieve the BodyPart element in response
-            bodyPartPreference = new Request.BodyPartPreference[]
-            {
+            bodyPartPreference =
+            [
                 new Request.BodyPartPreference()
                 {
                     Type = 2
                 }
-            };
+            ];
         }
 
         // Set the BodyPreference element to retrieve the Body element in response
@@ -471,7 +471,7 @@ public class TestSuiteBase : TestClassBase
             syncCollection.DeletesAsMoves = false;
             syncCollection.DeletesAsMovesSpecified = true;
 
-            var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+            var syncRequest = Common.CreateSyncRequest([syncCollection]);
             var deleteResult = ASAIRSAdapter.Sync(syncRequest);
             Site.Assert.AreEqual<byte>(
                 1,

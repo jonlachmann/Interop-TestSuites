@@ -130,11 +130,11 @@ public class S05_Location : TestSuiteBase
         {
             SyncKey = SyncKey,
             CollectionId = User1Information.CalendarCollectionId,
-            Commands = new object[] { collectionChange }
+            Commands = [collectionChange]
         };
 
         // Create change sync request.
-        var syncChangeRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        var syncChangeRequest = Common.CreateSyncRequest([collection]);
 
         // Change the location of the added calender by Sync request.
         var syncChangeResponse = ASAIRSAdapter.Sync(syncChangeRequest);

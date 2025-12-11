@@ -68,13 +68,13 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = User1Information.InboxCollectionId
                     }
-                }
+                ]
             }
         };
 
@@ -126,8 +126,8 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = User1Information.InboxCollectionId,
@@ -136,7 +136,7 @@ public class S08_ItemOperations : TestSuiteBase
                             DeleteSubFolders = string.Empty
                         }
                     }
-                }
+                ]
             }
         };
 
@@ -185,13 +185,13 @@ public class S08_ItemOperations : TestSuiteBase
         #region Call method ItemOperations which contains the Fetch element, with an invalid option in Options element.
         var options = new Request.ItemOperationsFetchOptions
         {
-            Items = new object[] { string.Empty },
-            ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.Range }
+            Items = [string.Empty],
+            ItemsElementName = [Request.ItemsChoiceType5.Range]
         };
 
         // Set the Range element to empty string as the child element of option element in Fetch element, to trigger the status code 2.
-        options.Items = new object[] { string.Empty };
-        options.ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.Range };
+        options.Items = [string.Empty];
+        options.ItemsElementName = [Request.ItemsChoiceType5.Range];
 
         var itemOperationsRequest = CreateItemOperationsRequestWithFetchElement(User1Information.InboxCollectionId, SearchName.Mailbox.ToString(), string.Empty, options);
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -323,8 +323,8 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsMove
                     {
                         ConversationId = conversationId,
@@ -334,7 +334,7 @@ public class S08_ItemOperations : TestSuiteBase
                             MoveAlways = string.Empty
                         }
                     }
-                }
+                ]
             }
         };
 
@@ -488,8 +488,8 @@ public class S08_ItemOperations : TestSuiteBase
         var bodyPreference = new Request.BodyPreference { Type = 4 };
 
         // Set the value of MIMESupport element to 0, which indicates never to send MIME data.
-        options.Items = new object[] { (byte)0, bodyPreference };
-        options.ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.MIMESupport, Request.ItemsChoiceType5.BodyPreference };
+        options.Items = [(byte)0, bodyPreference];
+        options.ItemsElementName = [Request.ItemsChoiceType5.MIMESupport, Request.ItemsChoiceType5.BodyPreference];
         var itemOperationsRequest = CreateItemOperationsRequestWithFetchElement(User1Information.InboxCollectionId, SearchName.Mailbox.ToString(), serverId, options);
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
         var body = GetBodyElement(itemOperationsResponse);
@@ -500,7 +500,7 @@ public class S08_ItemOperations : TestSuiteBase
 
         // Set the value of MIMESupport element to 1, which indicates to send MIME data for S/MIME messages only, and send regular body for all other messages.
         // In this case, the response of this step contains no MIME data.
-        options.Items = new object[] { (byte)1, bodyPreference };
+        options.Items = [(byte)1, bodyPreference];
         itemOperationsRequest = CreateItemOperationsRequestWithFetchElement(User1Information.InboxCollectionId, SearchName.Mailbox.ToString(), serverId, options);
         itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
         body = GetBodyElement(itemOperationsResponse);
@@ -510,7 +510,7 @@ public class S08_ItemOperations : TestSuiteBase
         #region Call method ItemOperations which contains the Fetch element with inline method and MIMESupport setting to 2.
 
         // Set the value of MIMESupport element to 2, which indicates to send MIME data for all messages.
-        options.Items = new object[] { (byte)2, bodyPreference };
+        options.Items = [(byte)2, bodyPreference];
         itemOperationsRequest = CreateItemOperationsRequestWithFetchElement(User1Information.InboxCollectionId, SearchName.Mailbox.ToString(), serverId, options);
         itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
         body = GetBodyElement(itemOperationsResponse);
@@ -610,13 +610,13 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = User1Information.RecipientInformationCacheCollectionId
                     }
-                }
+                ]
             }
         };
 
@@ -673,13 +673,13 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = folderId
                     }
-                }
+                ]
             }
         };
 
@@ -718,13 +718,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -836,13 +836,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword, "0-0" }
             }
         };
 
         // Create an ItemOperations command request.
-        itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
 
         // Send request and get response.
         itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -918,13 +918,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -957,13 +957,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password],
                 Items = new string[] { User1Information.UserName, "invalidPassword" }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -995,13 +995,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword, "99-99" }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -1033,13 +1033,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -1071,13 +1071,13 @@ public class S08_ItemOperations : TestSuiteBase
             Store = SearchName.DocumentLibrary.ToString(),
             Options = new Request.ItemOperationsFetchOptions
             {
-                ItemsElementName = new Request.ItemsChoiceType5[] { Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range },
+                ItemsElementName = [Request.ItemsChoiceType5.UserName, Request.ItemsChoiceType5.Password, Request.ItemsChoiceType5.Range],
                 Items = new string[] { User1Information.UserName, User1Information.UserPassword, "0-10240000" }
             }
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -1110,7 +1110,7 @@ public class S08_ItemOperations : TestSuiteBase
         };
 
         // Create an ItemOperations command request.
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { itemOperationsFetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([itemOperationsFetch]);
 
         // Send request and get response.
         var itemOperationsResponse = CMDAdapter.ItemOperations(itemOperationsRequest, DeliveryMethodForFetch.Inline);
@@ -1187,7 +1187,7 @@ public class S08_ItemOperations : TestSuiteBase
         };
 
         // Create an ItemOperations command request and construct two FileReference elements
-        var itemOperationsRequest = Common.CreateItemOperationsRequest(new object[] { fetch });
+        var itemOperationsRequest = Common.CreateItemOperationsRequest([fetch]);
         var request = itemOperationsRequest.GetRequestDataSerializedXML();
         request = request.Replace(@"CollectionId xmlns=""AirSync""", @"FileReference xmlns=""AirSyncBase""");
         request = request.Replace(@"/CollectionId", @"/FileReference");
@@ -1241,8 +1241,8 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsMove
                     {
                         ConversationId = conversationId,
@@ -1252,7 +1252,7 @@ public class S08_ItemOperations : TestSuiteBase
                             MoveAlways = string.Empty
                         }
                     }
-                }
+                ]
             }
         };
 
@@ -1288,13 +1288,13 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsEmptyFolderContents
                     {
                         CollectionId = "RI"
                     }
-                }
+                ]
             }
         };
 
@@ -1331,8 +1331,8 @@ public class S08_ItemOperations : TestSuiteBase
         {
             RequestData = new Request.ItemOperations
             {
-                Items = new object[]
-                {
+                Items =
+                [
                     new Request.ItemOperationsFetch
                     {
                         CollectionId = collectionId,
@@ -1340,7 +1340,7 @@ public class S08_ItemOperations : TestSuiteBase
                         ServerId = serverId,
                         Options = options
                     }
-                }
+                ]
             }
         };
 

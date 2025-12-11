@@ -632,14 +632,14 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)1 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType }
+            Items = [(byte)1],
+            ItemsElementName = [Request.ItemsChoiceType1.FilterType]
         };
 
         var collection = new Request.SyncCollection
         {
             SyncKey = LastSyncKey,
-            Options = new Request.Options[] { option },
+            Options = [option],
             CollectionId = User1Information.ContactsCollectionId,
             Commands = null,
             GetChanges = true,
@@ -648,7 +648,7 @@ public class S19_Sync : TestSuiteBase
             ConversationModeSpecified = true
         };
 
-        syncRequest.RequestData.Collections = new Request.SyncCollection[] { collection };
+        syncRequest.RequestData.Collections = [collection];
         var syncResponse = Sync(syncRequest);
 
         // Add the debug information
@@ -680,18 +680,18 @@ public class S19_Sync : TestSuiteBase
 
         var firstOption = new Request.Options
         {
-            Items = new object[] { "Calendar" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Calendar"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var secondOption = new Request.Options
         {
-            Items = new object[] { "Calendar" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Calendar"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var syncRequest = CreateSyncAddRequest(LastSyncKey, User1Information.CalendarCollectionId, addData);
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { firstOption, secondOption };
+        syncRequest.RequestData.Collections[0].Options = [firstOption, secondOption];
         var syncResponse = Sync(syncRequest);
 
         // Add the debug information
@@ -910,19 +910,17 @@ public class S19_Sync : TestSuiteBase
                 new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject, 
+                    [
+                        Request.ItemsChoiceType8.Subject, 
                             Request.ItemsChoiceType8.StartTime, 
                             Request.ItemsChoiceType8.EndTime
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, 
+                    [
+                        calendarSubject, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ")
-                        }
+                    ]
                 },
             Class = "Calendar"
         };
@@ -1059,19 +1057,17 @@ public class S19_Sync : TestSuiteBase
                 new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject,
+                    [
+                        Request.ItemsChoiceType8.Subject,
                             Request.ItemsChoiceType8.StartTime, 
                             Request.ItemsChoiceType8.EndTime
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, 
+                    [
+                        calendarSubject, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ")
-                        }
+                    ]
                 },
             Class = "Calendar"
         };
@@ -1124,8 +1120,8 @@ public class S19_Sync : TestSuiteBase
                 new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Recurrence, Request.ItemsChoiceType8.UID },
-                    Items = new object[] { recurrenceCalendarSubject, recurrence, Guid.NewGuid().ToString() }
+                        [Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Recurrence, Request.ItemsChoiceType8.UID],
+                    Items = [recurrenceCalendarSubject, recurrence, Guid.NewGuid().ToString()]
                 },
             Class = "Calendar"
         };
@@ -1229,19 +1225,17 @@ public class S19_Sync : TestSuiteBase
                 new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject,
+                    [
+                        Request.ItemsChoiceType8.Subject,
                             Request.ItemsChoiceType8.StartTime,
-                            Request.ItemsChoiceType8.EndTime,
-                        },
+                            Request.ItemsChoiceType8.EndTime
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, 
+                    [
+                        calendarSubject, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ")
-                        }
+                    ]
                 },
             Class = "Calendar"
         };
@@ -1463,8 +1457,8 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)0, (byte)1 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType, Request.ItemsChoiceType1.FilterType }
+            Items = [(byte)0, (byte)1],
+            ItemsElementName = [Request.ItemsChoiceType1.FilterType, Request.ItemsChoiceType1.FilterType]
         };
 
         var syncResponse = SyncChangesWithOption(User2Information.InboxCollectionId, option);
@@ -1648,12 +1642,12 @@ public class S19_Sync : TestSuiteBase
 
         var options = new Request.Options
         {
-            Items = new object[] { bodyPreference, (byte)1 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.BodyPreference, Request.ItemsChoiceType1.MIMESupport }
+            Items = [bodyPreference, (byte)1],
+            ItemsElementName = [Request.ItemsChoiceType1.BodyPreference, Request.ItemsChoiceType1.MIMESupport]
         };
 
         syncRequest.RequestData.Collections[0].SyncKey = LastSyncKey;
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { options };
+        syncRequest.RequestData.Collections[0].Options = [options];
         syncRequest.RequestData.Collections[0].GetChanges = true;
         syncRequest.RequestData.Collections[0].GetChangesSpecified = true;
         var syncResponse = Sync(syncRequest);
@@ -1748,8 +1742,8 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { "Email", "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class, Request.ItemsChoiceType1.Class }
+            Items = ["Email", "Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class, Request.ItemsChoiceType1.Class]
         };
 
         var syncResponse = SyncChangesWithOption(User2Information.InboxCollectionId, option);
@@ -1781,8 +1775,8 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { "2", "3" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.MaxItems, Request.ItemsChoiceType1.MaxItems }
+            Items = ["2", "3"],
+            ItemsElementName = [Request.ItemsChoiceType1.MaxItems, Request.ItemsChoiceType1.MaxItems]
         };
 
         var syncResponse = SyncChangesWithOption(User1Information.RecipientInformationCacheCollectionId, option);
@@ -1820,8 +1814,8 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)0, (byte)1 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.MIMESupport }
+            Items = [(byte)0, (byte)1],
+            ItemsElementName = [Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.MIMESupport]
         };
 
         var syncResponse = SyncChangesWithOption(User2Information.InboxCollectionId, option);
@@ -1860,8 +1854,8 @@ public class S19_Sync : TestSuiteBase
         // Call Sync with two MIMETruncation options
         var option = new Request.Options
         {
-            Items = new object[] { (byte)2, (byte)3 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.MIMETruncation, Request.ItemsChoiceType1.MIMETruncation }
+            Items = [(byte)2, (byte)3],
+            ItemsElementName = [Request.ItemsChoiceType1.MIMETruncation, Request.ItemsChoiceType1.MIMETruncation]
         };
 
         var syncResponse = SyncChangesWithOption(User2Information.InboxCollectionId, option);
@@ -2164,7 +2158,7 @@ public class S19_Sync : TestSuiteBase
 
         #region Change the added Contact information and then synchronize the change to the server.
         var updatedContactFileAS = Common.GenerateResourceName(Site, "UpdatedFileAS");
-        var appDataChange = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { updatedContactFileAS });
+        var appDataChange = CreateChangedContact(serverId, [Request.ItemsChoiceType7.FileAs], [updatedContactFileAS]);
         syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange);
         syncResponse = Sync(syncRequest);
         Site.Assert.AreEqual<uint>(1, Convert.ToUInt32(GetCollectionItem(syncResponse, Response.ItemsChoiceType10.Status)), "The status code of Sync change operation should be 1.");
@@ -2275,8 +2269,8 @@ public class S19_Sync : TestSuiteBase
 
         var applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Flag, Request.ItemsChoiceType7.Subject },
-            Items = new object[] { emailFlag, updatedEmailSubject }
+            ItemsElementName = [Request.ItemsChoiceType7.Flag, Request.ItemsChoiceType7.Subject],
+            Items = [emailFlag, updatedEmailSubject]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2305,8 +2299,8 @@ public class S19_Sync : TestSuiteBase
 
         applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Flag },
-            Items = new object[] { updatedEmailFlag }
+            ItemsElementName = [Request.ItemsChoiceType7.Flag],
+            Items = [updatedEmailFlag]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2342,8 +2336,8 @@ public class S19_Sync : TestSuiteBase
         #region Call Sync command to set a Read element to an email.
         applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Read, Request.ItemsChoiceType7.Subject },
-            Items = new object[] { true, updatedEmailSubject }
+            ItemsElementName = [Request.ItemsChoiceType7.Read, Request.ItemsChoiceType7.Subject],
+            Items = [true, updatedEmailSubject]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2354,8 +2348,8 @@ public class S19_Sync : TestSuiteBase
 
         applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Read },
-            Items = new object[] { true }
+            ItemsElementName = [Request.ItemsChoiceType7.Read],
+            Items = [true]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2389,12 +2383,12 @@ public class S19_Sync : TestSuiteBase
         #endregion
 
         #region Call Sync command to set a Categories element to an email.
-        var categories = new Request.Categories { Category = new string[] { "company" } };
+        var categories = new Request.Categories { Category = ["company"] };
 
         applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Categories, Request.ItemsChoiceType7.Subject },
-            Items = new object[] { categories, updatedEmailSubject }
+            ItemsElementName = [Request.ItemsChoiceType7.Categories, Request.ItemsChoiceType7.Subject],
+            Items = [categories, updatedEmailSubject]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2405,8 +2399,8 @@ public class S19_Sync : TestSuiteBase
 
         applicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Categories },
-            Items = new object[] { categories }
+            ItemsElementName = [Request.ItemsChoiceType7.Categories],
+            Items = [categories]
         };
 
         appDataChange = new Request.SyncCollectionChange { ApplicationData = applicationData, ServerId = serverId };
@@ -2439,18 +2433,16 @@ public class S19_Sync : TestSuiteBase
         addData.ApplicationData = new Request.SyncCollectionAddApplicationData
         {
             ItemsElementName =
-                new Request.ItemsChoiceType8[]
-                {
-                    Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName,
+            [
+                Request.ItemsChoiceType8.FileAs, Request.ItemsChoiceType8.FirstName,
                     Request.ItemsChoiceType8.MiddleName, Request.ItemsChoiceType8.LastName,
                     Request.ItemsChoiceType8.Picture
-                },
+            ],
             Items =
-                new object[]
-                {
-                    contactFileAs, "FirstName", "MiddleName", "LastName",
+            [
+                contactFileAs, "FirstName", "MiddleName", "LastName",
                     Convert.ToBase64String(File.ReadAllBytes("number1.jpg"))
-                }
+            ]
         };
 
         if ("12.1" != Common.GetConfigurationPropertyValue("ActiveSyncProtocolVersion", Site))
@@ -2494,8 +2486,8 @@ public class S19_Sync : TestSuiteBase
 
         var changeApplicationData = new Request.SyncCollectionChangeApplicationData
         {
-            ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs },
-            Items = new object[] { updatedContactFileAs }
+            ItemsElementName = [Request.ItemsChoiceType7.FileAs],
+            Items = [updatedContactFileAs]
         };
 
         appDataChange = new Request.SyncCollectionChange
@@ -2554,7 +2546,7 @@ public class S19_Sync : TestSuiteBase
         #region Use an invalid ServerId to try to change a contact.
         var invalidServerId = Guid.NewGuid().ToString();
         var updatedContactFileAS = Common.GenerateResourceName(Site, "UpdatedFileAS");
-        var appDataChange = CreateChangedContact(invalidServerId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { updatedContactFileAS });
+        var appDataChange = CreateChangedContact(invalidServerId, [Request.ItemsChoiceType7.FileAs], [updatedContactFileAS]);
         var syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange);
         var syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items returned in the Sync command response should not be null.");
@@ -2775,12 +2767,12 @@ public class S19_Sync : TestSuiteBase
         {
             SyncKey = LastSyncKey,
             CollectionId = User2Information.InboxCollectionId,
-            Commands = new object[] { new Request.SyncCollectionDelete { ServerId = serverId } },
+            Commands = [new Request.SyncCollectionDelete { ServerId = serverId }],
             DeletesAsMoves = true,
             DeletesAsMovesSpecified = true
         };
 
-        var syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        var syncRequestData = new Request.Sync { Collections = [collection] };
 
         var syncRequestDelete = new SyncRequest { RequestData = syncRequestData };
         syncResponse = Sync(syncRequestDelete);
@@ -2830,10 +2822,10 @@ public class S19_Sync : TestSuiteBase
         {
             SyncKey = LastSyncKey,
             CollectionId = User2Information.InboxCollectionId,
-            Commands = new object[] { new Request.SyncCollectionDelete { ServerId = serverId } }
+            Commands = [new Request.SyncCollectionDelete { ServerId = serverId }]
         };
 
-        syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        syncRequestData = new Request.Sync { Collections = [collection] };
 
         syncRequestDelete = new SyncRequest { RequestData = syncRequestData };
         syncResponse = Sync(syncRequestDelete);
@@ -2905,12 +2897,12 @@ public class S19_Sync : TestSuiteBase
             SyncKey = LastSyncKey,
             GetChanges = true,
             CollectionId = User2Information.InboxCollectionId,
-            Commands = new object[] { appDataDelete },
+            Commands = [appDataDelete],
             DeletesAsMoves = false,
             DeletesAsMovesSpecified = true
         };
 
-        var syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        var syncRequestData = new Request.Sync { Collections = [collection] };
 
         var syncRequestDelete = new SyncRequest { RequestData = syncRequestData };
         Sync(syncRequestDelete);
@@ -2962,10 +2954,10 @@ public class S19_Sync : TestSuiteBase
             GetChanges = true,
             GetChangesSpecified = true,
             CollectionId = User2Information.InboxCollectionId,
-            Commands = new object[] { appDataFetch }
+            Commands = [appDataFetch]
         };
 
-        var syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        var syncRequestData = new Request.Sync { Collections = [collection] };
 
         var syncRequestForFetch = new SyncRequest { RequestData = syncRequestData };
         syncResponse = Sync(syncRequestForFetch);
@@ -3169,7 +3161,7 @@ public class S19_Sync : TestSuiteBase
         #endregion
 
         #region Call Sync change operation to change the JobTitle element.
-        var appDataChange2 = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.JobTitle }, new object[] { "President" });
+        var appDataChange2 = CreateChangedContact(serverId, [Request.ItemsChoiceType7.JobTitle], ["President"]);
         syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange2);
         syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items returned in the Sync command response should not be null.");
@@ -3229,7 +3221,7 @@ public class S19_Sync : TestSuiteBase
         var supported = new Request.Supported
         {
             Items = new string[] { string.Empty },
-            ItemsElementName = new Request.ItemsChoiceType[] { Request.ItemsChoiceType.JobTitle }
+            ItemsElementName = [Request.ItemsChoiceType.JobTitle]
         };
 
         syncRequest = CreateEmptySyncRequest(User1Information.ContactsCollectionId);
@@ -3247,7 +3239,7 @@ public class S19_Sync : TestSuiteBase
 
         #region Call Sync change operation to change the FileAS element
         var updatedContactFileAs = Common.GenerateResourceName(Site, "UpdatedFileAs");
-        var appDataChange3 = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { updatedContactFileAs });
+        var appDataChange3 = CreateChangedContact(serverId, [Request.ItemsChoiceType7.FileAs], [updatedContactFileAs]);
         syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange3);
         syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items returned in the Sync command response should not be null.");
@@ -3343,7 +3335,7 @@ public class S19_Sync : TestSuiteBase
         #endregion
 
         #region Call Sync change operation to change the JobTitle element
-        var appDataChange4 = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.JobTitle }, new object[] { "President" });
+        var appDataChange4 = CreateChangedContact(serverId, [Request.ItemsChoiceType7.JobTitle], ["President"]);
         syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange4);
         syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items returned in the Sync command response should not be null.");
@@ -3419,7 +3411,7 @@ public class S19_Sync : TestSuiteBase
         syncResponse = SyncChanges(User1Information.ContactsCollectionId);
 
         var updatedContactFileAs = Common.GenerateResourceName(Site, "UpdatedFileAS");
-        var appDataChange1 = CreateChangedContact(FindServerId(syncResponse, "FileAs", contactFileAS), new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { updatedContactFileAs });
+        var appDataChange1 = CreateChangedContact(FindServerId(syncResponse, "FileAs", contactFileAS), [Request.ItemsChoiceType7.FileAs], [updatedContactFileAs]);
         syncRequest = CreateSyncChangeRequest(LastSyncKey, User1Information.ContactsCollectionId, appDataChange1);
         syncResponse = Sync(syncRequest);
         Site.Assert.AreEqual<uint>(1, Convert.ToUInt32(GetCollectionItem(syncResponse, Response.ItemsChoiceType10.Status)), "The status code of Sync change operation should be 1.");
@@ -3431,7 +3423,7 @@ public class S19_Sync : TestSuiteBase
         FolderSync();
 
         var conflictUpdatedFileAs = Common.GenerateResourceName(Site, "ConflictUpdatedFileAS");
-        var appDataChange2 = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { conflictUpdatedFileAs });
+        var appDataChange2 = CreateChangedContact(serverId, [Request.ItemsChoiceType7.FileAs], [conflictUpdatedFileAs]);
         syncRequest = CreateSyncChangeRequest(syncKey, User1Information.ContactsCollectionId, appDataChange2);
         syncResponse = Sync(syncRequest, false);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The collections in the Sync response should not be null.");
@@ -3465,11 +3457,11 @@ public class S19_Sync : TestSuiteBase
         #region Change the changed contact item again with Conflict option of value 1.
         var option = new Request.Options
         {
-            Items = new object[] { (byte)1 },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Conflict }
+            Items = [(byte)1],
+            ItemsElementName = [Request.ItemsChoiceType1.Conflict]
         };
 
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { option };
+        syncRequest.RequestData.Collections[0].Options = [option];
         syncResponse = Sync(syncRequest, false);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The collections in the Sync response should not be null.");
 
@@ -3517,10 +3509,10 @@ public class S19_Sync : TestSuiteBase
         #endregion
 
         #region Change the changed contact item again with Conflict option of value 0.
-        option.Items = new object[] { (byte)0 };
-        option.ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Conflict };
+        option.Items = [(byte)0];
+        option.ItemsElementName = [Request.ItemsChoiceType1.Conflict];
 
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { option };
+        syncRequest.RequestData.Collections[0].Options = [option];
         syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The collections in the Sync response should not be null.");
         Site.Assert.AreEqual<uint>(1, Convert.ToUInt32(GetCollectionItem(syncResponse, Response.ItemsChoiceType10.Status)), "The Sync change operation should be successful.");
@@ -3549,19 +3541,19 @@ public class S19_Sync : TestSuiteBase
     {
         var option = new Request.Options
         {
-            Items = new object[] { (byte)1, (byte)1 },
+            Items = [(byte)1, (byte)1],
             ItemsElementName =
-                new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Conflict, Request.ItemsChoiceType1.Conflict }
+                [Request.ItemsChoiceType1.Conflict, Request.ItemsChoiceType1.Conflict]
         };
 
         var collection = new Request.SyncCollection
         {
-            Options = new Request.Options[] { option },
+            Options = [option],
             SyncKey = "0",
             CollectionId = User1Information.ContactsCollectionId
         };
 
-        var syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        var syncRequestData = new Request.Sync { Collections = [collection] };
 
         var syncRequest = new SyncRequest { RequestData = syncRequestData };
         var syncResponse = Sync(syncRequest);
@@ -3599,17 +3591,17 @@ public class S19_Sync : TestSuiteBase
 
         var option1 = new Request.Options
         {
-            Items = new object[] { "Email" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Email"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var option2 = new Request.Options
         {
-            Items = new object[] { "SMS" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["SMS"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
-        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option1, option2 });
+        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option1, option2]);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items in the Sync response should not be null.");
 
         // Add the debug information
@@ -3626,19 +3618,19 @@ public class S19_Sync : TestSuiteBase
         #region Call Sync to get both Calendar and Tasks items
         var option3 = new Request.Options
         {
-            Items = new object[] { "Calendar" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Calendar"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var option4 = new Request.Options
         {
-            Items = new object[] { "Tasks" },
-            ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.Class }
+            Items = ["Tasks"],
+            ItemsElementName = [Request.ItemsChoiceType1.Class]
         };
 
         var syncRequest = CreateEmptySyncRequest(User2Information.CalendarCollectionId);
         Sync(syncRequest);
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { option3, option4 };
+        syncRequest.RequestData.Collections[0].Options = [option3, option4];
         syncRequest.RequestData.Collections[0].SyncKey = LastSyncKey;
         syncResponse = Sync(syncRequest);
 
@@ -3676,16 +3668,15 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference, (byte)8 },
+            Items = [(byte)2, bodyPreference, (byte)8],
             ItemsElementName =
-                new Request.ItemsChoiceType1[]
-                {
-                    Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
+            [
+                Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
                     Request.ItemsChoiceType1.MIMETruncation
-                }
+            ]
         };
 
-        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option]);
 
         var mailBody = GetMailBody(syncResponse, emailSubject);
         Site.Assert.IsNotNull(mailBody, "The body of the received email should not be null.");
@@ -3693,12 +3684,12 @@ public class S19_Sync : TestSuiteBase
 
         option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference },
+            Items = [(byte)2, bodyPreference],
             ItemsElementName =
-                new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference }
+                [Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference]
         };
 
-        syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option]);
 
         mailBody = GetMailBody(syncResponse, emailSubject);
         Site.Assert.IsNotNull(mailBody, "The body of the received email should not be null.");
@@ -3718,16 +3709,15 @@ public class S19_Sync : TestSuiteBase
         #region Call Sync with MIMETruncation set to 0 to truncate all body text.
         option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference, (byte)0 },
+            Items = [(byte)2, bodyPreference, (byte)0],
             ItemsElementName =
-                new Request.ItemsChoiceType1[]
-                {
-                    Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
+            [
+                Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
                     Request.ItemsChoiceType1.MIMETruncation
-                }
+            ]
         };
 
-        syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option]);
 
         mailBody = GetMailBody(syncResponse, emailSubject);
         Site.Assert.IsNotNull(mailBody, "The body of the received email should not be null.");
@@ -3861,16 +3851,15 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference, (byte)1 },
+            Items = [(byte)2, bodyPreference, (byte)1],
             ItemsElementName =
-                new Request.ItemsChoiceType1[]
-                {
-                    Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
+            [
+                Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
                     Request.ItemsChoiceType1.MIMETruncation
-                }
+            ]
         };
 
-        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option]);
         Site.Assert.AreEqual<uint>(1, Convert.ToUInt32(GetCollectionItem(syncResponse, Response.ItemsChoiceType10.Status)), "The Status of the Sync command response should be 1.");
         var mailBody = GetMailBody(syncResponse, emailSubject);
         Site.Assert.IsNotNull(mailBody, "The body of the received email should not be null.");
@@ -3923,14 +3912,14 @@ public class S19_Sync : TestSuiteBase
         var collection = new Request.SyncCollection
         {
             SyncKey = LastSyncKey,
-            Options = new Request.Options[]
-            {
+            Options =
+            [
                 new Request.Options
                 {
-                    Items = new object[] { (byte)1 },
-                    ItemsElementName = new Request.ItemsChoiceType1[] { Request.ItemsChoiceType1.FilterType }
+                    Items = [(byte)1],
+                    ItemsElementName = [Request.ItemsChoiceType1.FilterType]
                 }
-            },
+            ],
             CollectionId = User2Information.InboxCollectionId,
             Commands = null,
             GetChanges = true,
@@ -3942,7 +3931,7 @@ public class S19_Sync : TestSuiteBase
         var syncRequest = CreateEmptySyncRequest(User2Information.InboxCollectionId);
         Sync(syncRequest);
         collection.SyncKey = LastSyncKey;
-        syncRequest.RequestData.Collections = new Request.SyncCollection[] { collection };
+        syncRequest.RequestData.Collections = [collection];
         var syncResponse = Sync(syncRequest);
         Site.Assert.IsNotNull(syncResponse.ResponseData.Item, "The items returned in the Sync command response should not be null.");
         var serverId = FindServerId(syncResponse, "Subject", emailSubject);
@@ -4019,7 +4008,7 @@ public class S19_Sync : TestSuiteBase
         #region Call Sync command without specifying CollectionId.
         var supported = new Request.Supported
         {
-            ItemsElementName = new Request.ItemsChoiceType[] { Request.ItemsChoiceType.JobTitle }
+            ItemsElementName = [Request.ItemsChoiceType.JobTitle]
         };
 
         syncRequest = CreateEmptySyncRequest(User1Information.ContactsCollectionId);
@@ -4114,7 +4103,7 @@ public class S19_Sync : TestSuiteBase
 
             var serverId = User1Information.ContactsCollectionId + ":" + Guid.NewGuid().ToString();
             var updatedContactFileAS = Common.GenerateResourceName(Site, "UpdatedFileAS");
-            var changeData = CreateChangedContact(serverId, new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.FileAs }, new object[] { updatedContactFileAS });
+            var changeData = CreateChangedContact(serverId, [Request.ItemsChoiceType7.FileAs], [updatedContactFileAS]);
             commands.Add(changeData);
 
             var deleteData = new Request.SyncCollectionDelete { ServerId = serverId };
@@ -4138,7 +4127,7 @@ public class S19_Sync : TestSuiteBase
             Commands = commands.ToArray()
         };
 
-        var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        var syncRequest = Common.CreateSyncRequest([collection]);
         var syncResponse = Sync(syncRequest);
 
         // Add the debug information
@@ -4176,18 +4165,16 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
+                    [
+                        Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
                             Request.ItemsChoiceType8.StartTime, Request.ItemsChoiceType8.EndTime,
                             Request.ItemsChoiceType8.UID
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, location, startTime.ToString("yyyyMMddTHHmmssZ"),
+                    [
+                        calendarSubject, location, startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ"), Guid.NewGuid().ToString()
-                        }
+                    ]
                 },
                 Class = "Calendar"
             };
@@ -4200,22 +4187,20 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location,
+                    [
+                        Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location,
                             Request.ItemsChoiceType8.StartTime, Request.ItemsChoiceType8.EndTime
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, 
+                    [
+                        calendarSubject, 
                             new Request.Location
                             {
                                 LocationUri=location
                             }, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ")
-                        }
+                    ]
                 },
                 Class = "Calendar"
             };
@@ -4244,18 +4229,16 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
+                    [
+                        Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
                             Request.ItemsChoiceType8.StartTime, Request.ItemsChoiceType8.EndTime,
                             Request.ItemsChoiceType8.UID
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, location, startTime.ToString("yyyyMMddTHHmmssZ"),
+                    [
+                        calendarSubject, location, startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ"), Guid.NewGuid().ToString()
-                        }
+                    ]
                 },
                 Class = "Calendar"
             };
@@ -4268,22 +4251,20 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location,
+                    [
+                        Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location,
                             Request.ItemsChoiceType8.StartTime, Request.ItemsChoiceType8.EndTime
-                        },
+                    ],
                     Items =
-                        new object[]
-                        {
-                            calendarSubject, 
+                    [
+                        calendarSubject, 
                             new Request.Location
                             {
                                 LocationUri=location
                             }, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ")
-                        }
+                    ]
                 },
                 Class = "Calendar"
             };
@@ -4355,7 +4336,7 @@ public class S19_Sync : TestSuiteBase
         #region Add a new Note item
         var noteSubject = Common.GenerateResourceName(Site, "noteSubject");
         var noteBody = new Request.Body { Type = 1, Data = "Content of the body." };
-        var categories = new Request.Categories4 { Category = new string[] { "blue category" } };
+        var categories = new Request.Categories4 { Category = ["blue category"] };
 
         var noteData = new Request.SyncCollectionAdd
         {
@@ -4363,21 +4344,19 @@ public class S19_Sync : TestSuiteBase
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
                 ItemsElementName =
-                    new Request.ItemsChoiceType8[]
-                    {
-                        Request.ItemsChoiceType8.Subject1, 
+                [
+                    Request.ItemsChoiceType8.Subject1, 
                         Request.ItemsChoiceType8.Body,
                         Request.ItemsChoiceType8.Categories2, 
                         Request.ItemsChoiceType8.MessageClass
-                    },
+                ],
                 Items =
-                    new object[]
-                    {
-                        noteSubject, 
+                [
+                    noteSubject, 
                         noteBody, 
                         categories,
                         "IPM.StickyNote"
-                    }
+                ]
             },
             Class = "Calendar"
         };
@@ -4432,7 +4411,7 @@ public class S19_Sync : TestSuiteBase
 
         var exception = new Request.ExceptionsException();
         exception.ExceptionStartTime = startTime.AddDays(2).ToString("yyyyMMddTHHmmssZ");
-        var exceptions = new Request.Exceptions() { Exception = new Request.ExceptionsException[] { exception } };
+        var exceptions = new Request.Exceptions() { Exception = [exception] };
 
         var recurrence = new Request.Recurrence
         {
@@ -4446,21 +4425,19 @@ public class S19_Sync : TestSuiteBase
                 new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[] 
-                        { 
-                            Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
+                    [
+                        Request.ItemsChoiceType8.Subject, Request.ItemsChoiceType8.Location1,
                             Request.ItemsChoiceType8.StartTime, Request.ItemsChoiceType8.EndTime,
                             Request.ItemsChoiceType8.Recurrence, Request.ItemsChoiceType8.Exceptions,
                             Request.ItemsChoiceType8.UID
-                        },
+                    ],
                     Items =
-                        new object[] 
-                        { 
-                            recurrenceCalendarSubject, location, 
+                    [
+                        recurrenceCalendarSubject, location, 
                             startTime.ToString("yyyyMMddTHHmmssZ"),
                             endTime.ToString("yyyyMMddTHHmmssZ"),
                             recurrence, exceptions, Guid.NewGuid().ToString()
-                        }
+                    ]
                 },
             Class = "Calendar"
         };
@@ -4481,8 +4458,8 @@ public class S19_Sync : TestSuiteBase
         var updatedCalendarSubject = Common.GenerateResourceName(Site, "updatedCalendarSubject");
 
         var changeCalednarData = new Request.SyncCollectionChangeApplicationData();
-        changeCalednarData.ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Subject, Request.ItemsChoiceType7.Recurrence };
-        changeCalednarData.Items = new object[] { updatedCalendarSubject, recurrence };
+        changeCalednarData.ItemsElementName = [Request.ItemsChoiceType7.Subject, Request.ItemsChoiceType7.Recurrence];
+        changeCalednarData.Items = [updatedCalendarSubject, recurrence];
 
         var appDataChange = new Request.SyncCollectionChange
         {
@@ -4538,8 +4515,9 @@ public class S19_Sync : TestSuiteBase
         #region Change the subject of the added recurrence calendar again.
         var allNewCalendarSubject = Common.GenerateResourceName(Site, "updatedCalendarSubject");
 
-        changeCalednarData.ItemsElementName = new Request.ItemsChoiceType7[] { Request.ItemsChoiceType7.Subject, Request.ItemsChoiceType7.Recurrence, Request.ItemsChoiceType7.Exceptions, Request.ItemsChoiceType7.UID };
-        changeCalednarData.Items = new object[] { allNewCalendarSubject, recurrence, null, Guid.NewGuid().ToString() };
+        changeCalednarData.ItemsElementName = [Request.ItemsChoiceType7.Subject, Request.ItemsChoiceType7.Recurrence, Request.ItemsChoiceType7.Exceptions, Request.ItemsChoiceType7.UID
+        ];
+        changeCalednarData.Items = [allNewCalendarSubject, recurrence, null, Guid.NewGuid().ToString()];
 
         appDataChange = new Request.SyncCollectionChange
         {
@@ -4628,10 +4606,10 @@ public class S19_Sync : TestSuiteBase
             GetChanges = true,
             GetChangesSpecified = true,
             CollectionId = User2Information.InboxCollectionId,
-            Commands = new object[] { appDataFetch }
+            Commands = [appDataFetch]
         };
 
-        var syncRequestData = new Request.Sync { Collections = new Request.SyncCollection[] { collection } };
+        var syncRequestData = new Request.Sync { Collections = [collection] };
 
         var syncRequestForFetch = new SyncRequest { RequestData = syncRequestData };
         syncResponse = Sync(syncRequestForFetch);
@@ -4662,10 +4640,10 @@ public class S19_Sync : TestSuiteBase
             SyncKey = syncKey,
             GetChanges = true,
             CollectionId = collectionId,
-            Commands = new object[] { syncCollectionChange }
+            Commands = [syncCollectionChange]
         };
 
-        return Common.CreateSyncRequest(new Request.SyncCollection[] { collection });
+        return Common.CreateSyncRequest([collection]);
     }
 
     /// <summary>
@@ -4702,8 +4680,8 @@ public class S19_Sync : TestSuiteBase
             ClientId = clientId,
             ApplicationData = new Request.SyncCollectionAddApplicationData
             {
-                ItemsElementName = new Request.ItemsChoiceType8[] { Request.ItemsChoiceType8.To },
-                Items = new object[] { to }
+                ItemsElementName = [Request.ItemsChoiceType8.To],
+                Items = [to]
             },
             Class = "Email"
         };
@@ -4767,16 +4745,15 @@ public class S19_Sync : TestSuiteBase
 
         var option = new Request.Options
         {
-            Items = new object[] { (byte)2, bodyPreference, valueOfMIMETruncation },
+            Items = [(byte)2, bodyPreference, valueOfMIMETruncation],
             ItemsElementName =
-                new Request.ItemsChoiceType1[]
-                {
-                    Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
+            [
+                Request.ItemsChoiceType1.MIMESupport, Request.ItemsChoiceType1.BodyPreference,
                     Request.ItemsChoiceType1.MIMETruncation
-                }
+            ]
         };
 
-        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, new Request.Options[] { option });
+        var syncResponse = CheckEmail(User2Information.InboxCollectionId, emailSubject, [option]);
 
         var mailBody = GetMailBody(syncResponse, emailSubject);
         Site.Assert.IsNotNull(mailBody, "The body of the received email should not be null.");
@@ -4803,13 +4780,12 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.To, Request.ItemsChoiceType8.Subject,
+                    [
+                        Request.ItemsChoiceType8.To, Request.ItemsChoiceType8.Subject,
                             Request.ItemsChoiceType8.Location1,
                             Request.ItemsChoiceType8.EndTime
-                        },
-                    Items = new object[] { to, subject, location, endTime }
+                    ],
+                    Items = [to, subject, location, endTime]
                 },
                 Class = "Calendar"
             };
@@ -4824,20 +4800,21 @@ public class S19_Sync : TestSuiteBase
                 ApplicationData = new Request.SyncCollectionAddApplicationData
                 {
                     ItemsElementName =
-                        new Request.ItemsChoiceType8[]
-                        {
-                            Request.ItemsChoiceType8.To, Request.ItemsChoiceType8.Subject,
+                    [
+                        Request.ItemsChoiceType8.To, Request.ItemsChoiceType8.Subject,
                             Request.ItemsChoiceType8.Location,
                             Request.ItemsChoiceType8.EndTime
-                        },
-                    Items = new object[] { 
+                    ],
+                    Items =
+                    [
                         to, 
                         subject, 
                         new Request.Location
                         {
                             LocationUri=location
                         }, 
-                        endTime }
+                        endTime
+                    ]
                 },
                 Class = "Calendar"
             };
@@ -4856,7 +4833,7 @@ public class S19_Sync : TestSuiteBase
         var syncRequest = CreateEmptySyncRequest(collectionId);
         Sync(syncRequest);
         syncRequest.RequestData.Collections[0].SyncKey = LastSyncKey;
-        syncRequest.RequestData.Collections[0].Options = new Request.Options[] { option };
+        syncRequest.RequestData.Collections[0].Options = [option];
         var syncResponse = Sync(syncRequest);
         return syncResponse;
     }

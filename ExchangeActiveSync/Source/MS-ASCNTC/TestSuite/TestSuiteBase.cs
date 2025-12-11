@@ -1342,7 +1342,7 @@ public class TestSuiteBase : TestClassBase
             syncCollection.DeletesAsMoves = false;
             syncCollection.DeletesAsMovesSpecified = true;
 
-            var syncRequest = Common.CreateSyncRequest(new Request.SyncCollection[] { syncCollection });
+            var syncRequest = Common.CreateSyncRequest([syncCollection]);
             var deleteResult = ASCNTCAdapter.Sync(syncRequest);
             Site.Assert.AreEqual<byte>(
                 1,

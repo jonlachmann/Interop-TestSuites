@@ -35,7 +35,7 @@ public class ConversationItem
     /// <summary>
     /// Gets the server id collection
     /// </summary>
-    public Collection<string> ServerId 
+    public Collection<string> ServerId
     {
         get { return serverId; }
     }
