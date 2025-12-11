@@ -754,7 +754,7 @@ public class TestSite : ITestSite
     }
 }
 
-internal sealed class NoOpAdapterProxy : DispatchProxy
+internal class NoOpAdapterProxy : DispatchProxy
 {
     public TestSite? Site { get; set; }
 

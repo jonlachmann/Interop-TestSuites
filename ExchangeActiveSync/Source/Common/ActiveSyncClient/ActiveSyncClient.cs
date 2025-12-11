@@ -1778,8 +1778,10 @@ public partial class ActiveSyncClient
         if (null != bodyByte && bodyByte.Length > 0)
         {
             httpWebRequest.ContentLength = bodyByte.Length;
-            httpWebRequest.GetRequestStream().Write(bodyByte, 0, bodyByte.Length);
-            httpWebRequest.GetRequestStream().Close();
+            using (var requestStream = httpWebRequest.GetRequestStream())
+            {
+                requestStream.Write(bodyByte, 0, bodyByte.Length);
+            }
         }
 
         // Get response from Server
