@@ -460,58 +460,29 @@ namespace Microsoft.Protocols.TestTools
         {
             try
             {
-                List<string> roots = new List<string>();
-                string? root = LocateSolutionRoot();
-                if (root != null)
+                var roots = GetPtfConfigProbeRoots().ToList();
+                string? suitePrefix = GuessSuitePrefix();
+
+                var suiteConfigs = CollectSuiteConfigs(roots, suitePrefix).ToList();
+                foreach (string config in suiteConfigs)
                 {
-                    roots.Add(root);
+                    LoadPtfConfigFile(config, overwriteExisting: false);
                 }
 
-                string baseDir = AppContext.BaseDirectory;
-                if (!string.IsNullOrEmpty(baseDir) && Directory.Exists(baseDir))
-                {
-                    roots.Add(baseDir);
-                }
+                ResolveCommonConfigPath(roots);
 
-                HashSet<string> files = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (string r in roots.Distinct(StringComparer.OrdinalIgnoreCase))
-                {
-                    string commonConfig = Path.Combine(r, "Common", "ExchangeCommonConfiguration.deployment.ptfconfig");
-                    if (File.Exists(commonConfig))
-                    {
-                        files.Add(commonConfig);
-                    }
-
-                    foreach (string f in Directory.EnumerateFiles(r, "*_TestSuite.ptfconfig", SearchOption.AllDirectories))
-                    {
-                        files.Add(f);
-                    }
-
-                    foreach (string f in Directory.EnumerateFiles(r, "*_deployment.ptfconfig", SearchOption.AllDirectories))
-                    {
-                        files.Add(f);
-                    }
-                }
-
-                foreach (string file in files)
-                {
-                    LoadPtfConfigFile(file);
-                }
-
-                // Ensure CommonConfigurationFileName is present for MergeConfiguration calls.
                 if (this.Properties["CommonConfigurationFileName"] == null)
                 {
-                    this.Properties["CommonConfigurationFileName"] = "ExchangeCommonConfiguration.deployment.ptfconfig";
+                    string? commonConfig = FindConfigByName("ExchangeCommonConfiguration.deployment.ptfconfig", roots);
+                    this.Properties["CommonConfigurationFileName"] = commonConfig ?? "ExchangeCommonConfiguration.deployment.ptfconfig";
                 }
 
-                // Prime DefaultProtocolDocShortName if a single test suite ptfconfig is present.
-                string? suiteConfig = files.FirstOrDefault(f => f.EndsWith("_TestSuite.ptfconfig", StringComparison.OrdinalIgnoreCase));
-                if (suiteConfig != null && this.Properties["DefaultProtocolDocShortName"] == null)
+                if (this.DefaultProtocolDocShortName == null)
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(suiteConfig);
-                    if (!string.IsNullOrEmpty(fileName) && fileName.Contains("_"))
+                    string? inferred = InferProtocolShortName(suitePrefix, suiteConfigs);
+                    if (!string.IsNullOrEmpty(inferred))
                     {
-                        this.Properties["DefaultProtocolDocShortName"] = fileName.Split('_')[0];
+                        this.DefaultProtocolDocShortName = inferred;
                     }
                 }
             }
@@ -519,6 +490,149 @@ namespace Microsoft.Protocols.TestTools
             {
                 // Best-effort preload. Failures will surface later via explicit config validation.
             }
+        }
+
+        private static IEnumerable<string> GetPtfConfigProbeRoots()
+        {
+            List<string> roots = new();
+
+            string baseDir = AppContext.BaseDirectory;
+            if (!string.IsNullOrEmpty(baseDir) && Directory.Exists(baseDir))
+            {
+                roots.Add(baseDir);
+            }
+
+            string currentDir = Directory.GetCurrentDirectory();
+            if (!string.IsNullOrEmpty(currentDir) && Directory.Exists(currentDir) && !roots.Any(r => string.Equals(r, currentDir, StringComparison.OrdinalIgnoreCase)))
+            {
+                roots.Add(currentDir);
+            }
+
+            string? solutionRoot = LocateSolutionRoot();
+            if (solutionRoot != null && !roots.Any(r => string.Equals(r, solutionRoot, StringComparison.OrdinalIgnoreCase)))
+            {
+                roots.Add(solutionRoot);
+            }
+
+            return roots;
+        }
+
+        private static string? GuessSuitePrefix()
+        {
+            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                string? name = asm.GetName().Name;
+                if (string.IsNullOrEmpty(name))
+                {
+                    continue;
+                }
+
+                if (name.EndsWith("_TestSuite", StringComparison.OrdinalIgnoreCase))
+                {
+                    return name[..^"_TestSuite".Length];
+                }
+            }
+
+            return null;
+        }
+
+        private static IEnumerable<string> CollectSuiteConfigs(IEnumerable<string> roots, string? suitePrefix)
+        {
+            HashSet<string> results = new(StringComparer.OrdinalIgnoreCase);
+
+            foreach (string root in roots.Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                IEnumerable<string> candidates = Directory.EnumerateFiles(root, "*_TestSuite*.ptfconfig", SearchOption.AllDirectories)
+                    .Where(f => !Path.GetFileName(f).Contains("_SHOULDMAY", StringComparison.OrdinalIgnoreCase));
+
+                if (!string.IsNullOrEmpty(suitePrefix))
+                {
+                    string prefixWithUnderscore = suitePrefix + "_";
+                    candidates = candidates.Where(f => Path.GetFileName(f).StartsWith(prefixWithUnderscore, StringComparison.OrdinalIgnoreCase));
+                }
+
+                foreach (string candidate in candidates.OrderBy(f => f.Length))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            if (results.Count == 0)
+            {
+                foreach (string root in roots.Distinct(StringComparer.OrdinalIgnoreCase))
+                {
+                    foreach (string candidate in Directory.EnumerateFiles(root, "*.ptfconfig", SearchOption.AllDirectories)
+                        .Where(f => !Path.GetFileName(f).Contains("_SHOULDMAY", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        results.Add(candidate);
+                    }
+                }
+            }
+
+            // Prioritize configs that sit closer to the base directory to mirror MSTest deployment behavior.
+            return results.OrderBy(f => f.StartsWith(AppContext.BaseDirectory ?? string.Empty, StringComparison.OrdinalIgnoreCase) ? 0 : 1)
+                          .ThenBy(f => f, StringComparer.OrdinalIgnoreCase);
+        }
+
+        private static string? FindConfigByName(string fileName, IEnumerable<string> roots)
+        {
+            foreach (string root in roots)
+            {
+                string direct = Path.Combine(root, fileName);
+                if (File.Exists(direct))
+                {
+                    return direct;
+                }
+
+                string? match = Directory.EnumerateFiles(root, fileName, SearchOption.AllDirectories).FirstOrDefault();
+                if (match != null)
+                {
+                    return match;
+                }
+            }
+
+            return null;
+        }
+
+        private void ResolveCommonConfigPath(IEnumerable<string> roots)
+        {
+            string? commonConfig = this.Properties["CommonConfigurationFileName"];
+            if (string.IsNullOrWhiteSpace(commonConfig))
+            {
+                return;
+            }
+
+            if (Path.IsPathRooted(commonConfig) && File.Exists(commonConfig))
+            {
+                return;
+            }
+
+            string? resolved = FindConfigByName(Path.GetFileName(commonConfig), roots);
+            if (!string.IsNullOrEmpty(resolved))
+            {
+                this.Properties["CommonConfigurationFileName"] = resolved;
+            }
+        }
+
+        private static string? InferProtocolShortName(string? suitePrefix, IEnumerable<string> loadedConfigs)
+        {
+            if (!string.IsNullOrEmpty(suitePrefix))
+            {
+                return suitePrefix;
+            }
+
+            string? suiteConfig = loadedConfigs.FirstOrDefault(f => Path.GetFileName(f).Contains("_TestSuite", StringComparison.OrdinalIgnoreCase));
+            if (suiteConfig != null)
+            {
+                string name = Path.GetFileNameWithoutExtension(suiteConfig);
+                int underscoreIndex = name.IndexOf('_');
+                if (underscoreIndex > 0)
+                {
+                    return name[..underscoreIndex];
+                }
+            }
+
+            return null;
         }
 
         private static string? LocateSolutionRoot()
@@ -538,7 +652,7 @@ namespace Microsoft.Protocols.TestTools
             return null;
         }
 
-        private void LoadPtfConfigFile(string path)
+        private void LoadPtfConfigFile(string path, bool overwriteExisting)
         {
             try
             {
@@ -562,7 +676,10 @@ namespace Microsoft.Protocols.TestTools
 
                     string name = property.Attributes["name"]!.Value;
                     string value = property.Attributes["value"]!.Value;
-                    this.Properties[name] = value;
+                    if (overwriteExisting || this.Properties[name] == null)
+                    {
+                        this.Properties[name] = value;
+                    }
                 }
             }
             catch
