@@ -460,33 +460,45 @@ namespace Microsoft.Protocols.TestTools
         {
             try
             {
+                List<string> roots = new List<string>();
                 string? root = LocateSolutionRoot();
-                if (root == null)
+                if (root != null)
                 {
-                    return;
+                    roots.Add(root);
                 }
 
-                List<string> files = new();
-                string commonConfig = Path.Combine(root, "Common", "ExchangeCommonConfiguration.deployment.ptfconfig");
-                if (File.Exists(commonConfig))
+                string baseDir = AppContext.BaseDirectory;
+                if (!string.IsNullOrEmpty(baseDir) && Directory.Exists(baseDir))
                 {
-                    files.Add(commonConfig);
+                    roots.Add(baseDir);
                 }
 
-                files.AddRange(Directory.EnumerateFiles(root, "*_TestSuite.ptfconfig", SearchOption.AllDirectories));
-                files.AddRange(Directory.EnumerateFiles(root, "*_deployment.ptfconfig", SearchOption.AllDirectories));
+                HashSet<string> files = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (string r in roots.Distinct(StringComparer.OrdinalIgnoreCase))
+                {
+                    string commonConfig = Path.Combine(r, "Common", "ExchangeCommonConfiguration.deployment.ptfconfig");
+                    if (File.Exists(commonConfig))
+                    {
+                        files.Add(commonConfig);
+                    }
 
-                foreach (string file in files.Distinct(StringComparer.OrdinalIgnoreCase))
+                    foreach (string f in Directory.EnumerateFiles(r, "*_TestSuite.ptfconfig", SearchOption.AllDirectories))
+                    {
+                        files.Add(f);
+                    }
+
+                    foreach (string f in Directory.EnumerateFiles(r, "*_deployment.ptfconfig", SearchOption.AllDirectories))
+                    {
+                        files.Add(f);
+                    }
+                }
+
+                foreach (string file in files)
                 {
                     LoadPtfConfigFile(file);
                 }
 
                 // Ensure CommonConfigurationFileName is present for MergeConfiguration calls.
-                if (this.Properties["CommonConfigurationFileName"] == null && File.Exists(commonConfig))
-                {
-                    this.Properties["CommonConfigurationFileName"] = Path.GetFileName(commonConfig);
-                }
-
                 if (this.Properties["CommonConfigurationFileName"] == null)
                 {
                     this.Properties["CommonConfigurationFileName"] = "ExchangeCommonConfiguration.deployment.ptfconfig";
