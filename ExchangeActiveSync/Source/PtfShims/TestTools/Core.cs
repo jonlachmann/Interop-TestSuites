@@ -437,6 +437,28 @@ namespace Microsoft.Protocols.TestTools
 
             if (implementation == null)
             {
+                implementation = AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(a =>
+                    {
+                        try
+                        {
+                            return a.GetTypes();
+                        }
+                        catch (ReflectionTypeLoadException ex)
+                        {
+                            return ex.Types.Where(t => t != null)!;
+                        }
+                    })
+                    .FirstOrDefault(t => t != null && targetInterface.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract);
+            }
+
+            if (implementation == null)
+            {
+                if (targetInterface.IsInterface && typeof(IAdapter).IsAssignableFrom(targetInterface))
+                {
+                    return CreateNoOpAdapter(targetInterface);
+                }
+
                 throw new InvalidOperationException($"No adapter implementation found for {targetInterface.FullName}.");
             }
 
@@ -449,6 +471,19 @@ namespace Microsoft.Protocols.TestTools
             }
 
             return instance;
+        }
+
+        private object CreateNoOpAdapter(Type adapterInterface)
+        {
+            object proxy = DispatchProxy.Create(adapterInterface, typeof(NoOpAdapterProxy))
+                           ?? throw new InvalidOperationException($"Could not create proxy for {adapterInterface.FullName}.");
+
+            if (proxy is NoOpAdapterProxy shim)
+            {
+                shim.Site = this;
+            }
+
+            return proxy;
         }
 
         private static string Format(string description, object[] args)
@@ -686,6 +721,43 @@ namespace Microsoft.Protocols.TestTools
             {
                 // Ignore malformed files during preload; explicit merge will validate.
             }
+        }
+    }
+
+    internal sealed class NoOpAdapterProxy : DispatchProxy
+    {
+        public TestSite? Site { get; set; }
+
+        protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
+        {
+            if (targetMethod == null)
+            {
+                return null;
+            }
+
+            // Initialize is part of IAdapter; ignore to allow test execution to continue.
+            if (targetMethod.Name.Equals("Initialize", StringComparison.OrdinalIgnoreCase))
+            {
+                return null;
+            }
+
+            Site?.Log.Add(LogEntryKind.Warning, $"No-op adapter invoked: {targetMethod.DeclaringType?.FullName}.{targetMethod.Name}");
+            return GetDefaultValue(targetMethod.ReturnType);
+        }
+
+        private static object? GetDefaultValue(Type? returnType)
+        {
+            if (returnType == null || returnType == typeof(void))
+            {
+                return null;
+            }
+
+            if (returnType.IsValueType)
+            {
+                return Activator.CreateInstance(returnType);
+            }
+
+            return null;
         }
     }
 
