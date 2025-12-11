@@ -1,95 +1,94 @@
-namespace Microsoft.Protocols.TestSuites.Common
+namespace Microsoft.Protocols.TestSuites.Common;
+
+using System.Collections.Generic;
+
+/// <summary>
+/// Range structure.
+/// </summary>
+public struct PartMetaData
 {
-    using System.Collections.Generic;
+    /// <summary>
+    /// The Start index of a part
+    /// </summary>
+    private int start;
 
     /// <summary>
-    /// Range structure.
+    /// The Count in byte of a part
     /// </summary>
-    public struct PartMetaData
+    private int count;
+
+    /// <summary>
+    /// Gets or sets Start index of a part.
+    /// </summary>
+    public int Start
     {
-        /// <summary>
-        /// The Start index of a part
-        /// </summary>
-        private int start;
+        get { return start; }
 
-        /// <summary>
-        /// The Count in byte of a part
-        /// </summary>
-        private int count;
+        set { start = value; }
+    }
 
-        /// <summary>
-        /// Gets or sets Start index of a part.
-        /// </summary>
-        public int Start
+    /// <summary>
+    /// Gets or sets Count in byte of a part.
+    /// </summary>
+    public int Count
+    {
+        get { return count; }
+
+        set { count = value; }
+    }
+}
+
+/// <summary>
+/// Represents a Metadata for a multipart response.
+/// </summary>
+public class MultipartMetadata
+{
+    /// <summary>
+    /// The count of parts
+    /// </summary>
+    private int partsCount;
+
+    /// <summary>
+    /// The ranges of parts
+    /// </summary>
+    private PartMetaData[] partsMetaData;
+
+    /// <summary>
+    /// Initializes a new instance of the MultipartMetadata class.
+    /// </summary>
+    /// <param name="metadata">An integer array contains the metadata information</param>
+    public MultipartMetadata(int[] metadata)
+    {
+        partsCount = metadata[0];
+
+        var temp = new List<PartMetaData>();
+        for (var i = 1; i < partsCount * 2; i = i + 2)
         {
-            get { return this.start; }
-
-            set { this.start = value; }
+            temp.Add(new PartMetaData() { Start = metadata[i], Count = metadata[i + 1] });
         }
 
-        /// <summary>
-        /// Gets or sets Count in byte of a part.
-        /// </summary>
-        public int Count
-        {
-            get { return this.count; }
+        partsMetaData = temp.ToArray();
+    }
 
-            set { this.count = value; }
+    /// <summary>
+    /// Gets the count of parts.
+    /// </summary>
+    public int PartsCount
+    {
+        get
+        {
+            return partsCount;
         }
     }
 
     /// <summary>
-    /// Represents a Metadata for a multipart response.
+    /// Gets the ranges of the multipart.
     /// </summary>
-    public class MultipartMetadata
+    public PartMetaData[] PartsMetaData
     {
-        /// <summary>
-        /// The count of parts
-        /// </summary>
-        private int partsCount;
-
-        /// <summary>
-        /// The ranges of parts
-        /// </summary>
-        private PartMetaData[] partsMetaData;
-
-        /// <summary>
-        /// Initializes a new instance of the MultipartMetadata class.
-        /// </summary>
-        /// <param name="metadata">An integer array contains the metadata information</param>
-        public MultipartMetadata(int[] metadata)
+        get
         {
-            this.partsCount = metadata[0];
-
-            List<PartMetaData> temp = new List<PartMetaData>();
-            for (int i = 1; i < this.partsCount * 2; i = i + 2)
-            {
-                temp.Add(new PartMetaData() { Start = metadata[i], Count = metadata[i + 1] });
-            }
-
-            this.partsMetaData = temp.ToArray();
-        }
-
-        /// <summary>
-        /// Gets the count of parts.
-        /// </summary>
-        public int PartsCount
-        {
-            get
-            {
-                return this.partsCount;
-            }
-        }
-
-        /// <summary>
-        /// Gets the ranges of the multipart.
-        /// </summary>
-        public PartMetaData[] PartsMetaData
-        {
-            get
-            {
-                return this.partsMetaData;
-            }
+            return partsMetaData;
         }
     }
 }

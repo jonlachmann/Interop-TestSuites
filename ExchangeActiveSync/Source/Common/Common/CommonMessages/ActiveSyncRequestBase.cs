@@ -1,70 +1,69 @@
-namespace Microsoft.Protocols.TestSuites.Common
+namespace Microsoft.Protocols.TestSuites.Common;
+
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+
+/// <summary>
+/// The ActiveSync request.
+/// </summary>
+/// <typeparam name="T">The generic type.</typeparam>
+public abstract class ActiveSyncRequestBase<T>
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Text;
-    using System.Xml;
-    using System.Xml.Serialization;
+    /// <summary>
+    /// Gets or sets request data.
+    /// </summary>
+    public T RequestData { get; set; }
 
     /// <summary>
-    /// The ActiveSync request.
+    /// Gets command parameters.
     /// </summary>
-    /// <typeparam name="T">The generic type.</typeparam>
-    public abstract class ActiveSyncRequestBase<T>
+    public IDictionary<CmdParameterName, object> CommandParameters { get; private set; }
+
+    /// <summary>
+    /// Sets command parameters
+    /// </summary>
+    /// <param name="parameters">The parameters of the command</param>
+    public void SetCommandParameters(IDictionary<CmdParameterName, object> parameters)
     {
-        /// <summary>
-        /// Gets or sets request data.
-        /// </summary>
-        public T RequestData { get; set; }
+        CommandParameters = parameters;
+    }
 
-        /// <summary>
-        /// Gets command parameters.
-        /// </summary>
-        public IDictionary<CmdParameterName, object> CommandParameters { get; private set; }
-
-        /// <summary>
-        /// Sets command parameters
-        /// </summary>
-        /// <param name="parameters">The parameters of the command</param>
-        public void SetCommandParameters(IDictionary<CmdParameterName, object> parameters)
+    /// <summary>
+    /// Get request data serialized xml.
+    /// </summary>
+    /// <returns>The result of serialized xml.</returns>
+    public virtual string GetRequestDataSerializedXML()
+    {
+        if (null == RequestData)
         {
-            this.CommandParameters = parameters;
+            return string.Empty;
         }
 
-        /// <summary>
-        /// Get request data serialized xml.
-        /// </summary>
-        /// <returns>The result of serialized xml.</returns>
-        public virtual string GetRequestDataSerializedXML()
+        string serializedXMLstring;
+
+        MemoryStream ms = null;
+        try
         {
-            if (null == this.RequestData)
+            ms = new MemoryStream();
+            using (XmlWriter stringWriter = new ActiveSyncXmlWriter(ms, Encoding.UTF8))
             {
-                return string.Empty;
+                var xmlSerializer = new XmlSerializer(RequestData.GetType());
+                xmlSerializer.Serialize(stringWriter, RequestData);
+                ms.Position = 0;
+                serializedXMLstring = new StreamReader(ms).ReadToEnd();
             }
-
-            string serializedXMLstring;
-
-            MemoryStream ms = null;
-            try
-            {
-                ms = new MemoryStream();
-                using (XmlWriter stringWriter = new ActiveSyncXmlWriter(ms, Encoding.UTF8))
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(this.RequestData.GetType());
-                    xmlSerializer.Serialize(stringWriter, this.RequestData);
-                    ms.Position = 0;
-                    serializedXMLstring = new StreamReader(ms).ReadToEnd();
-                }
-            }
-            finally
-            {
-                if (ms != null)
-                {
-                    ms.Dispose();
-                }
-            }
-
-            return serializedXMLstring;
         }
+        finally
+        {
+            if (ms != null)
+            {
+                ms.Dispose();
+            }
+        }
+
+        return serializedXMLstring;
     }
 }

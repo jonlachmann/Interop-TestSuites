@@ -1,19 +1,18 @@
 // Minimal System.Drawing.Image stand-in to satisfy legacy code paths that only perform type checks.
-namespace System.Drawing
+namespace System.Drawing;
+
+using IO;
+
+public abstract class Image
 {
-    using System.IO;
-
-    public abstract class Image
+    public static Image FromStream(Stream stream)
     {
-        public static Image FromStream(Stream stream)
-        {
-            // This shim does not decode; it only validates that a stream was provided.
-            // It returns a lightweight placeholder instance.
-            return new ShimImage();
-        }
+        // This shim does not decode; it only validates that a stream was provided.
+        // It returns a lightweight placeholder instance.
+        return new ShimImage();
+    }
 
-        private sealed class ShimImage : Image
-        {
-        }
+    private sealed class ShimImage : Image
+    {
     }
 }

@@ -1,17 +1,20 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADispatchProxyGenerator_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F82cb184687b92a6b92c50e17778a0a8738797d1e549c269c884e62cb6a9_003FDispatchProxyGenerator_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AHttpWebRequest_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F48116876449dd4501ba1d6f1c0c44370742757347ff52281fbaabe9b889ad67_003FHttpWebRequest_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ASafeFileHandle_002EUnix_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F9cf5f68d759deefc91b9c48c5ac3dd27708bb7dc38d0c485661fff5ce15b82_003FSafeFileHandle_002EUnix_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AThrowHelper_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F6780d13016c376c4491c5618b257d84da7eacf747ed2719783e775546b79b_003FThrowHelper_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0450d85b_002D1ef9_002D4ce5_002D8efe_002Daf2c23dec20c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AXmlTextReaderImpl_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F1fff23495a314f18b30a4b0feca0421f4ad1c46316f889aed22b1cd471a_003FXmlTextReaderImpl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b00d5d89_002D8a00_002D4674_002Dbe20_002Db115437b699b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="S01_BodyPartPreference" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;MSTest::4C143C79-2F92-4A3A-B0A0-D33B805ACDE8::net8.0::Microsoft.Protocols.TestSuites.MS_ASCMD.S01_Autodiscover.MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::327ACCF7-E1DF-46DF-BAE3-C85AB7EA7DB9::net8.0::Microsoft.Protocols.TestSuites.MS_ASAIRS.S01_BodyPartPreference&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::327ACCF7-E1DF-46DF-BAE3-C85AB7EA7DB9::net8.0::Microsoft.Protocols.TestSuites.MS_ASAIRS.S02_BodyPreference&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::327ACCF7-E1DF-46DF-BAE3-C85AB7EA7DB9::net8.0::Microsoft.Protocols.TestSuites.MS_ASAIRS.S03_Attachment&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::327ACCF7-E1DF-46DF-BAE3-C85AB7EA7DB9::net8.0::Microsoft.Protocols.TestSuites.MS_ASAIRS.S04_StatusError&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2ca0beff_002Da1ea_002D4730_002D821e_002D128ba3ff9b21/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;MSTest::4C143C79-2F92-4A3A-B0A0-D33B805ACDE8::net8.0::Microsoft.Protocols.TestSuites.MS_ASCMD.S01_Autodiscover.MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dc6eb503_002Daa59_002D402d_002D9366_002D7c4e9669117f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;MSTest::4C143C79-2F92-4A3A-B0A0-D33B805ACDE8::net8.0::Microsoft.Protocols.TestSuites.MS_ASCMD.S01_Autodiscover.MSASCMD_S01_TC01_Autodiscover_TypeIsMobileSync&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	
+	
+	
+	
+	</wpf:ResourceDictionary>
